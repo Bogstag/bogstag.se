@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Controllers\Chart;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Khill\Lavacharts\Lavacharts;
+
+
+class ColumnChartController extends ChartController
+{
+
+    public $columnChart;
+    public $createColumnChart;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function getColumnChart($name = '', $title = '')
+    {
+        $this->columnChart = \Lava::ColumnChart($name);
+        $this->setDataTable();
+        $this->setTitle($title);
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     */
+    public function createColumnChart($name, $title, $dataTableColumns, $dataTableRows)
+    {
+        $this->getLavaDataTable($dataTableColumns, $dataTableRows);
+        $this->getColumnChart($name, $title);
+        return $this->columnChart;
+    }
+
+    /**
+     * @param $title
+     */
+    public function setTitle($title)
+    {
+        $this->columnChart->title($title);
+    }
+
+    public function setDataTable()
+    {
+        $this->columnChart->dataTable($this->lavaDataTable);
+    }
+}
