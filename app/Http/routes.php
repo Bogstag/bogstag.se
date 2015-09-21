@@ -24,7 +24,7 @@ Route::get('about', function () {
 Route::resource('graph', 'PageChartController@getStepCharts');
 
 //Test Routes
-Route::get('test', 'Integration\Google\GoogleFit@getStepData');
+//Route::get('test', 'Integration\Google\GoogleFit@getStepData');
 
 // Auth Routes
 Route::controllers([
