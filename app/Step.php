@@ -94,6 +94,10 @@ class Step extends Model
         ]);
     }
 
+    /**
+     * @param $steps
+     * @return array
+     */
     public function transformDurationCollection($steps)
     {
         return array_map([$this, 'transformDuration'], $steps->toArray());
@@ -111,6 +115,10 @@ class Step extends Model
         ]);
     }
 
+    /**
+     * @param $steps
+     * @return array
+     */
     public function transformPaceCollection($steps)
     {
         return array_map([$this, 'transformPace'], $steps->toArray());

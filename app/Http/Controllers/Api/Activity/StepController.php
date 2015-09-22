@@ -8,23 +8,24 @@ use App\Http\Controllers\Api\APIController;
 use App\Http\Requests;
 use Carbon\Carbon;
 
+/**
+ * Class StepController
+ * @package App\Http\Controllers\Api\Activity
+ */
 class StepController extends APIController
 {
 
     /**
-     * @param Step $step
+     * @var Step
      */
-    public function __construct(Step $step)
-    {
-        $this->step = $step;
-    }
+    protected $step;
 
     /**
-     * Display a listing of the resource.
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
+        $this->step = new Step();
         $limit = \Input::get('limit', 10);
         $steps = $this->step->limit($limit)->get()->toArray();
 
@@ -32,40 +33,35 @@ class StepController extends APIController
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Response
+     * @param array $steps
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
     public function internalStoreRequest(array $steps)
     {
         array_map([$this, 'internalStore'], $steps);
     }
 
-    public function internalStore(array $steps)
+    /**
+     * @param array $step
+     */
+    public function internalStore(array $step)
     {
-        $datestore = new Step;
-        if ($this->step->where('step_id', $steps['date']->minute(0)->second(0)->format('YmdH'))->exists()) {
-            var_dump('finns ' . $steps['date']->minute(0)->second(0)->format('YmdH'));
+        $this->step = new Step;
+        if ($this->step->where('step_id', $step['date']->minute(0)->second(0)->format('YmdH'))->exists()) {
         } else {
-            $datestore->step_id = $steps['date']->minute(0)->second(0)->format('YmdH');
-            $datestore->date_id = $steps['date']->minute(0)->second(0)->format('Ymd');
-            $datestore->datetime = $steps['date']->minute(0)->second(0)->timestamp;
-            $datestore->duration = $steps['duration'];
-            $datestore->steps = $steps['steps'];
-            $datestore->save();
+            $this->setStep($step);
+            $this->step->save();
         }
+    }
+
+    /**
+     * @param array $step
+     */
+    public function setStep(array $step)
+    {
+        $this->step->step_id = $step['date']->minute(0)->second(0)->format('YmdH');
+        $this->step->date_id = $step['date']->minute(0)->second(0)->format('Ymd');
+        $this->step->datetime = $step['date']->minute(0)->second(0)->timestamp;
+        $this->step->duration = $step['duration'];
+        $this->step->steps = $step['steps'];
     }
 }

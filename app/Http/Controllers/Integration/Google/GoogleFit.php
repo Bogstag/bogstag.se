@@ -29,7 +29,6 @@ class GoogleFit extends Google
      */
     public function __construct()
     {
-
         $scopes = [
             'https://www.googleapis.com/auth/fitness.activity.read',
             'https://www.googleapis.com/auth/fitness.body.read',
@@ -66,7 +65,7 @@ class GoogleFit extends Google
         );
     }
 
-    public function getStepData(DateController $dateController, StepController $stepController)
+    public function getStepData()
     {
 
         $this->dataSourceId = "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps";
@@ -74,6 +73,7 @@ class GoogleFit extends Google
         $listDataSets = $this->getDataSetsFromDataSource();
 
         $dataArray = array();
+        $dateArray = array();
         $i = 0;
         $dataSet = '';
         $oldKey = null;
@@ -105,13 +105,16 @@ class GoogleFit extends Google
                     'steps'    => $step_count,
                     'duration' => $duration
                 );
+                $dateArray[] = $startTimeNanos;
             } else {
                 $dataArray[$step_id]['steps'] += $step_count;
                 $dataArray[$step_id]['duration'] += $duration;
             }
             $dataSet = $listDataSets->next();
         }
-        $dateController->internalStoreRequest($dataArray);
+        $dateController = new DateController;
+        $stepController = new StepController;
+        $dateController->internalStoreRequest($dateArray);
         $stepController->internalStoreRequest($dataArray);
     }
 
