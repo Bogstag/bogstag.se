@@ -7,18 +7,34 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Khill\Lavacharts\Lavacharts;
 
-
+/**
+ * Class ColumnChartController
+ * @package App\Http\Controllers\Chart
+ */
 class ColumnChartController extends ChartController
 {
 
+    /**
+     * @var
+     */
     public $columnChart;
+    /**
+     * @var
+     */
     public $createColumnChart;
 
+    /**
+     *
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * @param string $name
+     * @param string $title
+     */
     public function getColumnChart($name = '', $title = '')
     {
         $this->columnChart = \Lava::ColumnChart($name);
@@ -45,6 +61,9 @@ class ColumnChartController extends ChartController
         $this->columnChart->title($title);
     }
 
+    /**
+     *
+     */
     public function setDataTable()
     {
         $this->columnChart->dataTable($this->lavaDataTable);

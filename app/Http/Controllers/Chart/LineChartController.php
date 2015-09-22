@@ -7,19 +7,35 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Khill\Lavacharts\Lavacharts;
 
-
+/**
+ * Class LineChartController
+ * @package App\Http\Controllers\Chart
+ */
 class LineChartController extends ChartController
 {
 
+    /**
+     * @var
+     */
     public $lineChart;
+    /**
+     * @var
+     */
     public $createLineChart;
 
+    /**
+     *
+     */
     public function __construct()
     {
         parent::__construct();
         //$this->lineChart = $lineChart;
     }
 
+    /**
+     * @param string $name
+     * @param string $title
+     */
     public function getLineChart($name = '', $title = '')
     {
         $this->lineChart = \Lava::LineChart($name);
@@ -46,6 +62,9 @@ class LineChartController extends ChartController
         $this->lineChart->title($title);
     }
 
+    /**
+     *
+     */
     public function setDataTable()
     {
         $this->lineChart->dataTable($this->lavaDataTable);

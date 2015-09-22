@@ -7,19 +7,35 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Khill\Lavacharts\Lavacharts;
 
-
+/**
+ * Class BarChartController
+ * @package App\Http\Controllers\Chart
+ */
 class BarChartController extends ChartController
 {
 
+    /**
+     * @var
+     */
     public $barChart;
+    /**
+     * @var
+     */
     public $createBarChart;
 
+    /**
+     *
+     */
     public function __construct()
     {
         parent::__construct();
         //$this->lineChart = $lineChart;
     }
 
+    /**
+     * @param string $name
+     * @param string $title
+     */
     public function getBarChart($name = '', $title = '')
     {
         $this->barChart = \Lava::BarChart($name);
@@ -46,6 +62,9 @@ class BarChartController extends ChartController
         $this->barChart->title($title);
     }
 
+    /**
+     *
+     */
     public function setDataTable()
     {
         $this->barChart->dataTable($this->lavaDataTable);

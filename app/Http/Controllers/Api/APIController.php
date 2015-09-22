@@ -17,7 +17,7 @@ class APIController extends Controller
      * @param Request $request
      * @return array|Request
      */
-    public function removeApikeyFromRequest(Request $request)
+    public function removeApiKeyFromRequest(Request $request)
     {
         $request = $request->except(['apikey']);
 

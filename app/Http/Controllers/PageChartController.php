@@ -18,7 +18,9 @@ class PageChartController extends Controller
      */
     public function getStepCharts()
     {
-        $dataTableRows = Step::select(DB::raw('datetime, sum(steps) as steps, sum(duration)/60 as duration, sum(steps)/sum(duration) as pace'))
+        $dataTableRows = Step::select(DB::raw(
+            'datetime, sum(steps) as steps, sum(duration)/60 as duration, sum(steps)/sum(duration) as pace'
+        ))
             ->groupby('date_id')->orderby('date_id', 'desc')->take(10)->get();
 
         $lineChart = $this->getStepChart($dataTableRows);

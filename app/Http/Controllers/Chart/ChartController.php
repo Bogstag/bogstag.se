@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Chart;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Khill\Lavacharts\Lavacharts;
 
+/**
+ * Class ChartController
+ * @package App\Http\Controllers\Chart
+ */
 class ChartController extends Controller
 {
 
+    /**
+     * @var
+     */
     public $lavaDataTable;
 
     /**
@@ -20,6 +25,10 @@ class ChartController extends Controller
         $this->lavaDataTable = \Lava::DataTable();
     }
 
+    /**
+     * @param array $dataTableColumns
+     * @param array $dataTableRows
+     */
     public function getLavaDataTable($dataTableColumns = array(), $dataTableRows = array())
     {
 

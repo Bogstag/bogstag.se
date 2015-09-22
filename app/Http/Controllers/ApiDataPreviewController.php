@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers;
-use Illuminate\Routing\Route;
 
 /**
  * Class ApiDataPreview
