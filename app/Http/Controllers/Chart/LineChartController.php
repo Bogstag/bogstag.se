@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Khill\Lavacharts\Lavacharts;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class LineChartController
@@ -29,7 +30,6 @@ class LineChartController extends ChartController
     public function __construct()
     {
         parent::__construct();
-        //$this->lineChart = $lineChart;
     }
 
     /**
@@ -38,19 +38,23 @@ class LineChartController extends ChartController
      */
     public function getLineChart($name = '', $title = '')
     {
-        $this->lineChart = \Lava::LineChart($name);
-        $this->setDataTable();
+
+        $this->lineChart = \Lava::LineChart($name, $this->lavaDataTable);
         $this->setTitle($title);
     }
 
     /**
-     * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @param $name
+     * @param $title
+     * @param $dataTableColumns
+     * @param Collection $dataTableRows
+     * @return mixed
      */
-    public function createLineChart($name, $title, $dataTableColumns, $dataTableRows)
+    public function createLineChart($name, $title, $dataTableColumns, Collection $dataTableRows)
     {
         $this->getLavaDataTable($dataTableColumns, $dataTableRows);
         $this->getLineChart($name, $title);
+
         return $this->lineChart;
     }
 
@@ -60,13 +64,5 @@ class LineChartController extends ChartController
     public function setTitle($title)
     {
         $this->lineChart->title($title);
-    }
-
-    /**
-     *
-     */
-    public function setDataTable()
-    {
-        $this->lineChart->dataTable($this->lavaDataTable);
     }
 }

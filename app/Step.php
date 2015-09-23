@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
@@ -62,6 +63,7 @@ class Step extends Model
         $date = new Carbon($date);
         $this->date_id = $date->minute(0)->second(0)->format('Ymd');
     }
+
     /**
      * @param $date
      */
@@ -72,67 +74,45 @@ class Step extends Model
         $this->datetime = $date;
     }
 
-
     /**
      * @param $steps
      * @return array
      */
-    public function transformStepCollection($steps)
+    public function transformStepCollection(Collection $steps)
     {
-        return array_map([$this, 'transformStep'], $steps->toArray());
+
+        foreach ($steps as $step) {
+            unset($step->{'duration'});
+            unset($step->{'pace'});
+        }
+        return $steps;
     }
 
     /**
      * @param $steps
      * @return array
      */
-    public function transformStep($steps)
+    public function transformDurationCollection(Collection $steps2)
     {
-        return array_values([
-            'datetime' => $steps['datetime'],
-            'steps'    => $steps['steps']
-        ]);
+
+        foreach ($steps2 as $step2) {
+            unset($step2->{'steps'});
+            unset($step2->{'pace'});
+        }
+        return $steps2;
     }
 
     /**
      * @param $steps
      * @return array
      */
-    public function transformDurationCollection($steps)
+    public function transformPaceCollection(Collection $steps3)
     {
-        return array_map([$this, 'transformDuration'], $steps->toArray());
-    }
+        foreach ($steps3 as $step3) {
+            unset($step3->{'steps'});
+            unset($step3->{'duration'});
+        }
 
-    /**
-     * @param $steps
-     * @return array
-     */
-    public function transformDuration($steps)
-    {
-        return array_values([
-            'datetime' => $steps['datetime'],
-            'duration' => $steps['duration']
-        ]);
-    }
-
-    /**
-     * @param $steps
-     * @return array
-     */
-    public function transformPaceCollection($steps)
-    {
-        return array_map([$this, 'transformPace'], $steps->toArray());
-    }
-
-    /**
-     * @param $steps
-     * @return array
-     */
-    public function transformPace($steps)
-    {
-        return array_values([
-            'datetime' => $steps['datetime'],
-            'pace' => $steps['pace']
-        ]);
+        return $steps3;
     }
 }

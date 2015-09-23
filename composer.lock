@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19385fac8de3e2b76638a503a6116e9f",
+    "hash": "f4ff157f1a67b9251e7a803101011eb6",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -451,29 +451,33 @@
         },
         {
             "name": "khill/lavacharts",
-            "version": "2.5.7",
+            "version": "3.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kevinkhill/lavacharts.git",
-                "reference": "cc44d0081f9bb3f8e2c86b16714acc8cbfe98b15"
+                "reference": "973355ab4676de3a4b574ec1349f335844713e9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/cc44d0081f9bb3f8e2c86b16714acc8cbfe98b15",
-                "reference": "cc44d0081f9bb3f8e2c86b16714acc8cbfe98b15",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/973355ab4676de3a4b574ec1349f335844713e9f",
+                "reference": "973355ab4676de3a4b574ec1349f335844713e9f",
                 "shasum": ""
             },
             "require": {
                 "nesbot/carbon": "~1.14",
-                "php": ">=5.3.0"
+                "php": ">=5.4.0"
             },
             "require-dev": {
+                "brianium/paratest": "~0.12",
                 "mockery/mockery": "~0.9",
                 "mybuilder/phpunit-accelerator": "~1.1",
                 "phpunit/phpunit": "~4.5",
-                "sami/sami": "~2.0",
-                "satooshi/php-coveralls": "~0.6",
-                "squizlabs/php_codesniffer": "~2.0"
+                "sami/sami": "~3.0",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "suggest": {
+                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
             },
             "type": "library",
             "autoload": {
@@ -489,7 +493,37 @@
                 {
                     "name": "Kevin Hill",
                     "email": "kevinkhill@gmail.com",
-                    "role": "Developer"
+                    "role": "Creator"
+                },
+                {
+                    "name": "deringer",
+                    "homepage": "https://github.com/deringer",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "stevebauman",
+                    "homepage": "https://github.com/stevebauman",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "rajivseelam",
+                    "homepage": "https://github.com/rajivseelam",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "tobias-kuendig",
+                    "homepage": "https://github.com/tobias-kuendig",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Stonos",
+                    "homepage": "https://github.com/Stonos",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "MicahKV",
+                    "email": "micah138@yahoo.com",
+                    "role": "Contributor"
                 }
             ],
             "description": "PHP wrapper library for the Google Chart API",
@@ -499,7 +533,7 @@
                 "google",
                 "graphs"
             ],
-            "time": "2015-07-07 04:55:50"
+            "time": "2015-09-20 15:02:36"
         },
         {
             "name": "laravel/framework",
@@ -631,20 +665,23 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.12",
+            "version": "1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086"
+                "reference": "202c7775d959f377e2e302d93e7127c47604438a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7323424a9d39c24e597ed3f2144419dfbb52e086",
-                "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/202c7775d959f377e2e302d93e7127c47604438a",
+                "reference": "202c7775d959f377e2e302d93e7127c47604438a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
+            },
+            "conflict": {
+                "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
                 "ext-fileinfo": "*",
@@ -708,7 +745,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-09-05 12:06:41"
+            "time": "2015-09-22 19:18:28"
         },
         {
             "name": "monolog/monolog",
@@ -2509,16 +2546,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.8",
+            "version": "4.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "521720279261e5b14799cf1bb895d4b55e516f26"
+                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/521720279261e5b14799cf1bb895d4b55e516f26",
-                "reference": "521720279261e5b14799cf1bb895d4b55e516f26",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/73fad41adb5b7bc3a494bb930d90648df1d5e74b",
+                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b",
                 "shasum": ""
             },
             "require": {
@@ -2577,7 +2614,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-19 05:44:37"
+            "time": "2015-09-20 12:56:44"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3058,7 +3095,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "khill/lavacharts": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

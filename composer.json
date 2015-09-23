@@ -9,7 +9,7 @@
         "laravel/framework": "5.1.*",
         "illuminate/html": "5.0.*",
         "google/apiclient": "^1.1",
-        "khill/lavacharts": "2.5.*"
+        "khill/lavacharts": "3.0.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

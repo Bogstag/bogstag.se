@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Chart;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -37,17 +38,20 @@ class ColumnChartController extends ChartController
      */
     public function getColumnChart($name = '', $title = '')
     {
-        $this->columnChart = \Lava::ColumnChart($name);
-        $this->setDataTable();
+        $this->columnChart = \Lava::ColumnChart($name, $this->lavaDataTable);
         $this->setTitle($title);
     }
 
     /**
-     * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @param $name
+     * @param $title
+     * @param $dataTableColumns
+     * @param Collection $dataTableRows
+     * @return mixed
      */
-    public function createColumnChart($name, $title, $dataTableColumns, $dataTableRows)
+    public function createColumnChart($name, $title, $dataTableColumns, Collection $dataTableRows)
     {
+
         $this->getLavaDataTable($dataTableColumns, $dataTableRows);
         $this->getColumnChart($name, $title);
         return $this->columnChart;
@@ -59,13 +63,5 @@ class ColumnChartController extends ChartController
     public function setTitle($title)
     {
         $this->columnChart->title($title);
-    }
-
-    /**
-     *
-     */
-    public function setDataTable()
-    {
-        $this->columnChart->dataTable($this->lavaDataTable);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Khill\Lavacharts\Lavacharts;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class BarChartController
@@ -29,7 +30,6 @@ class BarChartController extends ChartController
     public function __construct()
     {
         parent::__construct();
-        //$this->lineChart = $lineChart;
     }
 
     /**
@@ -38,8 +38,7 @@ class BarChartController extends ChartController
      */
     public function getBarChart($name = '', $title = '')
     {
-        $this->barChart = \Lava::BarChart($name);
-        $this->setDataTable();
+        $this->barChart = \Lava::BarChart($name, $this->lavaDataTable);
         $this->setTitle($title);
     }
 
@@ -47,7 +46,7 @@ class BarChartController extends ChartController
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function createBarChart($name, $title, $dataTableColumns, $dataTableRows)
+    public function createBarChart($name, $title, $dataTableColumns, Collection $dataTableRows)
     {
         $this->getLavaDataTable($dataTableColumns, $dataTableRows);
         $this->getBarChart($name, $title);
@@ -60,13 +59,5 @@ class BarChartController extends ChartController
     public function setTitle($title)
     {
         $this->barChart->title($title);
-    }
-
-    /**
-     *
-     */
-    public function setDataTable()
-    {
-        $this->barChart->dataTable($this->lavaDataTable);
     }
 }
