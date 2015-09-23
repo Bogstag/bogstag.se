@@ -20,11 +20,9 @@ class APIAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->method() == 'POST' || $request->method() == 'PUT' || $request->method() == 'PATCH') {
-            if ($request->header('apikey') != env('API_KEY', '')) {
-                if (\Input::only('apikey') != env('API_KEY', '')) {
-                    abort(403, 'Unauthorized action.');
-                }
+        if ($request->header('apikey') != env('API_KEY', '')) {
+            if (\Input::only('apikey') != env('API_KEY', '')) {
+                abort(403, 'Unauthorized action.');
             }
         }
 
