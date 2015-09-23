@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 	@section('title') {!! trans('site/user.change_password') !!} :: @parent
 @stop
 {{-- Content --}}

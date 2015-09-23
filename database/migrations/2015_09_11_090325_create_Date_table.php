@@ -12,7 +12,7 @@ class CreateDateTable extends Migration
      */
     public function up()
     {
-        Schema::create('Dates', function ($table) {
+        Schema::create('dates', function ($table) {
             $table->integer('date_id')->unique();
             $table->date('date');
             $table->integer('year');
@@ -38,6 +38,6 @@ class CreateDateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Dates');
+        Schema::drop('dates');
     }
 }

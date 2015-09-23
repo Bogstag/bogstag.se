@@ -12,7 +12,7 @@ class CreateStepsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Steps', function (Blueprint $table) {
+        Schema::create('steps', function (Blueprint $table) {
             $table->integer('step_id')->unique();
             $table->integer('date_id');
             // $table->integer('time_id');
@@ -28,6 +28,6 @@ class CreateStepsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Steps');
+        Schema::drop('steps');
     }
 }
