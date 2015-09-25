@@ -4,6 +4,10 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Http\Controllers\Api\DateTime\DateController;
+use App\Http\Controllers\Api\Activity\StepController;
+use App\Http\Controllers\Integration\Google\GoogleFit;
+use App\Step;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,5 +31,10 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+
+        $schedule->call(function () {
+            $GoogleFit = new GoogleFit;
+            $GoogleFit->getStepData();
+        })->everyThirtyMinutes();
     }
 }

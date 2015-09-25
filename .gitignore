@@ -7,6 +7,5 @@ Homestead.json
 _ide_helper.php
 /bootstrap/compiled.php
 .env.*.php
-/.phpstorm.meta.php
 .env.php
 .idea
