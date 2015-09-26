@@ -18,21 +18,22 @@ class ChartController extends Controller
      */
     public $lavaDataTable;
 
+
     /**
      * ChartController constructor.
      */
     public function __construct()
     {
         $this->lavaDataTable = \Lava::DataTable();
-        $this->lavaDataTable->setDateTimeFormat('Y-m-d H:i:s');
     }
 
     /**
      * @param array $dataTableColumns
      * @param Collection $dataTableRows
      */
-    public function getLavaDataTable($dataTableColumns, Collection $dataTableRows)
+    public function getLavaDataTable($dataTableColumns, Collection $dataTableRows, $dateFormat = 'Y-m-d H:i:s')
     {
+        $this->lavaDataTable->setDateTimeFormat($dateFormat);
         $this->lavaDataTable->addColumns($dataTableColumns);
         $this->addRowsFromCollection($dataTableRows);
     }
@@ -48,6 +49,7 @@ class ChartController extends Controller
      */
     public function addRowsFromCollection(Collection $collection)
     {
+
         $colCount = $this->lavaDataTable->getColumnCount();
         foreach ($collection->toArray() as $collectionRow) {
             $row = [];
@@ -58,4 +60,5 @@ class ChartController extends Controller
         }
         return $row;
     }
+
 }

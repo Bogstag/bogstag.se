@@ -35,10 +35,11 @@ class ColumnChartController extends ChartController
     /**
      * @param string $name
      * @param string $title
+     * @param bool|false $isStacked
      */
-    public function getColumnChart($name = '', $title = '')
+    public function getColumnChart($name = '', $title = '', $isStacked = false)
     {
-        $this->columnChart = \Lava::ColumnChart($name, $this->lavaDataTable);
+        $this->columnChart = \Lava::ColumnChart($name, $this->lavaDataTable, ['isStacked' => $isStacked]);
         $this->setTitle($title);
     }
 
@@ -49,11 +50,18 @@ class ColumnChartController extends ChartController
      * @param Collection $dataTableRows
      * @return mixed
      */
-    public function createColumnChart($name, $title, $dataTableColumns, Collection $dataTableRows)
-    {
+    public function createColumnChart(
+        $name,
+        $title,
+        $dataTableColumns,
+        Collection $dataTableRows,
+        $dateFormat = 'Y-m-d H:i:s',
+        $isStacked = false
+    ) {
 
-        $this->getLavaDataTable($dataTableColumns, $dataTableRows);
-        $this->getColumnChart($name, $title);
+        $this->getLavaDataTable($dataTableColumns, $dataTableRows, $dateFormat);
+        $this->getColumnChart($name, $title, $isStacked);
+
         return $this->columnChart;
     }
 

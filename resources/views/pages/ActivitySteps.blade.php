@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title') Graph - @parent @stop
+@section('title') Activity / Steps - @parent @stop
 @section('content')
     <div class="row">
         <div class="page-header">
-            <h2>Graph</h2>
+            <h2>Activity / Steps</h2>
         </div>
     </div>
     <div class="row">
@@ -13,10 +13,6 @@
         @linechart('pacecount', 'pacecount_div')
         <div id="stepduration_div"></div>
         @columnchart('stepduration', 'stepduration_div')
-
-
-
-
     </div>
 @endsection
 

@@ -19,14 +19,26 @@
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
                     <a href="{{ URL::to('about') }}">About</a>
                 </li>
-                <li class="{{ (Request::is('graph') ? 'active' : '') }}">
-                    <a href="{{ URL::to('graph') }}">Graph</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Activity<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::to('activity/steps') }}">Steps</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Server<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::to('server/email') }}">Email</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Api/v1<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ action('ApiDataPreviewController@index', $model = 'date') }}">Date</a></li>
+                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'emailstat') }}">Email Stat</a></li>
                         <li><a href="{{ action('ApiDataPreviewController@index', $model = 'step') }}">Step</a></li>
                     </ul>
                 </li>

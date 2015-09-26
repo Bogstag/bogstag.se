@@ -22,7 +22,8 @@ Route::get('about', function () {
     return view('pages.about');
 });
 
-Route::resource('graph', 'PageChartController@getStepCharts');
+Route::resource('activity/steps', 'stepCharts@getStepCharts');
+Route::resource('server/email', 'emailCharts@getEmailCharts');
 
 //Test Routes
 //Route::get('test', 'Integration\Google\GoogleFit@getStepData');

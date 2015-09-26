@@ -14,7 +14,7 @@ use DB;
  * Class PageChartController
  * @package App\Http\Controllers
  */
-class PageChartController extends Controller
+class stepCharts extends Controller
 {
 
     /**
@@ -27,13 +27,13 @@ class PageChartController extends Controller
             'datetime, sum(steps) as steps'
         ))
             ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
-        $lineChart = $this->getStepChart($dataTableRows);
+        $stepChart = $this->getStepChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
             'datetime, sum(duration)/60 as duration'
         ))
             ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
-        $barChart = $this->getColumnChart($dataTableRows);
+        $durationChart = $this->getDurationChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
             'datetime, sum(steps)/sum(duration) as pace'
@@ -41,14 +41,14 @@ class PageChartController extends Controller
             ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
         $paceChart = $this->getPaceChart($dataTableRows);
 
-        return view('pages.graph', ['barchart' => $barChart, 'linechart' => $lineChart, 'pacecount' => $paceChart]);
+        return view('pages.ActivitySteps', ['durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart]);
     }
 
     /**
      * @param Collection $dataTableRows
      * @return \Illuminate\Http\Response
      */
-    public function getColumnChart(Collection $dataTableRows)
+    public function getDurationChart(Collection $dataTableRows)
     {
         $dataTableRowsDuration = (new Step)->transformDurationCollection($dataTableRows);
         $dataTableColumns = array(
@@ -76,8 +76,8 @@ class PageChartController extends Controller
         );
         $name = 'stepcount';
         $title = 'Steps per day';
-        $lineChart = (new Chart\LineChartController)->createLineChart($name, $title, $dataTableColumns,
-            $dataTableRowsStep);
+        $lineChart = (new Chart\LineChartController)->
+        createLineChart($name, $title, $dataTableColumns, $dataTableRowsStep);
 
         return $lineChart;
     }
@@ -95,8 +95,8 @@ class PageChartController extends Controller
         );
         $name = 'pacecount';
         $title = 'Pace (Steps per second) per day';
-        $lineChart = (new Chart\LineChartController)->createLineChart($name, $title, $dataTableColumns,
-            $dataTableRowsPace);
+        $lineChart = (new Chart\LineChartController)->
+        createLineChart($name, $title, $dataTableColumns, $dataTableRowsPace);
 
         return $lineChart;
     }
