@@ -20,8 +20,8 @@ class APIAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->header('apikey') != env('API_KEY', '')) {
-            if (\Input::only('apikey') != env('API_KEY', '')) {
+        if ($request->header('apikey') != env('API_KEY', '')) { //Header auth
+            if ($request->only('apikey')['apikey'] != env('API_KEY', '')) { //query string auth
                 abort(403, 'Unauthorized action.');
             }
         }
