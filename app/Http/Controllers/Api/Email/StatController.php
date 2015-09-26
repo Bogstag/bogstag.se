@@ -41,14 +41,21 @@ class StatController extends APIController
         $timestamp = new Carbon();
         $date = $timestamp->createFromTimeStamp($request->input('timestamp'))->toDateString();
         $domain = $request->input('domain');
+        $event = $request->input('event');
 
-
-        if ($emailstat->where('date', '=', $date)->where('domain', '=', $domain)->exists()) {
-            $emailstat = $emailstat->where('date', '=', $date)->where('domain', '=', $domain)->first();
+        if ($emailstat->
+        where('date', '=', $date)->
+        where('domain', '=', $domain)->
+        where('event', '=', $event)->exists()
+        ) {
+            $emailstat = $emailstat->
+            where('date', '=', $date)->
+            where('domain', '=', $domain)->
+            where('event', '=', $event)->first();
             $emailstat->count += 1;
             $emailstat->save();
         } else {
-            $emailstat->event = $request->input('event');
+            $emailstat->event = $event;
             $emailstat->domain = $domain;
             $emailstat->count = 1;
             $emailstat->date = $date;
