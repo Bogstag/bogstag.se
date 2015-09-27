@@ -12,7 +12,7 @@ class CreateDateTable extends Migration
      */
     public function up()
     {
-        Schema::create('dates', function ($table) {
+        Schema::create('dates', function (Blueprint $table) {
             $table->integer('date_id')->unique();
             $table->date('date');
             $table->integer('year');

@@ -15,7 +15,6 @@ class CreateStepsTable extends Migration
         Schema::create('steps', function (Blueprint $table) {
             $table->integer('step_id')->unique();
             $table->integer('date_id');
-            // $table->integer('time_id');
             $table->integer('steps');
             $table->integer('duration');
             $table->timestamp('datetime');

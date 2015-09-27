@@ -4,14 +4,8 @@ namespace App\Http\Controllers\Integration\Google;
 
 use App\Http\Controllers\Api\Activity\StepController;
 use App\Http\Controllers\Api\DateTime\DateController;
-use App\Date;
-use App\Step;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Route;
 use App\Http\Controllers\Api\DateTime;
 
 /**
@@ -76,13 +70,12 @@ class GoogleFit extends Google
         $dateArray = array();
         $i = 0;
         $dataSet = '';
-        $oldKey = null;
 
         while ($listDataSets->valid()) {
             if ($i == 0) {
                 $dataSet = $listDataSets->current();
             }
-            if (array_key_exists('originDataSourceId', $dataSet) && $dataSet['originDataSourceId'] == null) {
+            if (array_key_exists('originDataSourceId', $dataSet) && $dataSet['originDataSourceId'] === null) {
                 continue;
             }
 

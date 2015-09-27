@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api\Email;
 
 use App\Http\Controllers\Api\APIController;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Emailstat;
 

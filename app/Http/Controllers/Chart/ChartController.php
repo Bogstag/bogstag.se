@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Chart;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 

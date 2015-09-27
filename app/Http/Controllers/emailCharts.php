@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Emailstat;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use DB;
 use App\Http\Controllers\Chart;
 
-class emailCharts extends Controller
+/**
+ * Class EmailCharts
+ * @package App\Http\Controllers
+ */
+class EmailCharts extends Controller
 {
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function getEmailCharts()
     {
         $dataTableRows = Emailstat::select(DB::raw(

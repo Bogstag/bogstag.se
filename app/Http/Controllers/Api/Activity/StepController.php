@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api\Activity;
 
 use App\Step;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api\APIController;
 use App\Http\Requests;
-use Carbon\Carbon;
 
 /**
  * Class StepController
