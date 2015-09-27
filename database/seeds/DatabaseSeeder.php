@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-
-
+        factory(App\Step::class, 10)->create();
+        factory(App\Emailstat::class, 10)->create();
+        factory(App\Date::class, 10)->create();
         Model::reguard();
     }
 }
