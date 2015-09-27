@@ -21,6 +21,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Step::class, function (Faker\Generator $faker) {
+    $format = null;
+    $max = null;
     return [
         'step_id' => $faker->date($format = 'YmdH', $max = 'now'),
         'date_id' => $faker->date($format = 'Ymd', $max = 'now'),
@@ -31,6 +33,9 @@ $factory->define(App\Step::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Emailstat::class, function (Faker\Generator $faker) {
+    $format = null;
+    $max = null;
+    $array = null;
     return [
         'event' => $faker->randomElement($array = array ('delivered','complained','bounced','dropped')),
         'domain' => $faker->randomElement($array = array ('a','b','c')),
@@ -40,6 +45,8 @@ $factory->define(App\Emailstat::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Date::class, function (Faker\Generator $faker) {
+    $format = null;
+    $max = null;
     return [
         'date_id' => $faker->date($format = 'Ymd', $max = 'now'),
         'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
