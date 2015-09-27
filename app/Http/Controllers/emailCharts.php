@@ -36,8 +36,10 @@ class EmailCharts extends Controller
         );
         $name = 'emailstat';
         $title = 'Message Delivery';
+        $dateFormat = 'Y-m-d';
+        $isStacked = true;
         $emailstat = (new Chart\ColumnChartController)
-            ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat = 'Y-m-d', $isStacked = true);
+            ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat, $isStacked);
         return view('pages.ServerEmail', ['emailstatchart' => $emailstat]);
     }
 }
