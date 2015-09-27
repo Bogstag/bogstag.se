@@ -8,6 +8,7 @@ Route::group(['domain'     => env('API_DOMAIN', false),
     Route::resource('date', 'Api\DateTime\DateController');
     Route::resource('step', 'Api\Activity\StepController');
     Route::resource('emailstat', 'Api\Email\StatController');
+    Route::resource('emaildrop', 'Api\Email\DropController');
 });
 
 //Website Routs
