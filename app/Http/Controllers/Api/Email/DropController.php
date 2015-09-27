@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\Email;
 
 use App\Emaildrop;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class DropController extends Controller
