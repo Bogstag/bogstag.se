@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Step::class, 10)->create();
         factory(App\Emailstat::class, 10)->create();
         factory(App\Date::class, 10)->create();
+        factory(App\Emaildrop::class, 10)->create();
         Model::reguard();
     }
 }

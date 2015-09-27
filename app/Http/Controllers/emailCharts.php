@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Emaildrop;
 use App\Emailstat;
 use DB;
 use App\Http\Controllers\Chart;
@@ -17,6 +18,26 @@ class EmailCharts extends Controller
      * @return \Illuminate\View\View
      */
     public function getEmailCharts()
+    {
+        $emailstat = $this->getEmailStatChart();
+        $emaildrops = $this->getEmailDropChart();
+
+        return view('pages.ServerEmail', ['emailstatchart' => $emailstat, 'emaildrops' => $emaildrops]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailDropChart()
+    {
+        return Emaildrop::select(array('sender', 'subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
+        where('public', '=', 1)->orderBy('created_at', 'desc')->limit(20)->get()->toarray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailStatChart()
     {
         $dataTableRows = Emailstat::select(DB::raw(
             'date,
@@ -38,8 +59,8 @@ class EmailCharts extends Controller
         $title = 'Message Delivery';
         $dateFormat = 'Y-m-d';
         $isStacked = true;
-        $emailstat = (new Chart\ColumnChartController)
+
+        return (new Chart\ColumnChartController)
             ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat, $isStacked);
-        return view('pages.ServerEmail', ['emailstatchart' => $emailstat]);
     }
 }

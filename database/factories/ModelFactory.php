@@ -56,3 +56,15 @@ $factory->define(App\Date::class, function (Faker\Generator $faker) {
         'leapyear' => $faker->date('L'),
     ];
 });
+
+$factory->define(App\Emaildrop::class, function (Faker\Generator $faker) {
+    return [
+        'sender' => $faker->safeEmail,
+        'subject' => $faker->sentence(4),
+        'spf' => $faker->randomElement(array ('Pass','Neutral', 'Fail', 'SoftFail')),
+        'Spamscore' => $faker->randomFloat(1, 0, 20),
+        'Spamflag' => $faker->randomElement(array ('Yes','No')),
+        'DkimCheck' => $faker->randomElement(array ('Pass','Fail')),
+        'public' => $faker->boolean(60),
+    ];
+});
