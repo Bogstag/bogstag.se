@@ -44,6 +44,8 @@ class ColumnChartController extends ChartController
      * @param $title
      * @param $dataTableColumns
      * @param Collection $dataTableRows
+     * @param string $dateFormat
+     * @param bool|false $isStacked
      * @return mixed
      */
     public function createColumnChart(
