@@ -18,8 +18,8 @@ class CreateEmailDropsTable extends Migration
             $table->string('subject')->nullable();
             $table->string('Spf')->nullable();
             $table->decimal('Spamscore')->nullable();
-            $table->decimal('Spamflag')->nullable();
-            $table->decimal('DkimCheck')->nullable();
+            $table->string('Spamflag')->nullable();
+            $table->string('DkimCheck')->nullable();
             $table->boolean('public');
             $table->timestamps();
         });
