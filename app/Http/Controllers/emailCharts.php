@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Emailstat;
-use App\Http\Requests;
 use DB;
 use App\Http\Controllers\Chart;
 

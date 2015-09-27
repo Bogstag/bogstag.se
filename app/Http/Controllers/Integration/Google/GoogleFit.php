@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Integration\Google;
 
 use App\Http\Controllers\Api\Activity\StepController;
 use App\Http\Controllers\Api\DateTime\DateController;
-use App\Http\Requests;
 use Carbon\Carbon;
 use App\Http\Controllers\Api\DateTime;
 

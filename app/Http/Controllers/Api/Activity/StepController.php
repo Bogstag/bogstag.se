@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Activity;
 
 use App\Step;
 use App\Http\Controllers\Api\APIController;
-use App\Http\Requests;
 
 /**
  * Class StepController
