@@ -8,7 +8,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="true"
+         syntaxCheck="false"
          verbose="true">
     <testsuites>
         <testsuite name="Bogstag Test Suite">

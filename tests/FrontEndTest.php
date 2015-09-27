@@ -38,8 +38,6 @@ class FrontEndTest extends TestCase
      */
     public function testStepsPage()
     {
-        $this->visit('/activity/steps')
-            ->see('Steps per day');
         $this->visit('/')
             ->click('Steps')
             ->seePageIs('/activity/steps');
@@ -50,8 +48,6 @@ class FrontEndTest extends TestCase
      */
     public function testEmailPage()
     {
-        $this->visit('/server/email')
-            ->see('Message Delivery');
         $this->visit('/')
             ->click('Email')
             ->seePageIs('/server/email');
@@ -62,8 +58,6 @@ class FrontEndTest extends TestCase
      */
     public function testDatePage()
     {
-        $this->visit('/api/v1/date')
-            ->see('date_id');
         $this->visit('/')
             ->click('Date')
             ->seePageIs('/api/v1/date');
@@ -74,8 +68,6 @@ class FrontEndTest extends TestCase
      */
     public function testEmailStatPage()
     {
-        $this->visit('/api/v1/emailstat')
-            ->see('event');
         $this->visit('/')
             ->click('Email Stat')
             ->seePageIs('/api/v1/emailstat');
@@ -86,8 +78,6 @@ class FrontEndTest extends TestCase
      */
     public function testStepPage()
     {
-        $this->visit('/api/v1/step')
-            ->see('step_id');
         $this->visit('/')
             ->click('Step')
             ->seePageIs('/api/v1/step');

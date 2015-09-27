@@ -48,7 +48,7 @@ class ChartController extends Controller
      */
     public function addRowsFromCollection(Collection $collection)
     {
-
+        $row = [];
         $colCount = $this->lavaDataTable->getColumnCount();
         foreach ($collection->toArray() as $collectionRow) {
             $row = [];
