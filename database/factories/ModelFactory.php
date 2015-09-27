@@ -21,45 +21,38 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Step::class, function (Faker\Generator $faker) {
-    $format = null;
-    $max = null;
     return [
-        'step_id' => $faker->date($format = 'YmdH', $max = 'now'),
-        'date_id' => $faker->date($format = 'Ymd', $max = 'now'),
+        'step_id' => $faker->date('YmdH'),
+        'date_id' => $faker->date('Ymd'),
         'steps' => $faker->randomDigitNotNull,
         'duration' => $faker->randomDigitNotNull,
-        'datetime' => $faker->date($format = 'Y-m-d 00:00:00', $max = 'now'),
+        'datetime' => $faker->date('Y-m-d 00:00:00'),
     ];
 });
 
 $factory->define(App\Emailstat::class, function (Faker\Generator $faker) {
-    $format = null;
-    $max = null;
-    $array = null;
     return [
-        'event' => $faker->randomElement($array = array ('delivered','complained','bounced','dropped')),
-        'domain' => $faker->randomElement($array = array ('a','b','c')),
+        'event' => $faker->randomElement(array ('delivered','complained','bounced','dropped')),
+        'domain' => $faker->randomElement(array ('a','b','c')),
         'count' => $faker->randomDigitNotNull,
-        'date' => $faker->date($format = 'Y-m-d H:i:s', $max = 'now'),
+        'date' => $faker->date('Y-m-d H:i:s'),
     ];
 });
 
 $factory->define(App\Date::class, function (Faker\Generator $faker) {
-    $format = null;
-    $max = null;
     return [
-        'date_id' => $faker->date($format = 'Ymd', $max = 'now'),
-        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'year' => $faker->date($format = 'Y', $max = 'now'),
-        'month' => $faker->date($format = 'm', $max = 'now'),
-        'fullmonth' => $faker->date($format = 'F', $max = 'now'),
-        'shortmonth' => $faker->date($format = 'M', $max = 'now'),
-        'day' => $faker->date($format = 'd', $max = 'now'),
-        'fullday' => $faker->date($format = 'l', $max = 'now'),
-        'shortday' => $faker->date($format = 'D', $max = 'now'),
-        'dayofweek' => $faker->date($format = 'N', $max = 'now'),
-        'week' => $faker->date($format = 'W', $max = 'now'),
-        'nrdaysinmonth' => $faker->date($format = 't', $max = 'now'),
-        'leapyear' => $faker->date($format = 'L', $max = 'now'),
+        'date_id' => $faker->date('Ymd'),
+        'date' => $faker->date('Y-m-d'),
+        'year' => $faker->date('Y'),
+        'month' => $faker->date('m'),
+        'fullmonth' => $faker->date('F'),
+        'shortmonth' => $faker->date('M'),
+        'day' => $faker->date('d'),
+        'fullday' => $faker->date('l'),
+        'shortday' => $faker->date('D'),
+        'dayofweek' => $faker->date('N'),
+        'week' => $faker->date('W'),
+        'nrdaysinmonth' => $faker->date('t'),
+        'leapyear' => $faker->date('L'),
     ];
 });
