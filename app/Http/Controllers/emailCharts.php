@@ -30,7 +30,7 @@ class EmailCharts extends Controller
      */
     public function getEmailDropChart()
     {
-        return Emaildrop::select(array('sender', 'subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
+        return Emaildrop::select(array('subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
         where('public', '=', 1)->orderBy('created_at', 'desc')->limit(20)->get()->toarray();
     }
 
