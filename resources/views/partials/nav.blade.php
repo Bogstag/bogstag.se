@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default">
-    <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -38,7 +38,8 @@
                        aria-expanded="false">Api/v1<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ action('ApiDataPreviewController@index', $model = 'date') }}">Date</a></li>
-                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'emailstat') }}">Email Stat</a></li>
+                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'emailstat') }}">Email
+                                Stat</a></li>
                         <li><a href="{{ action('ApiDataPreviewController@index', $model = 'step') }}">Step</a></li>
                     </ul>
                 </li>
@@ -54,20 +55,21 @@
                                     class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
                             @if(Auth::check())
-            @if(Auth::user()->admin==1)
-                    <li>
-                        <a href="{{ URL::to('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin Dashboard</a>
-                                    </li>
-                                @endif
-                    <li role="presentation" class="divider"></li>
-                @endif
-                    <li>
-                        <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+
+                                <li>
+                                    <a href="{{ URL::to('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin
+                                        Dashboard</a>
+                                </li>
+                            @endif
+                            <li role="presentation" class="divider"></li>
+
+                            <li>
+                                <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
                 @endif
-                    </ul>
+            </ul>
         </div>
     </div>
 </nav>

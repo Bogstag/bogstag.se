@@ -39,3 +39,10 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 //No registrations Route::get('auth/register', 'Auth\AuthController@getRegister');
 //No registrations Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+//Admin routs
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    # Admin Dashboard
+    Route::get('dashboard', 'Admin\DashboardController@index');
+    Route::resource('emaildrop', 'Admin\EmailDropController');
+});
