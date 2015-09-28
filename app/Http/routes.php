@@ -1,9 +1,10 @@
 <?php
 
 //Api Routes
-Route::group(['domain'     => env('API_DOMAIN', false),
-              'prefix'     => 'v1',
-              'middleware' => 'APIAuth'
+Route::group([
+    'domain'     => env('API_DOMAIN', false),
+    'prefix'     => 'v1',
+    'middleware' => 'APIAuth'
 ], function () {
     Route::resource('date', 'Api\DateTime\DateController');
     Route::resource('step', 'Api\Activity\StepController');
@@ -22,23 +23,19 @@ Route::get('/', function () {
 Route::get('about', function () {
     return view('pages.about');
 });
+Route::get('home', function () {
+    return redirect('/');
+});
 
 Route::resource('activity/steps', 'StepCharts@getStepCharts');
 Route::resource('server/email', 'EmailCharts@getEmailCharts');
 
 // Auth Routes
-Route::controllers([
-    'auth'     => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-// Redirect Routes
-Route::get('home', function () {
-    return redirect('/');
-});
-Route::get('auth/register', function () {
-    return redirect('/');
-});
-
-
-
+// Registration routes...
+//No registrations Route::get('auth/register', 'Auth\AuthController@getRegister');
+//No registrations Route::post('auth/register', 'Auth\AuthController@postRegister');
