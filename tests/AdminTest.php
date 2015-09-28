@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 /**
  * Class FrontEndTest
  */
-class FrontEndTest extends TestCase
+class AdminTest extends TestCase
 {
 
     use WithoutMiddleware;
@@ -13,7 +13,7 @@ class FrontEndTest extends TestCase
     /**
      *
      */
-    public function testDashboard()
+    public function testAdminDashboard()
     {
         $this->visit('/admin/dashboard')
             ->see('Bogstag Admin');
@@ -25,7 +25,7 @@ class FrontEndTest extends TestCase
     /**
      *
      */
-    public function testEmailDrops()
+    public function testAdminEmailDrops()
     {
         $this->visit('/admin/emaildrop')
             ->see('recipient');

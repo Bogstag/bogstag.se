@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 {{-- Web site Title --}}
-@section('title') {!!  trans('site/user.login') !!} :: @parent @stop
+@section('title') Login :: @parent @stop
 
 {{-- Content --}}
 @section('content')
     <div class="row">
         <div class="page-header">
-            <h2>{!! trans('site/user.login_to_account') !!}</h2>
+            <h2>Login to account</h2>
         </div>
     </div>
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Emaildrop;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class EmailDropController extends AdminController
 {
@@ -26,10 +25,8 @@ class EmailDropController extends AdminController
             'recipient',
             'sender',
             'subject',
-            'Spf',
             'Spamscore',
             'Spamflag',
-            'DkimCheck'
         ))->
         orderBy('created_at', 'desc')->limit(200)->get()->toarray();
 

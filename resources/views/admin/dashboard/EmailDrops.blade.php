@@ -26,10 +26,8 @@
                         <td>{{$emaildrop['recipient']}}</td>
                         <td>{{$emaildrop['sender']}}</td>
                         <td>{{$emaildrop['subject']}}</td>
-                        <td>{{$emaildrop['Spf']}}</td>
                         <td>{{$emaildrop['Spamscore']}}</td>
                         <td>{{$emaildrop['Spamflag']}}</td>
-                        <td>{{$emaildrop['DkimCheck']}}</td>
                     </tr>
                 @endforeach
                 </tbody>
