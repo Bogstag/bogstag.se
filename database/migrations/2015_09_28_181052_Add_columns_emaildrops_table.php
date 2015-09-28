@@ -27,9 +27,9 @@ class AddColumnsEmaildropsTable extends Migration
     public function down()
     {
         Schema::table('emaildrops', function (Blueprint $table) {
-            $table->dropColumn('from');
-            $table->dropColumn('body-plain');
-            $table->dropColumn('message-headers');
+            $table->dropColumn('recipient');
+            $table->dropColumn('bodyplain');
+            $table->dropColumn('messageheaders');
         });
     }
 }

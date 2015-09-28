@@ -42,6 +42,9 @@ class DropController extends Controller
         $emailstat->Spamflag = $request->input('X-Mailgun-Sflag');
         $emailstat->DkimCheck = $request->input('X-Mailgun-Dkim-Check-Result');
         $emailstat->public = $request->input('public');
+        $emailstat->recipient = $request->input('recipient');
+        $emailstat->bodyplain = $request->input('body-plain');
+        $emailstat->messageheaders = $request->input('message-headers');
         $emailstat->save();
     }
 
