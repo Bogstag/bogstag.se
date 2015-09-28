@@ -66,5 +66,7 @@ $factory->define(App\Emaildrop::class, function (Faker\Generator $faker) {
         'Spamflag' => $faker->randomElement(array ('Yes','No')),
         'DkimCheck' => $faker->randomElement(array ('Pass','Fail')),
         'public' => $faker->boolean(60),
+        'recipient' => $faker->safeEmail,
+        'bodyplain' => $faker->paragraph(2),
     ];
 });
