@@ -7,22 +7,26 @@
         </div>
     </div>
     <div class="row">
-        <div id="emailstat_div"></div>
-        @columnchart('emailstat', 'emailstat_div')
+        <div id="emaildel_div"></div>
+        @columnchart('emaildel', 'emaildel_div')
     </div>
-    @if (count($emaildrops))
+    <div class="row">
+        <div id="emaildrops_div"></div>
+        @linechart('emaildrops', 'emaildrops_div')
+    </div>
+    @if (count($EmailPublicDropList))
         <h3>Public drop list (last 20)</h3>
         <div class="row">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th><?php echo implode('</th><th>', array_keys(current($emaildrops))); ?></th>
+                    <th><?php echo implode('</th><th>', array_keys(current($EmailPublicDropList))); ?></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($emaildrops as $emaildrop)
+                @foreach ($EmailPublicDropList as $EmailPublicDrops)
                     <tr>
-                        <td><?php echo implode('</td><td>', $emaildrop); ?></td>
+                        <td><?php echo implode('</td><td>', $EmailPublicDrops); ?></td>
                     </tr>
                 @endforeach
                 </tbody>

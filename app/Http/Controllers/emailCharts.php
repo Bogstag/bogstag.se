@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Emaildrop;
 use App\Emailstat;
+use Carbon\Carbon;
 use DB;
 use App\Http\Controllers\Chart;
 
@@ -19,16 +20,17 @@ class EmailCharts extends Controller
      */
     public function getEmailCharts()
     {
-        $emailstat = $this->getEmailStatChart();
-        $emaildrops = $this->getEmailDropChart();
+        $emaildel = $this->getEmailDeliveryChart();
+        $EmailDropsChart = $this->getEmailDropsChart();
+        $EmailPublicDropList = $this->getEmailPublicDropList();
 
-        return view('pages.ServerEmail', ['emailstatchart' => $emailstat, 'emaildrops' => $emaildrops]);
+        return view('pages.ServerEmail', ['emaildel' => $emaildel, 'EmailPublicDropList' => $EmailPublicDropList]);
     }
 
     /**
      * @return mixed
      */
-    public function getEmailDropChart()
+    public function getEmailPublicDropList()
     {
         return Emaildrop::select(array('subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
         where('public', '=', 1)->orderBy('created_at', 'desc')->limit(20)->get()->toarray();
@@ -37,7 +39,29 @@ class EmailCharts extends Controller
     /**
      * @return mixed
      */
-    public function getEmailStatChart()
+    public function getEmailDropsChart()
+    {
+        $dataTableRows = Emailstat::select(DB::raw(
+            "DATE_FORMAT(created_at, '%Y-%m-%d') as Date, COUNT('id') AS Count"
+        ))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))->orderby('Date', 'asc')->take(100)->get();
+        $dataTableColumns = array(
+            array('date', 'Date'),
+            array('number', 'Count')
+        );
+        $name = 'emaildrops';
+        $title = 'Droped by custom rule';
+        $dateFormat = 'Y-m-d';
+        $isStacked = false;
+
+        return (new Chart\LineChartController())
+            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat = 'Y-m-d');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailDeliveryChart()
     {
         $dataTableRows = Emailstat::select(DB::raw(
             'date,
@@ -55,7 +79,7 @@ class EmailCharts extends Controller
             array('number', 'Dropped'),
             array('number', 'Delivered')
         );
-        $name = 'emailstat';
+        $name = 'emaildel';
         $title = 'Message Delivery';
         $dateFormat = 'Y-m-d';
         $isStacked = true;

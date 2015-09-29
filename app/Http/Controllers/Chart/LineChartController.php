@@ -46,9 +46,14 @@ class LineChartController extends ChartController
      * @param Collection $dataTableRows
      * @return mixed
      */
-    public function createLineChart($name, $title, $dataTableColumns, Collection $dataTableRows)
-    {
-        $this->getLavaDataTable($dataTableColumns, $dataTableRows);
+    public function createLineChart(
+        $name,
+        $title,
+        $dataTableColumns,
+        Collection $dataTableRows,
+        $dateFormat = 'Y-m-d H:i:s'
+    ) {
+        $this->getLavaDataTable($dataTableColumns, $dataTableRows, $dateFormat);
         $this->getLineChart($name, $title);
 
         return $this->lineChart;
