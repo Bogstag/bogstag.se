@@ -44,5 +44,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     # Admin Dashboard
     Route::get('dashboard', 'Admin\DashboardController@index');
+    Route::get('emaildrop/getEmailDropsData', 'Admin\EmailDropController@getEmailDropsData');
+    Route::get('emaildrop/setAdressToOkMailGun/{recipient}', 'Admin\EmailDropController@setAdressToOkMailGun');
     Route::resource('emaildrop', 'Admin\EmailDropController');
 });
