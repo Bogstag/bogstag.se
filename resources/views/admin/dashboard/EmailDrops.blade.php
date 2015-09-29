@@ -33,6 +33,7 @@
             processing: true,
             serverSide: true,
             ajax: '{!! url('admin/emaildrop/getEmailDropsData') !!}',
+            order: [[0, "desc"]],
             columns: [
                 {data: 'id', name: 'id'},
                 {data: 'created_at', name: 'name'},
