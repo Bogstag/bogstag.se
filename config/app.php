@@ -130,6 +130,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Illuminate\Html\HtmlServiceProvider',
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        'yajra\Datatables\DatatablesServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -187,6 +188,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => 'Illuminate\Html\FormFacade',
         'HTML'      => 'Illuminate\Html\HtmlFacade',
+        'Datatables'      => 'yajra\Datatables\Datatables',
     ],
 
 ];
