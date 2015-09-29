@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Emaildrop;
 use App\Emailstat;
-use Carbon\Carbon;
 use DB;
 use App\Http\Controllers\Chart;
 
@@ -41,7 +40,7 @@ class EmailCharts extends Controller
      */
     public function getEmailDropsChart()
     {
-        $dataTableRows = Emailstat::select(DB::raw(
+        $dataTableRows = Emaildrop::select(DB::raw(
             "DATE_FORMAT(created_at, '%Y-%m-%d') as Date, COUNT('id') AS Count"
         ))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))->orderby('Date', 'asc')->take(100)->get();
@@ -52,10 +51,9 @@ class EmailCharts extends Controller
         $name = 'emaildrops';
         $title = 'Droped by custom rule';
         $dateFormat = 'Y-m-d';
-        $isStacked = false;
 
         return (new Chart\LineChartController())
-            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat = 'Y-m-d');
+            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat);
     }
 
     /**
