@@ -44,6 +44,7 @@ class LineChartController extends ChartController
      * @param $title
      * @param $dataTableColumns
      * @param Collection $dataTableRows
+     * @param string $dateFormat
      * @return mixed
      */
     public function createLineChart(

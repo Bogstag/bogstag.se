@@ -23,7 +23,7 @@ class EmailCharts extends Controller
         $EmailDropsChart = $this->getEmailDropsChart();
         $EmailPublicDropList = $this->getEmailPublicDropList();
 
-        return view('pages.ServerEmail', ['emaildel' => $emaildel, 'EmailPublicDropList' => $EmailPublicDropList]);
+        return view('pages.ServerEmail', ['emaildel' => $emaildel, 'EmailPublicDropList' => $EmailPublicDropList, 'EmailDropsChart' => $EmailDropsChart]);
     }
 
     /**
