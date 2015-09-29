@@ -83,7 +83,7 @@ class EmailDropController extends AdminController
         $result = $mgClient->post("routes", array(
             'priority'    => 2000,
             'expression'  => 'match_recipient("'.$recipient.'")',
-            'action'      => 'forward("'.$defaultAddress.'")',
+            'action'      => array('forward("'.$defaultAddress.'")', 'stop()'),
             'description' => 'Ok'
         ));
         return $result->http_response_code.": ".$result->http_response_body->message;
