@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Emaildrop;
 use App\Http\Controllers\AdminController;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mailgun\Mailgun;
 use yajra\Datatables\Datatables;
