@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Emaildrop;
 use App\Http\Controllers\AdminController;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Mailgun\Mailgun;
-use yajra\Datatables\Datatables;
 
 class EmailDropController extends AdminController
 {
@@ -22,26 +19,18 @@ class EmailDropController extends AdminController
      */
     public function index()
     {
-        $title = "EmailDrops";
-
-        return view('admin.dashboard.EmailDrops', ['title' => $title]);
-    }
-
-    public function getEmailDropsData()
-    {
+        $title = "EmailDrop";
         $emailDrops = Emaildrop::select(array(
             'id',
-            'created_at',
             'recipient',
             'sender',
             'subject',
+            'Spamscore',
+            'Spamflag',
         ))->
-        orderBy('created_at', 'desc')->limit(200)->get();
+        orderBy('created_at', 'desc')->limit(200)->get()->toarray();
 
-        return Datatables::of($emailDrops)
-            ->editColumn('created_at', '{!! $created_at->diffForHumans() !!}')
-            ->editColumn('id', '<a href="{{ URL::to(\'/admin/emaildrop\', $id)}}">{{$id}}</a>')
-            ->make(true);
+        return view('admin.dashboard.EmailDrops', ['title' => $title, 'emaildrops' => $emailDrops]);
     }
 
     /**
@@ -70,24 +59,9 @@ class EmailDropController extends AdminController
      */
     public function show($id)
     {
-        $title = "EmailDrop " . $id;
+        $title = "EmailDrop ".$id;
         $emailDrop = Emaildrop::find($id);
-
         return view('admin.dashboard.EmailDrop', ['title' => $title, 'emaildrop' => $emailDrop]);
-    }
-
-    public function setAdressToOkMailGun($recipient)
-    {
-
-        $mgClient = new Mailgun(env('Mailgun_Secret_API_Key', false));
-        $defaultAddress = env('Mailgun_Forward_Address', false);
-        $result = $mgClient->post("routes", array(
-            'priority'    => 2000,
-            'expression'  => 'match_recipient("'.$recipient.'")',
-            'action'      => 'forward("'.$defaultAddress.'")',
-            'description' => 'Ok'
-        ));
-        return $result->http_response_code.": ".$result->http_response_body->message;
     }
 
     /**

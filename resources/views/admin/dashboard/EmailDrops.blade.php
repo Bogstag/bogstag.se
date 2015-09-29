@@ -10,37 +10,28 @@
             <h2>Email Drops</h2>
         </div>
     </div>
+    @if (count($emaildrops))
         <h3>Last 200 Drops</h3>
         <div class="row">
-            <table class="table table-bordered" id="emaildrops-table">
+            <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Created At</th>
-                    <th>Recipient</th>
-                    <th>Sender</th>
-                    <th>Subject</th>
+                    <th><?php echo implode('</th><th>', array_keys(current($emaildrops))); ?></th>
                 </tr>
                 </thead>
+                <tbody>
+                @foreach ($emaildrops as $emaildrop)
+                    <tr>
+                        <td><a href="{{ URL::to('/admin/emaildrop', $emaildrop['id'])}}">{{$emaildrop['id']}}</a></td>
+                        <td>{{$emaildrop['recipient']}}</td>
+                        <td>{{$emaildrop['sender']}}</td>
+                        <td>{{$emaildrop['subject']}}</td>
+                        <td>{{$emaildrop['Spamscore']}}</td>
+                        <td>{{$emaildrop['Spamflag']}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
             </table>
         </div>
+    @endif
 @endsection
-
-@push('scripts')
-<script>
-    $(function() {
-        $('#emaildrops-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! url('admin/emaildrop/getEmailDropsData') !!}',
-            columns: [
-                {data: 'id', name: 'id'},
-                {data: 'created_at', name: 'name'},
-                {data: 'recipient', name: 'email'},
-                {data: 'sender', name: 'created_at'},
-                {data: 'subject', name: 'updated_at'}
-            ]
-        });
-    });
-</script>
-@endpush
