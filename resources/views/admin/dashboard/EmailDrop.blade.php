@@ -68,13 +68,15 @@
                     <td>Plain Body</td>
                     <td>{{$emaildrop->bodyplain}}</td>
                 </tr>
-                @foreach ($emaildrop->messageheaders as $header)
+                @if ($emaildrop->messageheaders)
+                    @foreach ($emaildrop->messageheaders as $header)
 
-                    <tr>
-                        <td>{{$header[0]}}</td>
-                        <td>{{$header[1]}}</td>
-                    </tr>
-                @endforeach
+                        <tr>
+                            <td>{{$header[0]}}</td>
+                            <td>{{$header[1]}}</td>
+                        </tr>
+                    @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
