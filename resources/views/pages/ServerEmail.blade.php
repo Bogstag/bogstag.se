@@ -15,7 +15,7 @@
         @linechart('emaildrops', 'emaildrops_div')
     </div>
     @if (count($EmailPublicDropList))
-        <h3>Public drop list (last 20)</h3>
+        <h3>Public drop list (last 10)</h3>
         <div class="row">
             <table class="table table-striped">
                 <thead>

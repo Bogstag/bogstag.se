@@ -36,6 +36,16 @@ class LineChartController extends ChartController
     {
 
         $this->lineChart = \Lava::LineChart($name, $this->lavaDataTable);
+        /* // TODO: Soon tp be released in lavacharts
+          , ['trendlines' => [
+            0 => [
+                'type' => 'line',
+                'color' => 'red',
+                'pointsVisible'=>true,
+                'pointSize' => 1
+            ]
+        ]]
+         */
         $this->setTitle($title);
     }
 
