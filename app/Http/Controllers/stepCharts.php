@@ -23,19 +23,19 @@ class StepCharts extends Controller
         $dataTableRows = Step::select(DB::raw(
             'datetime, sum(steps) as steps'
         ))
-            ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
+            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
         $stepChart = $this->getStepChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
             'datetime, sum(duration)/60 as duration'
         ))
-            ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
+            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
         $durationChart = $this->getDurationChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
             'datetime, sum(steps)/sum(duration) as pace'
         ))
-            ->groupby('datetime')->orderby('datetime', 'desc')->take(100)->get();
+            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
         $paceChart = $this->getPaceChart($dataTableRows);
 
         return view('pages.ActivitySteps', ['durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart]);
@@ -90,6 +90,7 @@ class StepCharts extends Controller
             array('datetime', 'Date'),
             array('number', 'Pace')
         );
+
         $name = 'pacecount';
         $title = 'Pace (Steps per second) per day';
         $lineChart = (new Chart\LineChartController)->
