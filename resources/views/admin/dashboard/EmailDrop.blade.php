@@ -69,7 +69,7 @@
                     <td>{{$emaildrop->bodyplain}}</td>
                 </tr>
                 @if ($emaildrop->messageheaders)
-                    @foreach ($emaildrop->messageheaders as $header)
+                    @foreach (json_decode($emaildrop->messageheaders) as $header)
                         <tr>
                             <td>{{$header[0]}}</td>
                             <td>{{$header[1]}}</td>
