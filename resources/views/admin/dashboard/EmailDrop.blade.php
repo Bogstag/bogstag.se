@@ -68,7 +68,10 @@
                     <td>Plain Body</td>
                     <td>{{$emaildrop->bodyplain}}</td>
                 </tr>
-
+                <tr>
+                    <td>Headers</td>
+                    <td>{{$emaildrop->messageheaders}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
