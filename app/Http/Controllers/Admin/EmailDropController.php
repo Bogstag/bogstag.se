@@ -35,7 +35,7 @@ class EmailDropController extends AdminController
             'sender',
             'subject',
         ))->
-        limit(200)->get();
+        orderby('id', 'desc')->limit(200)->get();
 
         return Datatables::of($emailDrops)
             ->editColumn('created_at', '{!! $created_at->diffForHumans() !!}')
