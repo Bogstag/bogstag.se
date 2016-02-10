@@ -32,7 +32,7 @@ class EmailCharts extends Controller
     public function getEmailPublicDropList()
     {
         return Emaildrop::select(array('subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
-        where('public', '=', 1)->orderBy('created_at', 'desc')->limit(10)->get()->toarray();
+        orderBy('created_at', 'desc')->limit(10)->get()->toarray();
     }
 
     /**
