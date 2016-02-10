@@ -142,7 +142,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        //       'Illuminate\Html\HtmlServiceProvider',
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         'yajra\Datatables\DatatablesServiceProvider',
         /*
