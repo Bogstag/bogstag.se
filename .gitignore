@@ -5,7 +5,3 @@ Homestead.json
 .env
 .phpstorm.meta.php
 _ide_helper.php
-/bootstrap/compiled.php
-.env.*.php
-.env.php
-/public/.htaccess
