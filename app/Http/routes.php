@@ -13,7 +13,7 @@ Route::group([
 });
 
 //Website Routs
-Route::group(array('prefix' => '/api/v1'), function () {
+Route::group(array('prefix' => '/api/v1', 'middleware' => 'web'), function () {
     Route::get('{model}/{id}', 'ApiDataPreviewController@show');
     Route::get('{model}', 'ApiDataPreviewController@index');
 });

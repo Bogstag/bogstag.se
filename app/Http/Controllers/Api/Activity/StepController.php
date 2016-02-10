@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Activity;
 
 use App\Step;
 use App\Http\Controllers\Api\APIController;
+use Illuminate\Http\Request;
 
 /**
  * Class StepController
@@ -18,12 +19,13 @@ class StepController extends APIController
     protected $step;
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->step = new Step();
-        $limit = \Input::get('limit', 10);
+        $limit = $request->input('limit', 10);
         $steps = $this->step->limit($limit)->get()->toArray();
 
         return response()->json($steps);

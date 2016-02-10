@@ -22,12 +22,13 @@ class DateController extends APIController
     protected $date;
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->date = new Date();
-        $limit = \Input::get('limit', 10);
+        $limit = $request->input('limit', 10);
         $dates = $this->date->limit($limit)->get()->toArray();
 
         return response()->json($dates);
