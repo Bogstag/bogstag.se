@@ -8,29 +8,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ URL::to('') }}">Bogstag</a>
+            <a class="navbar-brand" href="{{ URL::secure('') }}">Bogstag</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{{ (Request::is('/') ? 'active' : '') }}">
-                    <a href="{{ URL::to('') }}"><i class="fa fa-home"></i> Home</a>
+                    <a href="{{ URL::secure('') }}"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                    <a href="{{ URL::to('about') }}">About</a>
+                    <a href="{{ URL::secure('about') }}">About</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Activity<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::to('activity/steps') }}">Steps</a></li>
+                        <li><a href="{{ URL::secure('activity/steps') }}">Steps</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Server<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::to('server/email') }}">Email</a></li>
+                        <li><a href="{{ URL::secure('server/email') }}">Email</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -46,7 +46,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}"><i
+                    <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::secure('auth/login') }}"><i
                                     class="fa fa-sign-in"></i> Login</a></li>
                 @else
                     <li class="dropdown">
@@ -57,14 +57,14 @@
                             @if(Auth::check())
 
                                 <li>
-                                    <a href="{{ URL::to('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin
+                                    <a href="{{ URL::secure('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin
                                         Dashboard</a>
                                 </li>
                             @endif
                             <li role="presentation" class="divider"></li>
 
                             <li>
-                                <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="{{ URL::secure('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
