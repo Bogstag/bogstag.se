@@ -17,34 +17,35 @@ Route::group(array('prefix' => '/api/v1'), function () {
     Route::get('{model}/{id}', 'ApiDataPreviewController@show');
     Route::get('{model}', 'ApiDataPreviewController@index');
 });
-Route::get('/', function () {
-    return view('pages.home');
-});
-Route::get('about', function () {
-    return view('pages.about');
-});
-Route::get('home', function () {
-    return redirect('/');
-});
+Route::group(['middleware' => 'web'], function () {
+    Route::any('home', function () {
+        return redirect('/');
+    });
 
-Route::resource('activity/steps', 'StepCharts@getStepCharts');
-Route::resource('server/email', 'EmailCharts@getEmailCharts');
+    Route::get('/', function () {
+        return view('pages.home');
+    });
+    Route::get('about', function () {
+        return view('pages.about');
+    });
 
-// Auth Routes
-// Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+    Route::resource('activity/steps', 'StepCharts@getStepCharts');
+    Route::resource('server/email', 'EmailCharts@getEmailCharts');
 
-// Registration routes...
-//No registrations Route::get('auth/register', 'Auth\AuthController@getRegister');
-//No registrations Route::post('auth/register', 'Auth\AuthController@postRegister');
+    Route::auth();
+    Route::any('register', function () {
+        return redirect('/');
+    });
+});
 
 //Admin routs
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     # Admin Dashboard
+    Route::auth();
     Route::get('dashboard', 'Admin\DashboardController@index');
     Route::get('emaildrop/getEmailDropsData', 'Admin\EmailDropController@getEmailDropsData');
     Route::get('emaildrop/setAdressToOkMailGun/{recipient}', 'Admin\EmailDropController@setAdressToOkMailGun');
     Route::resource('emaildrop', 'Admin\EmailDropController');
 });
+
+

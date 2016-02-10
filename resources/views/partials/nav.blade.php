@@ -46,25 +46,22 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::secure('auth/login') }}"><i
-                                    class="fa fa-sign-in"></i> Login</a></li>
+                    <li><a href="{{ url('/login') }}">Login</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false"><i class="fa fa-user"></i> {{ Auth::user()->name }} <i
-                                    class="fa fa-caret-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
-                            @if(Auth::check())
-
                                 <li>
                                     <a href="{{ URL::secure('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin
                                         Dashboard</a>
                                 </li>
-                            @endif
+
                             <li role="presentation" class="divider"></li>
 
                             <li>
-                                <a href="{{ URL::secure('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <li><a href="{{ URL::secure('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </li>
                         </ul>
                     </li>
