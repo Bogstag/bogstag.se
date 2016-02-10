@@ -10,8 +10,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class FrontEndTest extends TestCase
 {
 
-    use DatabaseMigrations;
-
     /**
      *
      */

@@ -11,7 +11,6 @@ class AdminTest extends TestCase
 {
 
     use WithoutMiddleware;
-    use DatabaseTransactions;
     /**
      *
      */
