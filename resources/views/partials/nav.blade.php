@@ -38,10 +38,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Api/v1<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ //action('ApiDataPreviewController@index', $model = 'date') }}">Date</a></li>
-                        <li><a href="{{ //action('ApiDataPreviewController@index', $model = 'emailstat') }}">Email
+                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'date') }}">Date</a></li>
+                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'emailstat') }}">Email
                                 Stat</a></li>
-                        <li><a href="{{ //action('ApiDataPreviewController@index', $model = 'step') }}">Step</a></li>
+                        <li><a href="{{ action('ApiDataPreviewController@index', $model = 'step') }}">Step</a></li>
                     </ul>
                 </li>
 -->
