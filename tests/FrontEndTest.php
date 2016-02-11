@@ -53,31 +53,32 @@ class FrontEndTest extends TestCase
 
     /**
      *
-     */
+
     public function testDatePage()
     {
         $this->visit('/')
             ->click('Date')
             ->seePageIs('/api/v1/date');
     }
-
+*/
     /**
      *
-     */
+
     public function testEmailStatPage()
     {
         $this->visit('/')
             ->click('Email Stat')
             ->seePageIs('/api/v1/emailstat');
     }
-
+*/
     /**
      *
-     */
+
     public function testStepPage()
     {
         $this->visit('/')
             ->click('Step')
             ->seePageIs('/api/v1/step');
     }
+*/
 }
