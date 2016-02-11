@@ -4,7 +4,7 @@
 Route::group([
     'domain'     => env('API_DOMAIN', false),
     'prefix'     => 'v1',
-    'middleware' => 'auth:api'
+    'middleware' => ['auth:api','throttle']
 ], function () {
     Auth::guard('api')->user();
     Route::resource('date', 'Api\DateTime\DateController');
@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::get('emaildrop/getEmailDropsData', 'Admin\EmailDropController@getEmailDropsData');
     Route::get('emaildrop/setAdressToOkMailGun/{recipient}', 'Admin\EmailDropController@setAdressToOkMailGun');
     Route::resource('emaildrop', 'Admin\EmailDropController');
+    Route::resource('profile', 'Admin\ProfileController');
+    Route::get('settings', 'Admin\SettingsController@index');
+    Route::get('settings/resetapitoken', 'Admin\SettingsController@resetapitoken');
 });
-
-

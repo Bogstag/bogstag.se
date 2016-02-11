@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{URL::to('admin/emaildrop')}}">
+                <a href="{{URL::secure('admin/emaildrop')}}">
                     <div class="panel-footer">
                         <span class="pull-left">Email Drops</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -21,7 +21,7 @@
                 <tbody>
                 <tr>
                     <td>Id</td>
-                    <td><a href="{{ URL::to('/admin/emaildrop', $emaildrop->id)}}">{{$emaildrop->id}}</a></td>
+                    <td><a href="{{ URL::secure('/admin/emaildrop', $emaildrop->id)}}">{{$emaildrop->id}}</a></td>
                 </tr>
                 <tr>
                     <td>recipient</td>
