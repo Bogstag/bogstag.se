@@ -4,8 +4,9 @@
 Route::group([
     'domain'     => env('API_DOMAIN', false),
     'prefix'     => 'v1',
-    'middleware' => 'APIAuth'
+    'middleware' => 'auth:api'
 ], function () {
+    Auth::guard('api')->user();
     Route::resource('date', 'Api\DateTime\DateController');
     Route::resource('step', 'Api\Activity\StepController');
     Route::resource('emailstat', 'Api\Email\StatController');
