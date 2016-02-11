@@ -32,7 +32,7 @@
         $('#emaildrops-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('admin/emaildrop/getEmailDropsData') !!}',
+            ajax: '{!! URL::secure('admin/emaildrop/getEmailDropsData') !!}',
             order: [[0, "desc"]],
             columns: [
                 {data: 'id', name: 'id'},

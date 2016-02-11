@@ -39,7 +39,7 @@ class EmailDropController extends AdminController
 
         return Datatables::of($emailDrops)
             ->editColumn('created_at', '{!! $created_at->diffForHumans() !!}')
-            ->editColumn('id', '<a href="{{ URL::to(\'/admin/emaildrop\', $id)}}">{{$id}}</a>')
+            ->editColumn('id', '<a href="{{ URL::secure(\'/admin/emaildrop\', $id)}}">{{$id}}</a>')
             ->make(true);
     }
 
