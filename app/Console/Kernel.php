@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\Integration\SteamAPI\SteamOwnedGames;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Http\Controllers\Integration\Google\GoogleFit;
@@ -25,12 +26,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
 
         $schedule->call(function () {
             $GoogleFit = new GoogleFit;
             $GoogleFit->getStepData();
         })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            $SteamOwnedGames = new SteamOwnedGames();
+            $SteamOwnedGames->updateGamesFromAPI();
+        })->daily();
     }
 }

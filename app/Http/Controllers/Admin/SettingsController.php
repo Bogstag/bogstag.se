@@ -15,22 +15,14 @@ class SettingsController extends AdminController
 {
 
     /**
-     * SettingsController constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $title = "Settings";
         $ApiToken = Auth::user()->api_token;
 
-        return view('admin.dashboard.Settings', compact('title', 'ApiToken'));
+        return view('admin.dashboard.Settings', ['ApiToken' => $ApiToken]);
     }
 
     /**
@@ -42,8 +34,7 @@ class SettingsController extends AdminController
     public function resetapitoken(Request $request)
     {
         $user = User::where('api_token', $request->input('RefreshApiToken'))->first();
-        $user->api_token = str_random(60);
-        $user->save();
-        return view('admin.dashboard.Settings', ['title' => 'Settings', 'ApiToken' => $user->api_token]);
+        $user->update(['api_token' => str_random(60)]);
+        return view('admin.dashboard.Settings', ['ApiToken' => $user->api_token]);
     }
 }

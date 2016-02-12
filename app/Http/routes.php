@@ -30,6 +30,8 @@ Route::group(['middleware' => 'web'], function () {
         return view('pages.about');
     });
 
+    //Route::resource('test', 'Integration\SteamAPI\SteamOwnedGames@updateGamesFromAPI');
+
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
 
