@@ -28,4 +28,4 @@ after_success:
   - codecov
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover=coverage.xml

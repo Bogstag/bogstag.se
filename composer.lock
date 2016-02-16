@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4c11f7621485cb0fef354e31bf8a8498",
-    "content-hash": "1e8e0876df8f55d81de12cb311fff7ad",
+    "hash": "485cf7432d18bac10700c221b098dac9",
+    "content-hash": "0694a5b824b671b4473a3c61b71ee347",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1137,16 +1137,16 @@
         },
         {
             "name": "khill/lavacharts",
-            "version": "3.0.x-dev",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kevinkhill/lavacharts.git",
-                "reference": "d0dc2f8a0bdf03eb64583e6a4d2c0a656eb343fd"
+                "reference": "a55fe54b02bb78307caecbd5faa5a16a8b25357c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/d0dc2f8a0bdf03eb64583e6a4d2c0a656eb343fd",
-                "reference": "d0dc2f8a0bdf03eb64583e6a4d2c0a656eb343fd",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/a55fe54b02bb78307caecbd5faa5a16a8b25357c",
+                "reference": "a55fe54b02bb78307caecbd5faa5a16a8b25357c",
                 "shasum": ""
             },
             "require": {
@@ -1222,7 +1222,7 @@
                 "google",
                 "graphs"
             ],
-            "time": "2016-02-12 16:07:39"
+            "time": "2016-02-04 04:46:34"
         },
         {
             "name": "laravel/framework",
@@ -4488,9 +4488,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "khill/lavacharts": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

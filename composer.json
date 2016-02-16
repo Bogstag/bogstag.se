@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "google/apiclient": "^1.1",
-        "khill/lavacharts": "3.0.x-dev",
+        "khill/lavacharts": "~3.0",
         "mailgun/mailgun-php": "~1.7.2",
         "doctrine/dbal": "^2.5",
         "yajra/laravel-datatables-oracle": "~5.0",
