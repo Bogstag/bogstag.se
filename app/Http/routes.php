@@ -34,7 +34,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
     Route::resource('game/steam', 'SteamGameController');
-    
+
     Route::auth();
     Route::any('register', function () {
         return redirect('/');

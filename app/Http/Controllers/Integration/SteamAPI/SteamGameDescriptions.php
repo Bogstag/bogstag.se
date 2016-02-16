@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Http\Requests;
-use App\SteamGame;
 use App\SteamGameDescription;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +20,7 @@ class SteamGameDescriptions extends SteamAPI
             })->orderBy('steam_game_descriptions.updated_at', 'asc')
             ->lists('steam_games.id');
         if (empty($GameIds)) {
-            exit(date("Y-m-d H:i:s") . ' No more Descriptions to update');
+            abort(200, date("Y-m-d H:i:s") . ' No more Descriptions to update');
         }
         foreach ($GameIds as $GameId) {
             $this->getSteamGameDescription($GameId);
@@ -44,7 +42,6 @@ class SteamGameDescriptions extends SteamAPI
 
         $this->GameDescriptionJson = json_decode(curl_exec($curlSession));
         curl_close($curlSession);
-        //$this->GameDescriptionJson = json_decode(file_get_contents($url), true);
     }
 
     private function parseAndSaveDescription($Description)

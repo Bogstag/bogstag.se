@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Http\Requests;
 use App\SteamAchievement;
 use App\SteamGame;
 use App\SteamStat;
@@ -15,7 +14,7 @@ class SteamGameSchema extends SteamAPI
     {
         $GameIds = SteamGame::SchemaNeedUpdate()->get();
         if ($GameIds->isEmpty()) {
-            exit(date("Y-m-d H:i:s").' No more schemas to update');
+            abort(200, date("Y-m-d H:i:s").' No more schemas to update');
         }
         foreach ($GameIds as $GameId) {
             $this->getSteamGameSchemaFromAPI($GameId->id);

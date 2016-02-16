@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\SteamGame;
 use App\SteamGameDescription;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class SteamgameController extends Controller
 {

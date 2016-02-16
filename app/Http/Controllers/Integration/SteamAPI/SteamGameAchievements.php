@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Http\Requests;
 use App\SteamAchievement;
 use App\SteamGame;
 use App\SteamStat;
@@ -15,7 +14,7 @@ class SteamGameAchievements extends SteamAPI
     {
         $GamesWithAchievements = SteamGame::AchievementsNeedUpdate()->get();
         if ($GamesWithAchievements->isEmpty()) {
-            exit(date("Y-m-d H:i:s") . ' No more achievements to update');
+            abort(200, date("Y-m-d H:i:s") . ' No more achievements to update');
         }
 
         foreach ($GamesWithAchievements as $GameWithAchievements) {

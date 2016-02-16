@@ -41,7 +41,7 @@ class FrontEndTest extends TestCase
     }
 
     /**
-     *
+     * @covers \App\Http\Controllers\StepCharts::getStepCharts
      */
     public function testStepsPage()
     {
@@ -52,7 +52,7 @@ class FrontEndTest extends TestCase
     }
 
     /**
-     *
+     * @covers \App\Http\Controllers\EmailCharts::getEmailCharts
      */
     public function testEmailPage()
     {
@@ -62,6 +62,9 @@ class FrontEndTest extends TestCase
             ->seePageIs('/server/email');
     }
 
+    /**
+     * @covers \App\Http\Controllers\SteamgameController::index
+     */
     public function testSteamPage()
     {
         $this->visit('/')
