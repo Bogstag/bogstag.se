@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateStepsTable extends Migration
 {
-
     /**
      * Run the migrations.
+     *
      * @return void
      */
     public function up()
@@ -23,6 +23,7 @@ class CreateStepsTable extends Migration
 
     /**
      * Reverse the migrations.
+     *
      * @return void
      */
     public function down()

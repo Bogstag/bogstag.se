@@ -2,24 +2,22 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 /**
- * Class Step
+ * Class Step.
  *
- * @package App
- * @property integer $step_id
- * @property integer $date_id
- * @property integer $steps
- * @property integer $duration
+ * @property int $step_id
+ * @property int $date_id
+ * @property int $steps
+ * @property int $duration
  * @property \Carbon\Carbon $datetime
  * @property-read \App\Date $date
  */
 class Step extends Model
 {
-
     /**
      * @var array
      */
@@ -36,12 +34,14 @@ class Step extends Model
     public $incrementing = false;
     /**
      * Indicates what can be submitted to update.
+     *
      * @var array
      */
     protected $fillable = ['step_id'];
 
     /**
      * Indicates if the model should be timestamped.
+     *
      * @var bool
      */
     public $timestamps = false;
@@ -83,36 +83,37 @@ class Step extends Model
 
     /**
      * @param $steps
+     *
      * @return array
      */
     public function transformStepCollection(Collection $steps)
     {
-
         foreach ($steps as $step) {
             unset($step->{'duration'});
             unset($step->{'pace'});
         }
+
         return $steps;
     }
 
-
     /**
      * @param Collection $steps2
+     *
      * @return Collection
      */
     public function transformDurationCollection(Collection $steps2)
     {
-
         foreach ($steps2 as $step2) {
             unset($step2->{'steps'});
             unset($step2->{'pace'});
         }
+
         return $steps2;
     }
 
-
     /**
      * @param Collection $steps3
+     *
      * @return Collection
      */
     public function transformPaceCollection(Collection $steps3)

@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Emaildrop;
 use App\Emailstat;
 use DB;
-use App\Http\Controllers\Chart;
 
 /**
- * Class EmailCharts
- * @package App\Http\Controllers
+ * Class EmailCharts.
  */
-class EmailCharts extends Controller
+class emailCharts extends Controller
 {
-
     /**
      * @return \Illuminate\View\View
      */
@@ -31,7 +28,7 @@ class EmailCharts extends Controller
      */
     public function getEmailPublicDropList()
     {
-        return Emaildrop::select(array('subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'))->
+        return Emaildrop::select(['subject', 'Spf', 'Spamscore', 'Spamflag', 'DkimCheck'])->
         orderBy('created_at', 'desc')->limit(10)->get()->toarray();
     }
 
@@ -44,10 +41,10 @@ class EmailCharts extends Controller
             "DATE_FORMAT(created_at, '%Y-%m-%d') as Date, COUNT('id') AS Count"
         ))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))->orderby('Date', 'asc')->take(100)->get();
-        $dataTableColumns = array(
-            array('date', 'Date'),
-            array('number', 'Count')
-        );
+        $dataTableColumns = [
+            ['date', 'Date'],
+            ['number', 'Count'],
+        ];
         $name = 'emaildrops';
         $title = 'Droped by custom rule';
         $dateFormat = 'Y-m-d';
@@ -70,19 +67,19 @@ class EmailCharts extends Controller
         ))
             ->groupby('date')->orderby('date', 'desc')->take(100)->get();
 
-        $dataTableColumns = array(
-            array('date', 'Date'),
-            array('number', 'Bounced'),
-            array('number', 'Complained'),
-            array('number', 'Dropped'),
-            array('number', 'Delivered')
-        );
+        $dataTableColumns = [
+            ['date', 'Date'],
+            ['number', 'Bounced'],
+            ['number', 'Complained'],
+            ['number', 'Dropped'],
+            ['number', 'Delivered'],
+        ];
         $name = 'emaildel';
         $title = 'Message Delivery';
         $dateFormat = 'Y-m-d';
         $isStacked = true;
 
-        return (new Chart\ColumnChartController)
+        return (new Chart\ColumnChartController())
             ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows, $dateFormat, $isStacked);
     }
 }

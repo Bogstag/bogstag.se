@@ -9,12 +9,11 @@ use Steam\Command\UserStats\GetSchemaForGame;
 
 class SteamGameSchema extends SteamAPI
 {
-
     public function updateSteamGameSchemas()
     {
         $GameIds = SteamGame::SchemaNeedUpdate()->get();
         if ($GameIds->isEmpty()) {
-            abort(200, date("Y-m-d H:i:s").' No more schemas to update');
+            abort(200, date('Y-m-d H:i:s').' No more schemas to update');
         }
         foreach ($GameIds as $GameId) {
             $this->getSteamGameSchemaFromAPI($GameId->id);
@@ -104,12 +103,13 @@ class SteamGameSchema extends SteamAPI
 
     /**
      * @param $GameId
+     *
      * @return mixed
      */
     private function setGameTimestampForSchema($GameId)
     {
         $Game = SteamGame::select('id', 'schema_updated_at')->where('id', $GameId->id)->first();
-        $Game->schema_updated_at = date("Y-m-d H:i:s");
+        $Game->schema_updated_at = date('Y-m-d H:i:s');
         $Game->save();
     }
 }

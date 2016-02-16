@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class SteamGameDescriptions extends SteamAPI
 {
-
     public function updateSteamGameDescription()
     {
         $GameIds = DB::table('steam_games')
@@ -16,12 +15,12 @@ class SteamGameDescriptions extends SteamAPI
             ->select('steam_games.id')
             ->where('steam_games.playtimeforever', '>', 0)
             ->where(function (Builder $query) {
-                $query->where('steam_game_descriptions.updated_at', '<', date("Y-m-d"))
+                $query->where('steam_game_descriptions.updated_at', '<', date('Y-m-d'))
                     ->orWhere('steam_game_descriptions.updated_at', null);
             })->orderBy('steam_game_descriptions.updated_at', 'asc')
             ->lists('steam_games.id');
         if (empty($GameIds)) {
-            abort(200, date("Y-m-d H:i:s") . ' No more Descriptions to update');
+            abort(200, date('Y-m-d H:i:s').' No more Descriptions to update');
         }
         foreach ($GameIds as $GameId) {
             $this->getSteamGameDescription($GameId);
@@ -35,7 +34,7 @@ class SteamGameDescriptions extends SteamAPI
 
     private function getSteamGameDescription($GameId)
     {
-        $url = 'http://store.steampowered.com/api/appdetails?appids=' . $GameId;
+        $url = 'http://store.steampowered.com/api/appdetails?appids='.$GameId;
         $curlSession = curl_init();
         curl_setopt($curlSession, CURLOPT_URL, $url);
         curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
@@ -86,11 +85,13 @@ class SteamGameDescriptions extends SteamAPI
         }
 
         if (isset($Description->screenshots{0}->path_thumbnail)) {
-            $SteamDescription->screenshot_thumbnail = $Description->screenshots{0}->path_thumbnail;
+            $SteamDescription->screenshot_thumbnail = $Description->screenshots{0}
+            ->path_thumbnail;
         }
 
         if (isset($Description->screenshots{0}->path_full)) {
-            $SteamDescription->screenshot_full = $Description->screenshots{0}->path_full;
+            $SteamDescription->screenshot_full = $Description->screenshots{0}
+            ->path_full;
         }
         if (isset($Description->movies)) {
             $lastMovie = end($Description->movies);

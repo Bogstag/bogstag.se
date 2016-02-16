@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateDateTable extends Migration
 {
@@ -27,7 +27,7 @@ class CreateDateTable extends Migration
             $table->integer('week');
             $table->integer('nrdaysinmonth');
             $table->boolean('leapyear'); // 1=true, 0=false
-            
+
         });
     }
 

@@ -8,17 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class Authenticate
- * @package App\Http\Middleware
+ * Class Authenticate.
  */
 class Authenticate
 {
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
+     * @param Request    $request
+     * @param Closure    $next
      * @param Guard|null $guard
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next, Guard $guard = null)

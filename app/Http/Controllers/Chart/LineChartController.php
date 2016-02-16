@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Chart;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class LineChartController
- * @package App\Http\Controllers\Chart
+ * Class LineChartController.
  */
 class LineChartController extends ChartController
 {
-
     /**
      * @var
      */
@@ -34,7 +32,6 @@ class LineChartController extends ChartController
      */
     public function getLineChart($name = '', $title = '')
     {
-
         $this->lineChart = \Lava::LineChart($name, $this->lavaDataTable);
         /* // Soon tl be released in lavacharts
           , ['trendlines' => [
@@ -54,7 +51,8 @@ class LineChartController extends ChartController
      * @param $title
      * @param $dataTableColumns
      * @param Collection $dataTableRows
-     * @param string $dateFormat
+     * @param string     $dateFormat
+     *
      * @return mixed
      */
     public function createLineChart(

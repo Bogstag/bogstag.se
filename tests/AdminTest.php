@@ -1,16 +1,14 @@
 <?php
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
- * Class FrontEndTest
+ * Class FrontEndTest.
  */
 class AdminTest extends TestCase
 {
-
     use WithoutMiddleware;
+
     /**
      *
      */

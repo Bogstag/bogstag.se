@@ -4,18 +4,16 @@ namespace App\Http\Controllers\Api\DateTime;
 
 use App\Date;
 use App\Http\Controllers\Api\APIController;
-use Illuminate\Http\Request;
-use Illuminate\Http;
 use Carbon\Carbon;
+use Illuminate\Http;
+use Illuminate\Http\Request;
 
 /**
  * Class DateController
  * Controller the dates, whip them into submission.
- * @package App\Http\Controllers\Api\DateTime
  */
 class DateController extends APIController
 {
-
     /**
      * @var Date
      */
@@ -23,6 +21,7 @@ class DateController extends APIController
 
     /**
      * @param Request $request
+     *
      * @return Http\JsonResponse
      */
     public function index(Request $request)
@@ -36,6 +35,7 @@ class DateController extends APIController
 
     /**
      * @param Request $request
+     *
      * @return Date|\Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -65,6 +65,7 @@ class DateController extends APIController
 
     /**
      * @param $date
+     *
      * @return mixed
      */
     public function generateDate(Carbon $date)

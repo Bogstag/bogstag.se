@@ -9,12 +9,11 @@ use Steam\Command\UserStats\GetUserStatsForGame;
 
 class SteamGameAchievements extends SteamAPI
 {
-
     public function getSteamAchievements()
     {
         $GamesWithAchievements = SteamGame::AchievementsNeedUpdate()->get();
         if ($GamesWithAchievements->isEmpty()) {
-            abort(200, date("Y-m-d H:i:s") . ' No more achievements to update');
+            abort(200, date('Y-m-d H:i:s').' No more achievements to update');
         }
 
         foreach ($GamesWithAchievements as $GameWithAchievements) {
@@ -63,7 +62,6 @@ class SteamGameAchievements extends SteamAPI
                     $SteamAchievement->value = $achievement['achieved'];
                 }
                 $SteamAchievement->save();
-
             }
         }
     }
@@ -95,7 +93,7 @@ class SteamGameAchievements extends SteamAPI
     private function setGameTimestampForAchievement($GameId)
     {
         $Game = SteamGame::select('id', 'player_stats_updated_at')->where('id', $GameId)->first();
-        $Game->player_stats_updated_at = date("Y-m-d H:i:s");
+        $Game->player_stats_updated_at = date('Y-m-d H:i:s');
         $Game->save();
     }
 }

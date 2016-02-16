@@ -8,17 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class RedirectIfAuthenticated
- * @package App\Http\Middleware
+ * Class RedirectIfAuthenticated.
  */
 class RedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
+     * @param Request    $request
+     * @param Closure    $next
      * @param Guard|null $guard
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next, Guard $guard = null)

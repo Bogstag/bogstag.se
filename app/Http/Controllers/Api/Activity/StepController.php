@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Api\Activity;
 
-use App\Step;
 use App\Http\Controllers\Api\APIController;
+use App\Step;
 use Illuminate\Http\Request;
 
 /**
- * Class StepController
- * @package App\Http\Controllers\Api\Activity
+ * Class StepController.
  */
 class StepController extends APIController
 {
-
     /**
      * @var Step
      */
@@ -20,6 +18,7 @@ class StepController extends APIController
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
@@ -44,7 +43,7 @@ class StepController extends APIController
      */
     public function internalStore(array $step)
     {
-        $this->step = new Step;
+        $this->step = new Step();
         if ($this->step->where('step_id', $step['date']->minute(0)->second(0)->format('YmdH'))->exists()) {
         } else {
             $this->setStep($step);

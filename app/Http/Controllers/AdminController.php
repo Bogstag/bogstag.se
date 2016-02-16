@@ -1,18 +1,16 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 /**
- * Class AdminController
- * @package App\Http\Controllers
+ * Class AdminController.
  */
 class AdminController extends Controller
 {
-
     /**
      * Initializer.
      */
     public function __construct()
     {
-
     }
-
 }

@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 /**
- * Class APIController
- * @package App\Api\Controllers
+ * Class APIController.
  */
 class APIController extends Controller
 {
-
     /**
      * @param Request $request
+     *
      * @return array|Request
      */
     public function removeApiKeyFromRequest(Request $request)
@@ -26,6 +25,7 @@ class APIController extends Controller
 
     /**
      * @param $date
+     *
      * @return Carbon
      */
     public function setCarbonDate($date)

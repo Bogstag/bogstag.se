@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Integration\Google;
 use App\Http\Controllers\Api\Activity\StepController;
 use App\Http\Controllers\Api\DateTime\DateController;
 use Carbon\Carbon;
-use App\Http\Controllers\Api\DateTime;
 
 /**
- * Class GoogleFit
- * @package App\Http\Controllers\Integration
+ * Class GoogleFit.
  */
 class GoogleFit extends Google
 {
-
     private $dataSourceId = null;
     private $userId = 'me';
 
@@ -25,7 +22,7 @@ class GoogleFit extends Google
         $scopes = [
             'https://www.googleapis.com/auth/fitness.activity.read',
             'https://www.googleapis.com/auth/fitness.body.read',
-            'https://www.googleapis.com/auth/fitness.location.read'
+            'https://www.googleapis.com/auth/fitness.location.read',
         ];
         parent::__construct($scopes);
 
@@ -37,36 +34,34 @@ class GoogleFit extends Google
      */
     private function getDataSourcesAndSets()
     {
-
         return $this->fitness_service->users_dataSources_datasets;
     }
 
     /**
      * @param int $days
+     *
      * @return \Google_Service_Fitness_Dataset
      */
     private function getDataSetsFromDataSource($days = 2)
     {
-
         $startTime = Carbon::now()->subDays($days)->hour(0)->minute(0)->second(0);
         $endTime = Carbon::now()->minute(0)->second(0);
 
         return $this->getDataSourcesAndSets()->get(
             $this->userId,
             $this->dataSourceId,
-            $startTime->timestamp . '000000000' . '-' . $endTime->timestamp . '000000000'
+            $startTime->timestamp.'000000000'.'-'.$endTime->timestamp.'000000000'
         );
     }
 
     public function getStepData()
     {
-
-        $this->dataSourceId = "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps";
+        $this->dataSourceId = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
 
         $listDataSets = $this->getDataSetsFromDataSource();
 
-        $dataArray = array();
-        $dateArray = array();
+        $dataArray = [];
+        $dateArray = [];
         $i = 0;
         $dataSet = '';
 
@@ -78,7 +73,7 @@ class GoogleFit extends Google
                 continue;
             }
 
-            $i ++;
+            $i++;
             $step_count = 0;
 
             $startTimeNanos = $this->convertNanosToDateTime($dataSet['startTimeNanos']);
@@ -92,11 +87,11 @@ class GoogleFit extends Google
             }
             $step_id = $startTimeNanos->minute(0)->second(0)->format('YmdH');
             if (!isset($dataArray[$step_id])) {
-                $dataArray[$step_id] = array(
+                $dataArray[$step_id] = [
                     'date'     => $startTimeNanos->minute(0)->second(0),
                     'steps'    => $step_count,
-                    'duration' => $duration
-                );
+                    'duration' => $duration,
+                ];
                 $dateArray[] = $startTimeNanos;
             } else {
                 $dataArray[$step_id]['steps'] += $step_count;
@@ -104,8 +99,8 @@ class GoogleFit extends Google
             }
             $dataSet = $listDataSets->next();
         }
-        $dateController = new DateController;
-        $stepController = new StepController;
+        $dateController = new DateController();
+        $stepController = new StepController();
         $dateController->internalStoreRequest($dateArray);
         $stepController->internalStoreRequest($dataArray);
     }
@@ -125,5 +120,4 @@ class GoogleFit extends Google
     {
         $this->dataSourceId = $dataSourceId;
     }
-
 }
