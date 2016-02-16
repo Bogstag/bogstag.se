@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Chart;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class BarChartController
- * @package App\Http\Controllers\Chart
+ * Class BarChartController.
  */
 class BarChartController extends ChartController
 {
-
     /**
      * @var
      */
@@ -40,12 +38,14 @@ class BarChartController extends ChartController
 
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function createBarChart($name, $title, $dataTableColumns, Collection $dataTableRows)
     {
         $this->getLavaDataTable($dataTableColumns, $dataTableRows);
         $this->getBarChart($name, $title);
+
         return $this->barChart;
     }
 

@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Emailstat
+ * App\Emailstat.
  *
- * @property integer $id
+ * @property int $id
  * @property string $event
  * @property string $domain
- * @property integer $count
+ * @property int $count
  * @property string $date
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

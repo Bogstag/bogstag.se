@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\SteamGameDescription
+ * App\SteamGameDescription.
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
- * @property boolean $is_free
+ * @property bool $is_free
  * @property string $about
  * @property string $header_image
  * @property string $legal_notice
- * @property integer $meta_critic_score
+ * @property int $meta_critic_score
  * @property string $meta_critic_url
  * @property string $website
  * @property string $detailed_description
@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SteamGameDescription extends Model
 {
-
     /**
      * @var array
      */
@@ -36,12 +35,14 @@ class SteamGameDescription extends Model
 
     /**
      * Ids are set from steam appid.
+     *
      * @var bool
      */
     public $incrementing = false;
 
     /**
-     * This belongs to a steam game
+     * This belongs to a steam game.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function game()

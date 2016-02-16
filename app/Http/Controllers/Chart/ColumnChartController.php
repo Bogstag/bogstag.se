@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Chart;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class ColumnChartController
- * @package App\Http\Controllers\Chart
+ * Class ColumnChartController.
  */
 class ColumnChartController extends ChartController
 {
-
     /**
      * @var
      */
@@ -29,8 +27,8 @@ class ColumnChartController extends ChartController
     }
 
     /**
-     * @param string $name
-     * @param string $title
+     * @param string     $name
+     * @param string     $title
      * @param bool|false $isStacked
      */
     public function getColumnChart($name = '', $title = '', $isStacked = false)
@@ -44,8 +42,9 @@ class ColumnChartController extends ChartController
      * @param $title
      * @param $dataTableColumns
      * @param Collection $dataTableRows
-     * @param string $dateFormat
+     * @param string     $dateFormat
      * @param bool|false $isStacked
+     *
      * @return mixed
      */
     public function createColumnChart(
@@ -56,7 +55,6 @@ class ColumnChartController extends ChartController
         $dateFormat = 'Y-m-d H:i:s',
         $isStacked = false
     ) {
-
         $this->getLavaDataTable($dataTableColumns, $dataTableRows, $dateFormat);
         $this->getColumnChart($name, $title, $isStacked);
 

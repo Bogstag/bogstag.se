@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api\Email;
 
-use App\Http\Controllers\Api\APIController;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Emailstat;
+use App\Http\Controllers\Api\APIController;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class StatController extends APIController
 {
-
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -21,6 +21,7 @@ class StatController extends APIController
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -30,7 +31,9 @@ class StatController extends APIController
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request $request
+     *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,7 +66,9 @@ class StatController extends APIController
 
     /**
      * Display the specified resource.
-     * @param  int $id
+     *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +78,9 @@ class StatController extends APIController
 
     /**
      * Show the form for editing the specified resource.
-     * @param  int $id
+     *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,8 +90,10 @@ class StatController extends APIController
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -94,7 +103,9 @@ class StatController extends APIController
 
     /**
      * Remove the specified resource from storage.
-     * @param  int $id
+     *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

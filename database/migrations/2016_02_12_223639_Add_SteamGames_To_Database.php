@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddSteamGamesToDatabase extends Migration
 {
@@ -21,8 +21,8 @@ class AddSteamGamesToDatabase extends Migration
             $table->string('iconurl')->nullable();
             $table->string('logourl')->nullable();
             $table->boolean('hasstats')->default(0);
-            $table ->timestamp('schema_updated_at')->nullable();
-            $table ->timestamp('player_stats_updated_at')->nullable();
+            $table->timestamp('schema_updated_at')->nullable();
+            $table->timestamp('player_stats_updated_at')->nullable();
             $table->timestamps();
         });
     }

@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Emaildrop
+ * App\Emaildrop.
  *
- * @property integer $id
+ * @property int $id
  * @property string $sender
  * @property string $subject
  * @property string $Spf
  * @property float $Spamscore
  * @property string $Spamflag
  * @property string $DkimCheck
- * @property boolean $public
+ * @property bool $public
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $recipient

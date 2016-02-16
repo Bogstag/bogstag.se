@@ -5,28 +5,26 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Date
+ * Class Date.
  *
- * @package App
- * @property integer $date_id
+ * @property int $date_id
  * @property \Carbon\Carbon $date
- * @property integer $year
- * @property integer $month
+ * @property int $year
+ * @property int $month
  * @property string $fullmonth
  * @property string $shortmonth
- * @property integer $day
+ * @property int $day
  * @property string $fullday
  * @property string $shortday
- * @property integer $dayofweek
- * @property integer $dayofyear
- * @property integer $week
- * @property integer $nrdaysinmonth
- * @property boolean $leapyear
+ * @property int $dayofweek
+ * @property int $dayofyear
+ * @property int $week
+ * @property int $nrdaysinmonth
+ * @property bool $leapyear
  * @property-read \App\Step $step
  */
 class Date extends Model
 {
-
     /**
      * @var array
      */
@@ -43,11 +41,13 @@ class Date extends Model
     public $incrementing = false;
     /**
      * Indicates what can be submitted to update.
+     *
      * @var bool
      */
-    protected $fillable = array('date');
+    protected $fillable = ['date'];
     /**
      * Indicates if the model should be timestamped.
+     *
      * @var bool
      */
     public $timestamps = false;
@@ -59,6 +59,4 @@ class Date extends Model
     {
         return $this->hasOne('App\Step');
     }
-
-
 }

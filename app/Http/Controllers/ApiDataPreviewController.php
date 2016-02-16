@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
 
 /**
- * Class ApiDataPreview
- * @package App\Http\Controllers
+ * Class ApiDataPreview.
  */
 class ApiDataPreviewController extends Controller
 {
-
     /**
      * ApiDataPreview constructor.
+     *
      * @param Request $request
+     *
      * @internal param $id
      */
     public function __construct(Request $request)
     {
         $this->model = $request->route('model');
         $this->model = ucwords($this->model);
-        $this->NamespacedModel = '\\App\\' . $this->model;
+        $this->NamespacedModel = '\\App\\'.$this->model;
         $this->id = $request->route('id');
     }
 
@@ -51,5 +50,4 @@ class ApiDataPreviewController extends Controller
             'posts'  => $NamespacedModel::where('id', $this->id)->get()->toarray(),
         ]);
     }
-
 }

@@ -7,7 +7,6 @@ use Steam\Command\PlayerService\GetOwnedGames;
 
 class SteamOwnedGames extends SteamAPI
 {
-
     public function updateGamesFromAPI()
     {
         $this->getSteamOwnedGamesFromAPI();
@@ -25,7 +24,7 @@ class SteamOwnedGames extends SteamAPI
         foreach ($this->OwnedGamesFromAPI['response']['games'] as $game) {
             $SteamGame = SteamGame::find($game['appid']);
             if ($SteamGame === null) {
-                $SteamGame = new SteamGame;
+                $SteamGame = new SteamGame();
                 $SteamGame->id = $game['appid'];
             }
 
@@ -43,13 +42,13 @@ class SteamOwnedGames extends SteamAPI
                 $SteamGame->playtime2weeks = 0;
             }
 
-            $imgUrl = 'http://media.steampowered.com/steamcommunity/public/images/apps/' . $SteamGame->id . '/';
+            $imgUrl = 'http://media.steampowered.com/steamcommunity/public/images/apps/'.$SteamGame->id.'/';
             if (isset($game['img_icon_url'])) {
-                $SteamGame->iconurl = $imgUrl . $game['img_icon_url'] . '.jpg';
+                $SteamGame->iconurl = $imgUrl.$game['img_icon_url'].'.jpg';
             }
 
             if (isset($game['img_logo_url'])) {
-                $SteamGame->logourl = $imgUrl . $game['img_logo_url'] . '.jpg';
+                $SteamGame->logourl = $imgUrl.$game['img_logo_url'].'.jpg';
             }
 
             if (isset($game['has_community_visible_stats'])) {

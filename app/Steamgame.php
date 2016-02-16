@@ -10,14 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  *
  * Class SteamGame
  *
- * @package App
- * @property integer $id
+ * @property int $id
  * @property string $name
- * @property integer $playtimeforever
- * @property integer $playtime2weeks
+ * @property int $playtimeforever
+ * @property int $playtime2weeks
  * @property string $iconurl
  * @property string $logourl
- * @property boolean $hasstats
+ * @property bool $hasstats
  * @property string $schema_updated_at
  * @property string $player_stats_updated_at
  * @property \Carbon\Carbon $created_at
@@ -25,13 +24,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamAchievement[] $achievements
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamStat[] $stats
  * @property-read \App\SteamGameDescription $descriptions
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame listGames()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame schemaNeedUpdate()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame achievementsNeedUpdate()
  */
-class SteamGame extends Model
+class Steamgame extends Model
 {
-
     /**
      * @var array
      */
@@ -39,12 +38,14 @@ class SteamGame extends Model
 
     /**
      * Ids are set from steam appid.
+     *
      * @var bool
      */
     public $incrementing = false;
 
     /**
      * One game has many achievements.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function achievements()
@@ -53,7 +54,8 @@ class SteamGame extends Model
     }
 
     /**
-     * One game has many stats
+     * One game has many stats.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stats()
@@ -62,7 +64,8 @@ class SteamGame extends Model
     }
 
     /**
-     * One game has many stats
+     * One game has many stats.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function descriptions()
@@ -70,9 +73,9 @@ class SteamGame extends Model
         return $this->hasOne('App\SteamGameDescription', 'id');
     }
 
-
     /**
      * Games i have played.
+     *
      * @param $query
      */
     public function scopeListGames($query)
@@ -86,13 +89,14 @@ class SteamGame extends Model
      * Games that are not updated at all.
      * Games that are have stats.
      * These games need an update.
+     *
      * @param $query
      */
     public function scopeSchemaNeedUpdate($query)
     {
         $query->select('id')
             ->where(function (Builder $query) {
-                $query->where('schema_updated_at', '<', date("Y-m-d"))
+                $query->where('schema_updated_at', '<', date('Y-m-d'))
                     ->orWhere('schema_updated_at', null);
             })
             ->whereNotIn('id', $this->getGamesWithNoStats())
@@ -103,6 +107,7 @@ class SteamGame extends Model
      * Games that has no stats or achievements.
      * Games i have not played is worthless
      * Static Ids is games that steam say has stats, but don't have it.
+     *
      * @return array
      */
     public function getGamesWithNoStats()
@@ -116,6 +121,7 @@ class SteamGame extends Model
 
     /**
      * List Ids of all games that need to be updated.
+     *
      * @param $query
      */
     public function scopeAchievementsNeedUpdate(Builder $query)
@@ -123,7 +129,7 @@ class SteamGame extends Model
         $query->select('id')
             ->whereNotIn('id', $this->getGamesWithNoStats())
             ->where(function (Builder $query) {
-                $query->where('player_stats_updated_at', '<', date("Y-m-d"))
+                $query->where('player_stats_updated_at', '<', date('Y-m-d'))
                     ->where('playtime2weeks', '>', 0)
                     ->orWhere('player_stats_updated_at', null);
             })
