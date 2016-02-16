@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame schemaNeedUpdate()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame achievementsNeedUpdate()
  */
-class Steamgame extends Model
+class SteamGame extends Model
 {
     /**
      * @var array
