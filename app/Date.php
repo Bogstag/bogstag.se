@@ -6,7 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Date
+ *
  * @package App
+ * @property integer $date_id
+ * @property \Carbon\Carbon $date
+ * @property integer $year
+ * @property integer $month
+ * @property string $fullmonth
+ * @property string $shortmonth
+ * @property integer $day
+ * @property string $fullday
+ * @property string $shortday
+ * @property integer $dayofweek
+ * @property integer $dayofyear
+ * @property integer $week
+ * @property integer $nrdaysinmonth
+ * @property boolean $leapyear
+ * @property-read \App\Step $step
  */
 class Date extends Model
 {

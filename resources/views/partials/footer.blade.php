@@ -1,7 +1,10 @@
 <div id="footer">
     <div class="container">
-        <p class="text-muted credit"><span style="text-align: left; float: left">The data is &copy; 2015, but the site and code is CC</span> <span class="hidden-phone"
-                                                    style="text-align: right; float: right">Powered by: <a
-                        href="http://laravel.com/" alt="Laravel 5.2">Laravel 5.2</a></span></p>
+        <p class="text-muted credit">
+            <i class="fa fa-gavel fa-1x pull-left"></i><span>My data is &copy; 2015, but the site and code is CC</span>
+            <span class="hidden-phone" style="text-align: right; float: right">Powered by: <a
+                        href="http://laravel.com/" alt="Laravel 5.2">Laravel 5.2</a>
+            </span>
+        </p>
     </div>
 </div>
