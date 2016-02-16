@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Integration\SteamAPI;
 
 use App\SteamGameDescription;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class SteamGameDescriptions extends SteamAPI
@@ -14,7 +15,7 @@ class SteamGameDescriptions extends SteamAPI
             ->leftJoin('steam_game_descriptions', 'steam_games.id', '=', 'steam_game_descriptions.id')
             ->select('steam_games.id')
             ->where('steam_games.playtimeforever', '>', 0)
-            ->where(function ($query) {
+            ->where(function (Builder $query) {
                 $query->where('steam_game_descriptions.updated_at', '<', date("Y-m-d"))
                     ->orWhere('steam_game_descriptions.updated_at', null);
             })->orderBy('steam_game_descriptions.updated_at', 'asc')

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -90,7 +91,7 @@ class SteamGame extends Model
     public function scopeSchemaNeedUpdate($query)
     {
         $query->select('id')
-            ->where(function ($query) {
+            ->where(function (Builder $query) {
                 $query->where('schema_updated_at', '<', date("Y-m-d"))
                     ->orWhere('schema_updated_at', null);
             })
@@ -117,11 +118,11 @@ class SteamGame extends Model
      * List Ids of all games that need to be updated.
      * @param $query
      */
-    public function scopeAchievementsNeedUpdate($query)
+    public function scopeAchievementsNeedUpdate(Builder $query)
     {
         $query->select('id')
             ->whereNotIn('id', $this->getGamesWithNoStats())
-            ->where(function ($query) {
+            ->where(function (Builder $query) {
                 $query->where('player_stats_updated_at', '<', date("Y-m-d"))
                     ->where('playtime2weeks', '>', 0)
                     ->orWhere('player_stats_updated_at', null);
