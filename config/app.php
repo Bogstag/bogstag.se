@@ -144,6 +144,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         'yajra\Datatables\DatatablesServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         /*
          * Application Service Providers...
          */

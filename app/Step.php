@@ -8,7 +8,14 @@ use Carbon\Carbon;
 
 /**
  * Class Step
+ *
  * @package App
+ * @property integer $step_id
+ * @property integer $date_id
+ * @property integer $steps
+ * @property integer $duration
+ * @property \Carbon\Carbon $datetime
+ * @property-read \App\Date $date
  */
 class Step extends Model
 {
@@ -88,9 +95,10 @@ class Step extends Model
         return $steps;
     }
 
+
     /**
-     * @param $steps
-     * @return array
+     * @param Collection $steps2
+     * @return Collection
      */
     public function transformDurationCollection(Collection $steps2)
     {
@@ -102,9 +110,10 @@ class Step extends Model
         return $steps2;
     }
 
+
     /**
-     * @param $steps
-     * @return array
+     * @param Collection $steps3
+     * @return Collection
      */
     public function transformPaceCollection(Collection $steps3)
     {

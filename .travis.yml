@@ -21,5 +21,11 @@ before_script:
   - php artisan migrate --env="testing"
   - php artisan db:seed --env="testing"
 
+before_install:
+  - pip install --user codecov
+
+after_success:
+  - codecov
+
 script:
   - vendor/bin/phpunit

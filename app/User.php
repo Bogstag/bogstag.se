@@ -12,7 +12,16 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /**
  * Class User
+ *
  * @package App
+ * @property integer $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $api_token
  */
 class User extends Model implements
     AuthenticatableContract,
