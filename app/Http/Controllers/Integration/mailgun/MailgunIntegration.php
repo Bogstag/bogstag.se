@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Integration\mailgun;
 use App\Http\Controllers\Integration\Integrator;
 use Mailgun\Mailgun;
 
-class Mailgun extends Integrator
+class MailgunIntegration extends Integrator
 {
 
     /**
-     * Mailgun constructor.
+     * MailgunIntegration constructor.
      */
     public function __construct()
     {
@@ -17,12 +17,14 @@ class Mailgun extends Integrator
 
     }
 
-    public function getStats($domain = null) {
+    public function getStats($domain = null)
+    {
         $result = $this->mgClient->get("$domain/stats");
         return $result;
     }
 
-    public function getAllDomains() {
-        return array(env('Mailgun_Domain1'),env('Mailgun_Domain2'),env('Mailgun_Domain3'),env('Mailgun_Domain4'),env('Mailgun_Domain5'));
+    public function getAllDomains()
+    {
+        return array(env('Mailgun_Domain1'), env('Mailgun_Domain2'), env('Mailgun_Domain3'), env('Mailgun_Domain4'), env('Mailgun_Domain5'));
     }
 }

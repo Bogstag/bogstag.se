@@ -12,14 +12,17 @@ class AddSteamGamesToDatabase extends Migration
      */
     public function up()
     {
-        Schema::create('steamgames', function (Blueprint $table) {
-            $table->integer('id')->unique();
+        Schema::create('steam_games', function (Blueprint $table) {
+            $table->integer('id')->unsigned();
+            $table->primary('id');
             $table->string('name')->nullable();
             $table->integer('playtimeforever')->default(0);
             $table->integer('playtime2weeks')->default(0);
             $table->string('iconurl')->nullable();
             $table->string('logourl')->nullable();
             $table->boolean('hasstats')->default(0);
+            $table ->timestamp('schema_updated_at')->nullable();
+            $table ->timestamp('player_stats_updated_at')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class AddSteamGamesToDatabase extends Migration
      */
     public function down()
     {
-        Schema::drop('steamgames');
+        Schema::drop('steam_games');
     }
 }

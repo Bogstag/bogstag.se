@@ -16,7 +16,17 @@ class FrontEndTest extends TestCase
     public function testHomePage()
     {
         $this->visit('/')
-            ->see('Home Page');
+            ->see('Home Page')
+            ->click('Home')
+            ->seePageIs('/');
+    }
+
+    public function testLoginPage()
+    {
+        $this->visit('/')
+            ->click('Login')
+            ->see('Login')
+            ->seePageIs('/login');
     }
 
     /**
@@ -25,8 +35,7 @@ class FrontEndTest extends TestCase
     public function testAboutPage()
     {
         $this->visit('/about')
-            ->see('About');
-        $this->visit('/')
+            ->see('About')
             ->click('About')
             ->seePageIs('/about');
     }
@@ -38,6 +47,7 @@ class FrontEndTest extends TestCase
     {
         $this->visit('/')
             ->click('Steps')
+            ->see('Activity / Steps')
             ->seePageIs('/activity/steps');
     }
 
@@ -48,37 +58,15 @@ class FrontEndTest extends TestCase
     {
         $this->visit('/')
             ->click('Email')
+            ->see('Server / Email')
             ->seePageIs('/server/email');
     }
 
-    /**
-     *
-
-    public function testDatePage()
+    public function testSteamPage()
     {
         $this->visit('/')
-            ->click('Date')
-            ->seePageIs('/api/v1/date');
+            ->click('Steam')
+            ->see('Steam Games')
+            ->seePageIs('/game/steam');
     }
-*/
-    /**
-     *
-
-    public function testEmailStatPage()
-    {
-        $this->visit('/')
-            ->click('Email Stat')
-            ->seePageIs('/api/v1/emailstat');
-    }
-*/
-    /**
-     *
-
-    public function testStepPage()
-    {
-        $this->visit('/')
-            ->click('Step')
-            ->seePageIs('/api/v1/step');
-    }
-*/
 }

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Steamgame;
-use App\Http\Requests;
+use App\SteamGame;
 use Steam\Command\PlayerService\GetOwnedGames;
 
 class SteamOwnedGames extends SteamAPI
 {
+
+    public function updateGamesFromAPI()
+    {
+        $this->getSteamOwnedGamesFromAPI();
+        $this->parseAndSaveSteamGame();
+    }
 
     public function getSteamOwnedGamesFromAPI()
     {
@@ -15,14 +20,12 @@ class SteamOwnedGames extends SteamAPI
         $this->OwnedGamesFromAPI = $this->steam->run($GetOwnedGames->setIncludeAppInfo(1));
     }
 
-    public function updateGamesFromAPI()
+    private function parseAndSaveSteamGame()
     {
-        $this->getSteamOwnedGamesFromAPI();
-
         foreach ($this->OwnedGamesFromAPI['response']['games'] as $game) {
-            $SteamGame = Steamgame::find($game['appid']);
+            $SteamGame = SteamGame::find($game['appid']);
             if ($SteamGame === null) {
-                $SteamGame = new Steamgame;
+                $SteamGame = new SteamGame;
                 $SteamGame->id = $game['appid'];
             }
 
@@ -44,7 +47,7 @@ class SteamOwnedGames extends SteamAPI
             if (isset($game['img_icon_url'])) {
                 $SteamGame->iconurl = $imgUrl . $game['img_icon_url'] . '.jpg';
             }
-            
+
             if (isset($game['img_logo_url'])) {
                 $SteamGame->logourl = $imgUrl . $game['img_logo_url'] . '.jpg';
             }

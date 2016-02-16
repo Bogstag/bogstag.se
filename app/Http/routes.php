@@ -18,6 +18,7 @@ Route::group(array('prefix' => '/api/v1', 'middleware' => 'web'), function () {
     Route::get('{model}/{id}', 'ApiDataPreviewController@show');
     Route::get('{model}', 'ApiDataPreviewController@index');
 });
+
 Route::group(['middleware' => 'web'], function () {
     Route::any('home', function () {
         return redirect('/');
@@ -30,11 +31,10 @@ Route::group(['middleware' => 'web'], function () {
         return view('pages.about');
     });
 
-    //Route::resource('test', 'Integration\SteamAPI\SteamOwnedGames@updateGamesFromAPI');
-
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
-
+    Route::resource('game/steam', 'SteamGameController');
+    
     Route::auth();
     Route::any('register', function () {
         return redirect('/');

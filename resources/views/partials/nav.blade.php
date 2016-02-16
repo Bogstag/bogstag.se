@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ URL::secure('') }}">Bogstag</a>
+            <span class="navbar-brand">Bogstag</span>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,23 +17,31 @@
                     <a href="{{ URL::secure('') }}"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                    <a href="{{ URL::secure('about') }}">About</a>
+                    <a href="{{ URL::secure('about') }}"><i class="fa fa-info"></i> About</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Activity<span class="caret"></span></a>
+                       aria-expanded="false"><i class="fa fa-heart"></i> Activity<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::secure('activity/steps') }}">Steps</a></li>
+                        <li><a href="{{ URL::secure('activity/steps') }}"><i class="fa fa-line-chart"></i> Steps</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Server<span class="caret"></span></a>
+                       aria-expanded="false"><i class="fa fa-server"></i> Server<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::secure('server/email') }}">Email</a></li>
+                        <li><a href="{{ URL::secure('server/email') }}"><i class="fa fa-envelope-o"></i> Email</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-gamepad"></i> Games<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::secure('game/steam') }}"><i class="fa fa-steam-square"></i> Steam</a></li>
                     </ul>
                 </li>
 <!--
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Api/v1<span class="caret"></span></a>
@@ -48,7 +56,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
