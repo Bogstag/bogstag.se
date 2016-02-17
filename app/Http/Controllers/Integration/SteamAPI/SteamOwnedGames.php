@@ -12,7 +12,7 @@ class SteamOwnedGames extends SteamAPI
     public function updateGamesFromAPI()
     {
         $oldestDate = new Carbon(SteamGame::min('updated_at'));
-        if ($oldestDate->toDateString() >= date('Y-m-d') && !SteamGame::min('updated_at') === null) {
+        if ($oldestDate->toDateString() >= date('Y-m-d')) {
             Log::info(date('Y-m-d H:i:s').' No more games to update');
         } else {
             $this->getSteamOwnedGamesFromAPI();
