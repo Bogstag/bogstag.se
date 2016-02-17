@@ -28,7 +28,7 @@ class SteamGameDescriptions extends SteamAPI
                 if (empty($this->GameDescriptionJson->$GameId->data)) {
                     continue;
                 } else {
-                    $this->parseAndSaveDescription($this->GameDescriptionJson->$GameId->data);
+                    $this->parseAndSaveDescription($this->GameDescriptionJson->$GameId->data, $GameId);
                 }
             }
         }
@@ -46,12 +46,12 @@ class SteamGameDescriptions extends SteamAPI
         curl_close($curlSession);
     }
 
-    private function parseAndSaveDescription($Description)
+    private function parseAndSaveDescription($Description, $GameId)
     {
-        $SteamDescription = SteamGameDescription::where('id', $Description->steam_appid)->first();
+        $SteamDescription = SteamGameDescription::where('id', $GameId)->first();
         if ($SteamDescription === null) {
             $SteamDescription = new SteamGameDescription();
-            $SteamDescription->id = $Description->steam_appid;
+            $SteamDescription->id = $GameId;
         }
 
         if (isset($Description->name)) {
