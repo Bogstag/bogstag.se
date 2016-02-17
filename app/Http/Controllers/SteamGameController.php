@@ -63,11 +63,20 @@ class SteamGameController extends Controller
     public function show($id)
     {
         $SteamGame = SteamGame::find($id);
+        $CompletedAchievements = $SteamGame->achievements->filter(function ($item, $key) {
+            return $item['value'] == 1;
+        });
+        $NotCompletedAchievements = $SteamGame->achievements->filter(function ($item, $key) {
+            return $item['value'] == 0;
+        });
         $SteamGameDescription = SteamGameDescription::find($id);
 
         return view(
             'pages.SteamGame',
-            ['SteamGame' => $SteamGame, 'SteamGameDescription' => $SteamGameDescription]
+            ['SteamGame' => $SteamGame, 'SteamGameDescription' => $SteamGameDescription
+                , 'CompletedAchievements' => $CompletedAchievements
+                , 'NotCompletedAchievements' => $NotCompletedAchievements
+            ]
         );
     }
 
@@ -87,7 +96,7 @@ class SteamGameController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

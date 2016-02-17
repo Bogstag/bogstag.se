@@ -46,16 +46,16 @@
         </p>
     </div>
     <div class="container-fluid">
-        @if (!$SteamGame->achievements->isEmpty() || !$SteamGame->stats->isEmpty())
+        @if (!$CompletedAchievements->isEmpty() || !$NotCompletedAchievements->isEmpty() || !$SteamGame->stats->isEmpty())
             <div class="row">
                 <ul class="nav nav-pills nav-justified" role="tablist">
-                    @if ($SteamGame->achievements->contains('value', 1))
+                    @if (!$CompletedAchievements->isEmpty())
                         <li class="active"><a href="#cachiv" role="tab" data-toggle="tab"><i
                                         class="fa fa-check-square-o"></i> Completed achievements</a>
                         </li>
                     @endif
-                    @if ($SteamGame->achievements->contains('value', 0))
-                        @if (!$SteamGame->achievements->contains('value', 1))
+                    @if (!$NotCompletedAchievements->isEmpty())
+                        @if ($CompletedAchievements->isEmpty())
                             <li class="active">
                         @else
                             <li>
@@ -69,11 +69,11 @@
                         @endif
                 </ul>
                 <div class="tab-content panel-body panel panel-default">
-                    @if ($SteamGame->achievements->contains('value', 1))
+                    @if (!$CompletedAchievements->isEmpty())
                         <div class="tab-pane active" id="cachiv">
                             <div class="row">
                                 <?php $cachiv = 1 ?>
-                                @foreach($SteamGame->achievements->where('value', 1) as $achievement)
+                                @foreach($CompletedAchievements as $achievement)
                                     <div class="col-xs-4 col-sm-4 col-md-4 panel-body">
                                         <div class="media">
                                             <div class="media-left">
@@ -101,15 +101,15 @@
                             </div>
                         </div>
                     @endif
-                    @if ($SteamGame->achievements->contains('value', 0))
+                    @if (!$NotCompletedAchievements->isEmpty())
                         <div class="tab-pane
-                                @if (!$SteamGame->achievements->contains('value', 1))
+                                @if ($CompletedAchievements->isEmpty())
                                 active
                                 @endif
                                 panel-body" id="ncachiv">
                             <div class="row">
                                 <?php $ncachiv = 1 ?>
-                                @foreach($SteamGame->achievements->where('value', 0) as $achievement)
+                                @foreach($NotCompletedAchievements as $achievement)
                                     <div class="col-xs-4 col-sm-4 col-md-4 panel-body">
                                         <div class="media">
                                             <div class="media-left">
