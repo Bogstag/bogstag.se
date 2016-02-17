@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 /**
  * Class PageChartController.
  */
-class StepCharts extends Controller
+class stepCharts extends Controller
 {
     /**
      * Display a listing of the resource.
