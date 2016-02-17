@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 use App\SteamAchievement;
 use App\SteamGame;
 use App\SteamStat;
-use Steam\Command\UserStats\GetUserStatsForGame;
 use Log;
+use Steam\Command\UserStats\GetUserStatsForGame;
 
 class SteamGameAchievements extends SteamAPI
 {

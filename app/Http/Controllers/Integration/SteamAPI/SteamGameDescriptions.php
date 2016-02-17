@@ -88,12 +88,12 @@ class SteamGameDescriptions extends SteamAPI
 
         if (isset($Description->screenshots{0}->path_thumbnail)) {
             $SteamDescription->screenshot_thumbnail = $Description->screenshots{0}
-                ->path_thumbnail;
+            ->path_thumbnail;
         }
 
         if (isset($Description->screenshots{0}->path_full)) {
             $SteamDescription->screenshot_full = $Description->screenshots{0}
-                ->path_full;
+            ->path_full;
         }
         if (isset($Description->movies)) {
             $lastMovie = end($Description->movies);
