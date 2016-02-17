@@ -9,7 +9,7 @@ use DB;
 /**
  * Class EmailCharts.
  */
-class emailCharts extends Controller
+class EmailCharts extends Controller
 {
     /**
      * @return \Illuminate\View\View
