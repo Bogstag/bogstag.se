@@ -18,7 +18,8 @@ class SteamGameDescriptions extends SteamAPI
             ->where(function (Builder $query) {
                 $query->where('steam_game_descriptions.updated_at', '<', date('Y-m-d'))
                     ->orWhere('steam_game_descriptions.updated_at', null);
-            })->orderBy('steam_game_descriptions.updated_at', 'asc')
+            })->whereNotIn('steam_games.id', [39160])
+            ->orderBy('steam_game_descriptions.updated_at', 'asc')
             ->lists('steam_games.id');
         if (empty($GameIds)) {
             Log::info(date('Y-m-d H:i:s').' No more descriptions to update');
@@ -87,13 +88,11 @@ class SteamGameDescriptions extends SteamAPI
         }
 
         if (isset($Description->screenshots{0}->path_thumbnail)) {
-            $SteamDescription->screenshot_thumbnail = $Description->screenshots{0}
-            ->path_thumbnail;
+            $SteamDescription->screenshot_thumbnail = $Description->screenshots{0}->path_thumbnail;
         }
 
         if (isset($Description->screenshots{0}->path_full)) {
-            $SteamDescription->screenshot_full = $Description->screenshots{0}
-            ->path_full;
+            $SteamDescription->screenshot_full = $Description->screenshots{0}->path_full;
         }
         if (isset($Description->movies)) {
             $lastMovie = end($Description->movies);
