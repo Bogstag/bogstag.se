@@ -39,24 +39,24 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $SteamOwnedGames = new SteamOwnedGames();
             $SteamOwnedGames->updateGamesFromAPI();
-        })->cron('15 * * * * *');
+        })->cron('21 * * * * *');
 
         /* Update steam game schema @ 0015, 0115, 0315, 0615 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameSchema();
             $SteamOwnedGames->updateSteamGameSchemas();
-        })->cron('17 * * * * *');
+        })->cron('23 * * * * *');
 
         /* Update steam game achive @ 0020, 0120, 0320, 0620 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameAchievements();
             $SteamOwnedGames->getSteamAchievements();
-        })->cron('19 * * * * *');
+        })->cron('25 * * * * *');
 
         /* Update steam game achive @ 0020, 0120, 0320, 0620 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameDescriptions();
             $SteamOwnedGames->updateSteamGameDescription();
-        })->cron('21 * * * * *');
+        })->cron('27 * * * * *');
     }
 }
