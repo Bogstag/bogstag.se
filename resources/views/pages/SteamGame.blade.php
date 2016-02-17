@@ -49,13 +49,13 @@
         @if (!$SteamGame->achievements->isEmpty() || !$SteamGame->stats->isEmpty())
             <div class="row">
                 <ul class="nav nav-pills nav-justified" role="tablist">
-                    @if (!$SteamGame->achievements->where('value', 1)->isEmpty())
+                    @if ($SteamGame->achievements->contains('value', 1))
                         <li class="active"><a href="#cachiv" role="tab" data-toggle="tab"><i
                                         class="fa fa-check-square-o"></i> Completed achievements</a>
                         </li>
                     @endif
-                    @if (!$SteamGame->achievements->where('value', 0)->isEmpty())
-                        @if ($SteamGame->achievements->where('value', 1)->isEmpty() && !$SteamGame->achievements->where('value', 0)->isEmpty())
+                    @if ($SteamGame->achievements->contains('value', 0))
+                        @if (!$SteamGame->achievements->contains('value', 1))
                             <li class="active">
                         @else
                             <li>
@@ -69,7 +69,7 @@
                         @endif
                 </ul>
                 <div class="tab-content panel-body panel panel-default">
-                    @if (!$SteamGame->achievements->where('value', 1)->isEmpty())
+                    @if ($SteamGame->achievements->contains('value', 1))
                         <div class="tab-pane active" id="cachiv">
                             <div class="row">
                                 <?php $cachiv = 1 ?>
@@ -101,9 +101,9 @@
                             </div>
                         </div>
                     @endif
-                    @if (!$SteamGame->achievements->where('value', 0)->isEmpty())
+                    @if ($SteamGame->achievements->contains('value', 0))
                         <div class="tab-pane
-                                @if ($SteamGame->achievements->where('value', 1)->isEmpty() && !$SteamGame->achievements->where('value', 0)->isEmpty())
+                                @if (!$SteamGame->achievements->contains('value', 1))
                                 active
                                 @endif
                                 panel-body" id="ncachiv">
