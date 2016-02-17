@@ -6,6 +6,7 @@ use App\SteamAchievement;
 use App\SteamGame;
 use App\SteamStat;
 use Steam\Command\UserStats\GetUserStatsForGame;
+use Log;
 
 class SteamGameAchievements extends SteamAPI
 {
@@ -13,21 +14,21 @@ class SteamGameAchievements extends SteamAPI
     {
         $GamesWithAchievements = SteamGame::AchievementsNeedUpdate()->get();
         if ($GamesWithAchievements->isEmpty()) {
-            abort(200, date('Y-m-d H:i:s').' No more achievements to update');
-        }
-
-        foreach ($GamesWithAchievements as $GameWithAchievements) {
-            $this->getSteamGameAchievementsFromAPI($GameWithAchievements->id);
-            if (empty($this->Achievements['playerstats'])) {
-                continue;
-            } else {
-                if (!empty($this->Achievements['playerstats']['achievements'])) {
-                    $this->parseAndSaveAchievements($GameWithAchievements->id);
+            Log::info(date('Y-m-d H:i:s').' No more achievements to update');
+        } else {
+            foreach ($GamesWithAchievements as $GameWithAchievements) {
+                $this->getSteamGameAchievementsFromAPI($GameWithAchievements->id);
+                if (empty($this->Achievements['playerstats'])) {
+                    continue;
+                } else {
+                    if (!empty($this->Achievements['playerstats']['achievements'])) {
+                        $this->parseAndSaveAchievements($GameWithAchievements->id);
+                    }
+                    if (!empty($this->Achievements['playerstats']['stats'])) {
+                        $this->parseAndSaveStats($GameWithAchievements->id);
+                    }
+                    $this->setGameTimestampForAchievement($GameWithAchievements->id);
                 }
-                if (!empty($this->Achievements['playerstats']['stats'])) {
-                    $this->parseAndSaveStats($GameWithAchievements->id);
-                }
-                $this->setGameTimestampForAchievement($GameWithAchievements->id);
             }
         }
     }

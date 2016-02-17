@@ -6,6 +6,7 @@ use App\SteamAchievement;
 use App\SteamGame;
 use App\SteamStat;
 use Steam\Command\UserStats\GetSchemaForGame;
+use Log;
 
 class SteamGameSchema extends SteamAPI
 {
@@ -13,16 +14,17 @@ class SteamGameSchema extends SteamAPI
     {
         $GameIds = SteamGame::SchemaNeedUpdate()->get();
         if ($GameIds->isEmpty()) {
-            abort(200, date('Y-m-d H:i:s').' No more schemas to update');
-        }
-        foreach ($GameIds as $GameId) {
-            $this->getSteamGameSchemaFromAPI($GameId->id);
-            if (empty($this->GameSchema['game']['availableGameStats'])) {
-                continue;
-            } else {
-                $this->parseAndSaveAchievement($GameId);
-                $this->parseAndSaveStat($GameId);
-                $this->setGameTimestampForSchema($GameId);
+            Log::info(date('Y-m-d H:i:s').' No more schema to update');
+        } else {
+            foreach ($GameIds as $GameId) {
+                $this->getSteamGameSchemaFromAPI($GameId->id);
+                if (empty($this->GameSchema['game']['availableGameStats'])) {
+                    continue;
+                } else {
+                    $this->parseAndSaveAchievement($GameId);
+                    $this->parseAndSaveStat($GameId);
+                    $this->setGameTimestampForSchema($GameId);
+                }
             }
         }
     }

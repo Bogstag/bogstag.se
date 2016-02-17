@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 use App\SteamGame;
 use Carbon\Carbon;
 use Steam\Command\PlayerService\GetOwnedGames;
+use Log;
 
 class SteamOwnedGames extends SteamAPI
 {
@@ -12,10 +13,11 @@ class SteamOwnedGames extends SteamAPI
     {
         $oldestDate = new Carbon(SteamGame::min('updated_at'));
         if ($oldestDate->toDateString() >= date('Y-m-d')) {
-            abort(200, date('Y-m-d H:i:s').' No more games to update');
+            Log::info(date('Y-m-d H:i:s').' No more games to update');
+        } else {
+            $this->getSteamOwnedGamesFromAPI();
+            $this->parseAndSaveSteamGame();
         }
-        $this->getSteamOwnedGamesFromAPI();
-        $this->parseAndSaveSteamGame();
     }
 
     public function getSteamOwnedGamesFromAPI()
