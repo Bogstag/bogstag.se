@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 
 use App\SteamGame;
 use Carbon\Carbon;
-use Steam\Command\PlayerService\GetOwnedGames;
 use Log;
+use Steam\Command\PlayerService\GetOwnedGames;
 
 class SteamOwnedGames extends SteamAPI
 {
