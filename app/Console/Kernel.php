@@ -35,28 +35,28 @@ class Kernel extends ConsoleKernel
             $GoogleFit->getStepData();
         })->everyThirtyMinutes();
 
-        /* Update steam game @ 0000 */
+        /* Update steam game @ 0005, 0605,1205,1805 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamOwnedGames();
             $SteamOwnedGames->updateGamesFromAPI();
-        })->everyMinute();
+        })->cron('5 0,6,12,18 * * * *');
 
-        /* Update steam game schema @ 0015, 0115, 0315, 0615 */
+        /* Update steam game schema @ 0010, 0610,1210,1810  */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameSchema();
             $SteamOwnedGames->updateSteamGameSchemas();
-        })->everyMinute();
+        })->cron('10 0,6,12,18 * * * *');
 
-        /* Update steam game achive @ 0020, 0120, 0320, 0620 */
+        /* Update steam game achive @ 0015, 0615,1215,1815  */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameAchievements();
             $SteamOwnedGames->getSteamAchievements();
-        })->everyMinute();
+        })->cron('15 0,6,12,18 * * * *');
 
-        /* Update steam game achive @ 0020, 0120, 0320, 0620 */
+        /* Update steam game achive @ 0020, 0620,1220,1820  */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameDescriptions();
             $SteamOwnedGames->updateSteamGameDescription();
-        })->everyMinute();
+        })->cron('20 0,6,12,18 * * * *');
     }
 }
