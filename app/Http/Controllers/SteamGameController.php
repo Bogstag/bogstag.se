@@ -73,9 +73,7 @@ class SteamGameController extends Controller
 
         return view(
             'pages.SteamGame',
-            ['SteamGame' => $SteamGame, 'SteamGameDescription' => $SteamGameDescription
-                , 'CompletedAchievements' => $CompletedAchievements
-                , 'NotCompletedAchievements' => $NotCompletedAchievements
+            ['SteamGame' => $SteamGame, 'SteamGameDescription' => $SteamGameDescription, 'CompletedAchievements' => $CompletedAchievements, 'NotCompletedAchievements' => $NotCompletedAchievements,
             ]
         );
     }
@@ -96,7 +94,7 @@ class SteamGameController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
