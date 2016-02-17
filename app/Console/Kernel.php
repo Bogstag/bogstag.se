@@ -4,9 +4,9 @@ namespace App\Console;
 
 use App\Http\Controllers\Integration\Google\GoogleFit;
 use App\Http\Controllers\Integration\SteamAPI\SteamGameAchievements;
+use App\Http\Controllers\Integration\SteamAPI\SteamGameDescriptions;
 use App\Http\Controllers\Integration\SteamAPI\SteamGameSchema;
 use App\Http\Controllers\Integration\SteamAPI\SteamOwnedGames;
-use App\SteamGameDescription;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -39,24 +39,24 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $SteamOwnedGames = new SteamOwnedGames();
             $SteamOwnedGames->updateGamesFromAPI();
-        })->daily();
+        })->cron('15 * * * * *');
 
         /* Update steam game schema @ 0015, 0115, 0315, 0615 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameSchema();
             $SteamOwnedGames->updateSteamGameSchemas();
-        })->cron('15 0,1,3,6 * * * *');
+        })->cron('17 * * * * *');
 
         /* Update steam game achive @ 0020, 0120, 0320, 0620 */
         $schedule->call(function () {
             $SteamOwnedGames = new SteamGameAchievements();
             $SteamOwnedGames->getSteamAchievements();
-        })->cron('20 0,1,3,6 * * * *');
+        })->cron('19 * * * * *');
 
         /* Update steam game achive @ 0020, 0120, 0320, 0620 */
         $schedule->call(function () {
-            $SteamOwnedGames = new SteamGameDescription();
+            $SteamOwnedGames = new SteamGameDescriptions();
             $SteamOwnedGames->updateSteamGameDescription();
-        })->cron('25 0,1,3,6 * * * *');
+        })->cron('21 * * * * *');
     }
 }

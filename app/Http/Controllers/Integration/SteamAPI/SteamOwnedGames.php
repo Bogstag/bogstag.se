@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Integration\SteamAPI;
 
 use App\SteamGame;
+use Carbon\Carbon;
 use Steam\Command\PlayerService\GetOwnedGames;
 
 class SteamOwnedGames extends SteamAPI
 {
     public function updateGamesFromAPI()
     {
+        $oldestDate = new Carbon(SteamGame::min('updated_at'));
+        if ($oldestDate->toDateString() >= date('Y-m-d')) {
+            abort(200, date('Y-m-d H:i:s') . ' No more games to update');
+        }
         $this->getSteamOwnedGamesFromAPI();
         $this->parseAndSaveSteamGame();
     }
@@ -42,13 +47,13 @@ class SteamOwnedGames extends SteamAPI
                 $SteamGame->playtime2weeks = 0;
             }
 
-            $imgUrl = 'http://media.steampowered.com/steamcommunity/public/images/apps/'.$SteamGame->id.'/';
+            $imgUrl = 'http://media.steampowered.com/steamcommunity/public/images/apps/' . $SteamGame->id . '/';
             if (isset($game['img_icon_url'])) {
-                $SteamGame->iconurl = $imgUrl.$game['img_icon_url'].'.jpg';
+                $SteamGame->iconurl = $imgUrl . $game['img_icon_url'] . '.jpg';
             }
 
             if (isset($game['img_logo_url'])) {
-                $SteamGame->logourl = $imgUrl.$game['img_logo_url'].'.jpg';
+                $SteamGame->logourl = $imgUrl . $game['img_logo_url'] . '.jpg';
             }
 
             if (isset($game['has_community_visible_stats'])) {
