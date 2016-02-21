@@ -59,7 +59,7 @@ class FrontEndTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\SteamgameController::index
+     * @covers \App\Http\Controllers\SteamGameController::index
      */
     public function testSteamPage()
     {
