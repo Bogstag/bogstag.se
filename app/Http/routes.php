@@ -2,8 +2,8 @@
 
 //Api Routes
 Route::group([
-    'domain'     => env('API_DOMAIN', false),
-    'prefix'     => 'v1',
+    'domain' => env('API_DOMAIN', false),
+    'prefix' => 'v1',
     'middleware' => ['auth:api', 'throttle'],
 ], function () {
     Auth::guard('api')->user();
@@ -19,7 +19,7 @@ Route::group(['prefix' => '/api/v1', 'middleware' => 'web'], function () {
     Route::get('{model}', 'ApiDataPreviewController@index');
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web', 'throttle'], function () {
     Route::any('home', function () {
         return redirect('/');
     });
