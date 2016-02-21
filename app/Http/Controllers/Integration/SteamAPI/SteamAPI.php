@@ -9,12 +9,12 @@ use Steam\Command\PlayerService\GetOwnedGames;
 use Steam\Command\PlayerService\GetRecentlyPlayedGames;
 use Steam\Command\UserStats\GetSchemaForGame;
 use Steam\Command\UserStats\GetUserStatsForGame;
-use Storage;
 use Steam\Configuration;
 use Steam\Runner\DecodeJsonStringRunner;
 use Steam\Runner\GuzzleRunner;
 use Steam\Steam;
 use Steam\Utility\GuzzleUrlBuilder;
+use Storage;
 
 /**
  * Class SteamAPI.
@@ -62,6 +62,7 @@ class SteamAPI extends Integrator
         if ((env('APP_ENV', false) == 'local')) {
             Storage::put($localfile, $GetOwnedGames);
         }
+
         return json_decode($GetOwnedGames);
     }
 
@@ -111,6 +112,7 @@ class SteamAPI extends Integrator
             Storage::put($localfile, $GetSchema);
         }
         $this->incrementSteamApiLimitCounter();
+
         return json_decode($GetSchema);
     }
 
@@ -131,6 +133,7 @@ class SteamAPI extends Integrator
             Storage::put($localfile, $GetAchievements);
         }
         $this->incrementSteamApiLimitCounter();
+
         return json_decode($GetAchievements);
     }
 
@@ -151,9 +154,9 @@ class SteamAPI extends Integrator
             Storage::put($localfile, $GetRecentlyPlayedGames);
         }
         $this->incrementSteamApiLimitCounter();
+
         return json_decode($GetRecentlyPlayedGames);
     }
-
 
     private function incrementSteamApiLimitCounter()
     {

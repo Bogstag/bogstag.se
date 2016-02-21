@@ -21,12 +21,12 @@ class Integrator extends Controller
         return (new Carbon())->timestamp($NanoSeconds / 1000000000);
     }
 
-
     /**
      * @param Carbon $now
      * @param string $externalApiName
-     * @param int $externalApiLimit
+     * @param int    $externalApiLimit
      * @param string $externalApiLimitInterval
+     *
      * @return mixed
      */
     public function addExternalAPILimitCounter(
@@ -35,7 +35,6 @@ class Integrator extends Controller
         $externalApiLimit = 100000,
         $externalApiLimitInterval = 'Day'
     ) {
-
         $ExternalApiLimit = ExternalApiLimit::where('external_api_name', $externalApiName)
             ->where('external_api_limit_interval', $externalApiLimitInterval)
             ->where('limit_interval_start', '<=', $now->toDateTimeString())
@@ -56,6 +55,7 @@ class Integrator extends Controller
         }
         $ExternalApiLimit->external_api_count = $ExternalApiLimit->external_api_count + 1;
         $ExternalApiLimit->save();
+
         return $ExternalApiLimit->external_api_limit_left;
     }
 }

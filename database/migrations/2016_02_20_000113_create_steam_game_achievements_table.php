@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateSteamGameAchievementsTable extends Migration
 {
-
     public function up()
     {
         Schema::create('steam_game_achievements', function (Blueprint $table) {

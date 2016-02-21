@@ -2,21 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\ExternalApiLimit
+ * App\ExternalApiLimit.
  *
- * @property integer $id
+ * @property int $id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $external_api_name
- * @property integer $external_api_limit
+ * @property int $external_api_limit
  * @property \Carbon\Carbon $external_api_limit_interval
- * @property integer $external_api_count
+ * @property int $external_api_count
  * @property \Carbon\Carbon $limit_interval_start
  * @property \Carbon\Carbon $limit_interval_end
  * @property-read mixed $external_api_limit_left
@@ -45,7 +43,7 @@ class ExternalApiLimit extends Model
         'created_at',
         'updated_at',
         'limit_interval_start',
-        'limit_interval_end'
+        'limit_interval_end',
     ];
 
     /**
@@ -59,11 +57,11 @@ class ExternalApiLimit extends Model
     /**
      * @param $externalApiLimitInterval
      * @param Carbon $now
+     *
      * @return array
      */
     public static function convertIntervalStringToStartEnd($externalApiLimitInterval, Carbon $now)
     {
-
         $Start = $now;
         $End = clone $now;
 

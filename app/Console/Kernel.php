@@ -3,10 +3,6 @@
 namespace App\Console;
 
 use App\Http\Controllers\Integration\Google\GoogleFit;
-use App\Http\Controllers\Integration\SteamAPI\SteamGameAchievements;
-use App\Http\Controllers\Integration\SteamAPI\SteamGameDescriptions;
-use App\Http\Controllers\Integration\SteamAPI\SteamGameSchema;
-use App\Http\Controllers\Integration\SteamAPI\SteamOwnedGames;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

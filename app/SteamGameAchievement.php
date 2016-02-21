@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * Class SteamGameAchievement
  *
- * @property integer $id
- * @property integer $steam_game_id
+ * @property int $id
+ * @property int $steam_game_id
  * @property string $name
- * @property integer $value
+ * @property int $value
  * @property string $display_name
- * @property boolean $hidden
+ * @property bool $hidden
  * @property string $description
  * @property string $icon_url
  * @property string $icon_gray_url

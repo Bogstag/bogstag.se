@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateExternalApiLimitsTable extends Migration
 {
-
     public function up()
     {
         Schema::create('external_api_limits', function (Blueprint $table) {

@@ -29,7 +29,6 @@ class SteamApiCommand extends Command
 
     /**
      * Create a new command instance.
-     *
      */
     public function __construct(SteamAPIGame $steamAPI)
     {
