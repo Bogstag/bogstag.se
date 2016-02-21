@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateSteamGameStatsTable extends Migration
 {
-
     public function up()
     {
         Schema::create('steam_game_stats', function (Blueprint $table) {

@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Http\Requests;
 use App\SteamGame;
 use App\SteamGameAchievement;
 use App\SteamGameStat;
 
 /**
- * Class SteamAPIGame
- * @package App\Http\Controllers\Integration\SteamAPI
+ * Class SteamAPIGame.
  */
 class SteamAPIGame extends SteamAPI
 {
-
     /**
      * @var string
      */
@@ -39,7 +36,9 @@ class SteamAPIGame extends SteamAPI
 
     /**
      * Can be used for testing and loading a single game by id.
+     *
      * @param null $gameId
+     *
      * @return string
      */
     public function loadGame($gameId = null)
@@ -139,12 +138,12 @@ class SteamAPIGame extends SteamAPI
 
         if (!empty($Description->screenshots{0}->path_thumbnail)) {
             $SteamGame->screenshot_path_thumbnail = $Description->screenshots{0}
-                ->path_thumbnail;
+            ->path_thumbnail;
         }
 
         if (!empty($Description->screenshots{0}->path_full)) {
             $SteamGame->screenshot_path_full = $Description->screenshots{0}
-                ->path_full;
+            ->path_full;
         }
         if (!empty($Description->movies)) {
             $lastMovie = end($Description->movies);
@@ -192,14 +191,12 @@ class SteamAPIGame extends SteamAPI
         }
     }
 
-
     /**
      * @param $GameId
      * @param $SteamGameSchemaFromAPI
      */
     private function parseAndSaveAchievementSchema($GameId, $SteamGameSchemaFromAPI)
     {
-
         if (!$GameId) {
             return;
         }
@@ -232,9 +229,7 @@ class SteamAPIGame extends SteamAPI
             }
             $SteamAchievement->save();
         }
-
     }
-
 
     /**
      * @param $GameId
@@ -297,14 +292,12 @@ class SteamAPIGame extends SteamAPI
         }
     }
 
-
     /**
      * @param $GameId
      * @param $SteamGameAchievementsFromAPI
      */
     private function parseAndSaveAchievements($GameId, $SteamGameAchievementsFromAPI)
     {
-
         foreach ($SteamGameAchievementsFromAPI as $achievement) {
             if (empty($achievement)) {
                 continue;
@@ -357,7 +350,6 @@ class SteamAPIGame extends SteamAPI
      */
     private function parseAndSaveSteamGame($game)
     {
-
         $SteamGame = SteamGame::firstOrNew(['id' => $game->appid]);
 
         if (!empty($game->name)) {

@@ -11,20 +11,20 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * Class SteamGame
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
- * @property integer $playtime_forever
- * @property integer $playtime_2weeks
- * @property boolean $has_community_visible_stats
+ * @property int $playtime_forever
+ * @property int $playtime_2weeks
+ * @property bool $has_community_visible_stats
  * @property string $image_icon_url
  * @property string $image_logo_url
  * @property string $Image_background
  * @property string $image_header
- * @property boolean $is_free
+ * @property bool $is_free
  * @property string $about_the_game
  * @property string $legal_notice
  * @property string $website
- * @property integer $meta_critic_score
+ * @property int $meta_critic_score
  * @property string $meta_critic_url
  * @property string $screenshot_path_thumbnail
  * @property string $screenshot_path_full
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamGameAchievement[] $achievements
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamGameStat[] $stats
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame listGames()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame schemaNeedUpdate()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame achievementsNeedUpdate()
@@ -55,7 +56,7 @@ class SteamGame extends Model
         'schema_updated_at',
         'player_stats_updated_at',
         'game_updated_at',
-        'description_updated_at'
+        'description_updated_at',
     ];
 
     /**

@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * Class SteamGameStat
  *
- * @property integer $id
- * @property integer $steam_game_id
+ * @property int $id
+ * @property int $steam_game_id
  * @property string $name
  * @property string $display_name
- * @property integer $value
+ * @property int $value
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\SteamGame $game

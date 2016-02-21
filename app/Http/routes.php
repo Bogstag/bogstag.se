@@ -2,8 +2,8 @@
 
 //Api Routes
 Route::group([
-    'domain' => env('API_DOMAIN', false),
-    'prefix' => 'v1',
+    'domain'     => env('API_DOMAIN', false),
+    'prefix'     => 'v1',
     'middleware' => ['auth:api', 'throttle'],
 ], function () {
     Auth::guard('api')->user();
