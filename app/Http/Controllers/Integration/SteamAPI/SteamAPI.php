@@ -50,7 +50,6 @@ class SteamAPI extends Integrator
 
     public function getOwnedGames()
     {
-        // todo refactor
         $localfile = 'SteamApi/GetOwnedGames.json';
         if (Storage::disk('local')->exists($localfile) && (env('APP_ENV', false) == 'local')) {
             return json_decode(Storage::get($localfile));
@@ -68,7 +67,6 @@ class SteamAPI extends Integrator
 
     public function getSteamGameDescriptionFromUrl($GameId)
     {
-        // todo refactor
         $localfile = 'SteamApi/SteamApiAppDetails/'.$GameId.'.json';
         if (Storage::disk('local')->exists($localfile) && (env('APP_ENV', false) == 'local')) {
             return json_decode(Storage::get($localfile));
@@ -97,7 +95,6 @@ class SteamAPI extends Integrator
 
     public function getSchemaForGame($GameId)
     {
-        // todo refactor
         $localfile = 'SteamApi/GetSchemaForGame/'.$GameId.'.json';
         if (Storage::disk('local')->exists($localfile) && (env('APP_ENV', false) == 'local')) {
             return json_decode(Storage::get($localfile));
@@ -118,7 +115,6 @@ class SteamAPI extends Integrator
 
     public function getUserStatsForGame($GameId)
     {
-        // todo refactor
         $localfile = 'SteamApi/GetUserStatsForGame/'.$GameId.'.json';
         if (Storage::disk('local')->exists($localfile) && (env('APP_ENV', false) == 'local')) {
             return json_decode(Storage::get($localfile));
@@ -139,7 +135,6 @@ class SteamAPI extends Integrator
 
     public function getRecentlyPlayedGames()
     {
-        // todo refactor
         $localfile = 'SteamApi/GetRecentlyPlayedGames.json';
         if (Storage::disk('local')->exists($localfile) && (env('APP_ENV', false) == 'local')) {
             return json_decode(Storage::get($localfile));
@@ -161,10 +156,10 @@ class SteamAPI extends Integrator
     private function incrementSteamApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(
-            $now = Carbon::now(),
-            $externalApiName = $this->externalApiName,
-            $externalApiLimit = $this->externalApiLimit,
-            $externalApiLimitInterval = $this->externalApiLimitInterval
+            Carbon::now(),
+            $this->externalApiName,
+            $this->externalApiLimit,
+            $this->externalApiLimitInterval
         );
     }
 }

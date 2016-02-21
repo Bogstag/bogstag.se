@@ -43,7 +43,7 @@ class SteamAPIGame extends SteamAPI
      */
     public function loadGame($gameId = null)
     {
-        if ($gameId == null) {
+        if ($gameId === null) {
             return 'No game id specified';
         }
         $SteamOwnedGamesFromAPI = $this->getOwnedGames();
