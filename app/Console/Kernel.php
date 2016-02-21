@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\SteamApiCommand::class,
     ];
 
     /**
@@ -35,28 +36,7 @@ class Kernel extends ConsoleKernel
             $GoogleFit->getStepData();
         })->everyThirtyMinutes();
 
-        /* Update steam game @ 0005, 0605,1205,1805 */
-        $schedule->call(function () {
-            $SteamOwnedGames = new SteamOwnedGames();
-            $SteamOwnedGames->updateGamesFromAPI();
-        })->cron('5 0,6,12,18 * * * *');
-
-        /* Update steam game schema @ 0010, 0610,1210,1810  */
-        $schedule->call(function () {
-            $SteamOwnedGames = new SteamGameSchema();
-            $SteamOwnedGames->updateSteamGameSchemas();
-        })->cron('10 0,6,12,18 * * * *');
-
-        /* Update steam game achive @ 0015, 0615,1215,1815  */
-        $schedule->call(function () {
-            $SteamOwnedGames = new SteamGameAchievements();
-            $SteamOwnedGames->getSteamAchievements();
-        })->cron('15 0,6,12,18 * * * *');
-
-        /* Update steam game achive @ 0020, 0620,1220,1820  */
-        $schedule->call(function () {
-            $SteamOwnedGames = new SteamGameDescriptions();
-            $SteamOwnedGames->updateSteamGameDescription();
-        })->cron('20 0,6,12,18 * * * *');
+        /* Update steam game i have played */
+        $schedule->command('steamapi:game update --rpg')->twiceDaily(10, 22);
     }
 }

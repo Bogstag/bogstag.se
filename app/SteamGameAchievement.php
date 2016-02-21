@@ -6,24 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Model for a steam game achievement.
+ * 
+ * Class SteamGameAchievement
  *
- * Class SteamAchievement
- *
- * @property int $id
- * @property int $steam_games_id
+ * @property integer $id
+ * @property integer $steam_game_id
  * @property string $name
- * @property int $value
- * @property string $displayName
- * @property int $hidden
+ * @property integer $value
+ * @property string $display_name
+ * @property boolean $hidden
  * @property string $description
- * @property string $icon
- * @property string $icongray
+ * @property string $icon_url
+ * @property string $icon_gray_url
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\SteamGame $game
- * @property-read mixed $displayname
  */
-class SteamAchievement extends Model
+class SteamGameAchievement extends Model
 {
     /**
      * @var array
@@ -46,6 +45,18 @@ class SteamAchievement extends Model
      */
     protected $primaryKey = 'id';
 
+    public $fillable = ['steam_game_id', 'name'];
+
+    /**
+     * @var string
+     */
+    protected $table = 'steam_game_achievements';
+
+    /**
+     * @var bool
+     */
+    public $timestamps = true;
+
     /**
      * This belongs to a steam game.
      *
@@ -53,7 +64,7 @@ class SteamAchievement extends Model
      */
     public function game()
     {
-        return $this->belongsTo('App\SteamGame');
+        return $this->belongsTo('App\SteamGame', 'id');
     }
 
     /**
@@ -65,7 +76,7 @@ class SteamAchievement extends Model
      *
      * @return mixed
      */
-    public function getDisplaynameAttribute($value)
+    public function getDisplayNameAttribute($value)
     {
         if ($value === null) {
             return $this->name;

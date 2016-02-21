@@ -20,20 +20,20 @@
                 </div>
 
                 @foreach($SteamGames as $SteamGame)
-                    @if($SteamGame->hasstats && $SteamGame->playtimeforever > 0 && ! in_array($SteamGame->id, $SteamGame->getGamesWithNoStats()))
+                    @if(! in_array($SteamGame->id, $SteamGame->getGamesWithNoStats()))
                         <a href="steam/{{ $SteamGame->id }}" class="list-group-item">
                             @else
                                 <a href="steam/{{ $SteamGame->id }}" class="list-group-item disabled">
                                     @endif
                                     <div class="row">
                                         <div class=".col-xs-3 col-md-3">
-                                            <img class="media-object" src="{{ $SteamGame->logourl }}"
+                                            <img class="media-object" src="{{ $SteamGame->image_logo_url }}"
                                                  alt="{{ $SteamGame->name }} logo">
                                         </div>
 
                                         <div class=".col-xs-5 col-md-5">
                                             <h4 class="media-heading">{{ $SteamGame->name }}
-                                                @if ($SteamGame->playtimeforever == $SteamGame->playtime2weeks && $SteamGame->playtimeforever > 0)
+                                                @if ($SteamGame->playtime_forever == $SteamGame->playtime_2weeks && $SteamGame->playtime_forever > 0)
                                                     <span class="label label-success">New</span>
                                                 @endif
                                             </h4>
@@ -42,11 +42,11 @@
 
                                         <div class=".col-xs-2 col-md-2">
                                             <button type="button"
-                                                    class="btn btn-default btn-lg">{{ round($SteamGame->playtime2weeks/60) }}</button>
+                                                    class="btn btn-default btn-lg">{{ round($SteamGame->playtime_2weeks/60) }}</button>
                                         </div>
                                         <div class=".col-xs-2 col-md-2">
                                             <button type="button"
-                                                    class="btn btn-primary btn-lg">{{ round($SteamGame->playtimeforever/60) }}</button>
+                                                    class="btn btn-primary btn-lg">{{ round($SteamGame->playtime_forever/60) }}</button>
                                         </div>
                                     </div>
                                 </a>

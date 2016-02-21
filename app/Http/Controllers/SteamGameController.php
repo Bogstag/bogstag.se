@@ -18,16 +18,16 @@ class SteamGameController extends Controller
     public function index()
     {
         $SteamGames = SteamGame::ListGames()->get();
-        $averageplaytimeperday =
+        $averagePlaytimePerDay =
             round(
-                (SteamGame::where('playtime2weeks', '>', 0)
-                    ->sum('playtime2weeks')) / 60 / 14,
+                (SteamGame::where('playtime_2weeks', '>', 0)
+                    ->sum('playtime_2weeks')) / 60 / 14,
                 2
             );
 
         return view(
             'pages.SteamGames',
-            ['SteamGames' => $SteamGames, 'averageplaytimeperday' => $averageplaytimeperday]
+            ['SteamGames' => $SteamGames, 'averageplaytimeperday' => $averagePlaytimePerDay]
         );
     }
 
@@ -69,11 +69,13 @@ class SteamGameController extends Controller
         $NotCompletedAchievements = $SteamGame->achievements->filter(function ($item, $key) {
             return $item['value'] == 0;
         });
-        $SteamGameDescription = SteamGameDescription::find($id);
 
         return view(
             'pages.SteamGame',
-            ['SteamGame' => $SteamGame, 'SteamGameDescription' => $SteamGameDescription, 'CompletedAchievements' => $CompletedAchievements, 'NotCompletedAchievements' => $NotCompletedAchievements,
+            [
+                'SteamGame' => $SteamGame,
+                'CompletedAchievements' => $CompletedAchievements,
+                'NotCompletedAchievements' => $NotCompletedAchievements,
             ]
         );
     }
