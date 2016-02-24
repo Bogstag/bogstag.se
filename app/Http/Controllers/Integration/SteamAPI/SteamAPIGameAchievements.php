@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\Http\Requests;
 use App\SteamGame;
 use App\SteamGameAchievement;
 use App\SteamGameStat;
 use Log;
 
 /**
- * Class SteamAPIGameAchievements
- * @package App\Http\Controllers\Integration\SteamAPI
+ * Class SteamAPIGameAchievements.
  */
 class SteamAPIGameAchievements extends SteamAPIGame
 {
@@ -26,6 +24,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
 
     /**
      * SteamAPIGameAchievements constructor.
+     *
      * @param SteamGame $SteamGame
      */
     public function __construct(SteamGame $SteamGame)
@@ -55,11 +54,13 @@ class SteamAPIGameAchievements extends SteamAPIGame
         } else {
             Log::error('Achievements was NOT updated for '.$SteamGame->name.' : '.$SteamGame->id);
         }
+
         return true;
     }
 
     /**
      * @param $GameId
+     *
      * @return bool|mixed
      */
     public function getUserStatsForGame($GameId)
@@ -88,6 +89,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     /**
      * @param $GameId
      * @param $SteamGameAchievementsFromAPI
+     *
      * @return bool
      */
     private function parseAndSaveAchievements($GameId, $SteamGameAchievementsFromAPI)
@@ -106,12 +108,14 @@ class SteamAPIGameAchievements extends SteamAPIGame
 
             $SteamAchievement->save();
         }
+
         return true;
     }
 
     /**
      * @param $GameId
      * @param $SteamGameAchievementsFromAPI
+     *
      * @return bool
      */
     private function parseAndSaveStats($GameId, $SteamGameAchievementsFromAPI)
@@ -129,17 +133,20 @@ class SteamAPIGameAchievements extends SteamAPIGame
             }
             $SteamStat->save();
         }
+
         return true;
     }
 
     /**
      * @param $GameId
+     *
      * @return mixed
      */
     private function setGameTimestampForAchievement($GameId)
     {
         $SteamGame = SteamGame::find($GameId);
         $SteamGame->player_stats_updated_at = date('Y-m-d H:i:s');
+
         return $SteamGame->save();
     }
 }

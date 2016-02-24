@@ -25,7 +25,7 @@ class Integrator extends Controller
     /**
      * @param Carbon $now
      * @param string $externalApiName
-     * @param int $externalApiLimit
+     * @param int    $externalApiLimit
      * @param string $externalApiLimitInterval
      *
      * @return mixed
@@ -35,8 +35,7 @@ class Integrator extends Controller
         $externalApiName = 'test',
         $externalApiLimit = 100000,
         $externalApiLimitInterval = 'Day'
-    )
-    {
+    ) {
         $ExternalApiLimit = ExternalApiLimit::where('external_api_name', $externalApiName)
             ->where('external_api_limit_interval', $externalApiLimitInterval)
             ->where('limit_interval_start', '<=', $now->toDateTimeString())
@@ -66,6 +65,7 @@ class Integrator extends Controller
         if (Storage::disk('local')->exists($localfile)) {
             return json_decode(Storage::get($localfile));
         };
+
         return false;
     }
 
