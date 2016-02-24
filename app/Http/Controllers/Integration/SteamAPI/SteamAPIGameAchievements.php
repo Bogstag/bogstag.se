@@ -6,6 +6,7 @@ use App\SteamGame;
 use App\SteamGameAchievement;
 use App\SteamGameStat;
 use Log;
+use Steam\Command\UserStats\GetUserStatsForGame;
 
 /**
  * Class SteamAPIGameAchievements.

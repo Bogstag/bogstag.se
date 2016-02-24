@@ -39,7 +39,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamGameAchievement[] $achievements
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SteamGameStat[] $stats
- *
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame listGames()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame schemaNeedUpdate()
  * @method static \Illuminate\Database\Query\Builder|\App\SteamGame achievementsNeedUpdate()
