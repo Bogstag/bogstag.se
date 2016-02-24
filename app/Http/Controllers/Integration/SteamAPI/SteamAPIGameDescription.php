@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 
 use App\SteamGame;
 use Carbon\Carbon;
-use App\Http\Requests;
 use Log;
 
 /**
- * Class SteamAPIGameDescription
- * @package App\Http\Controllers\Integration\SteamAPI
+ * Class SteamAPIGameDescription.
  */
 class SteamAPIGameDescription extends SteamAPIGame
 {
@@ -33,6 +31,7 @@ class SteamAPIGameDescription extends SteamAPIGame
 
     /**
      * SteamAPIGameDescription constructor.
+     *
      * @param SteamGame $SteamGame
      */
     public function __construct(SteamGame $SteamGame)
@@ -47,11 +46,13 @@ class SteamAPIGameDescription extends SteamAPIGame
         } else {
             Log::error('Description was NOT updated for '.$this->SteamGame->name.' : '.$this->SteamGame->id);
         }
+
         return true;
     }
 
     /**
      * @param $GameId
+     *
      * @return bool|mixed
      */
     public function getSteamGameDescriptionFromUrl($GameId)
@@ -79,12 +80,14 @@ class SteamAPIGameDescription extends SteamAPIGame
         if ((env('APP_ENV', false) == 'local')) {
             $this->saveCachedAPICall($this->localfile, $GameDescriptionJson);
         }
+
         return json_decode($GameDescriptionJson);
     }
 
     /**
      * @param SteamGame $SteamGame
-     * @param null $GameDescriptionJson
+     * @param null      $GameDescriptionJson
+     *
      * @return bool|void
      */
     private function updateSteamGameWithNewDescription(SteamGame $SteamGame, $GameDescriptionJson = null)
@@ -123,12 +126,12 @@ class SteamAPIGameDescription extends SteamAPIGame
 
         if (!empty($GameDescriptionJson->screenshots{0}->path_thumbnail)) {
             $SteamGame->screenshot_path_thumbnail = $GameDescriptionJson->screenshots{0}
-                ->path_thumbnail;
+            ->path_thumbnail;
         }
 
         if (!empty($GameDescriptionJson->screenshots{0}->path_full)) {
             $SteamGame->screenshot_path_full = $GameDescriptionJson->screenshots{0}
-                ->path_full;
+            ->path_full;
         }
         if (!empty($GameDescriptionJson->movies)) {
             $lastMovie = end($GameDescriptionJson->movies);

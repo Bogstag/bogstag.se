@@ -94,6 +94,7 @@ class SteamAPIGame extends SteamAPI
     /**
      * @param SteamGame $SteamGame
      * @param $game
+     *
      * @return bool
      */
     private function parseAndSaveSteamGame(SteamGame $SteamGame, $game)
@@ -128,12 +129,13 @@ class SteamAPIGame extends SteamAPI
         $success = $SteamGame->save();
         if ($success === true) {
             Log::info('Game was updated - '.$SteamGame->name.' : '.$SteamGame->id);
+
             return true;
         }
         Log::error('Game was NOT updated - '.$SteamGame->name.' : '.$SteamGame->id);
+
         return false;
     }
-
 
     /**
      *

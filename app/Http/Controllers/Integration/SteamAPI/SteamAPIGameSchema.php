@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 use App\SteamGame;
 use App\SteamGameAchievement;
 use App\SteamGameStat;
-use App\Http\Requests;
-use Steam\Command\UserStats\GetSchemaForGame;
 use Log;
+use Steam\Command\UserStats\GetSchemaForGame;
 
 /**
- * Class SteamAPIGameSchema
- * @package App\Http\Controllers\Integration\SteamAPI
+ * Class SteamAPIGameSchema.
  */
 class SteamAPIGameSchema extends SteamAPIGame
 {
@@ -27,6 +25,7 @@ class SteamAPIGameSchema extends SteamAPIGame
 
     /**
      * SteamAPIGameSchema constructor.
+     *
      * @param SteamGame $SteamGame
      */
     public function __construct(SteamGame $SteamGame)
@@ -56,16 +55,17 @@ class SteamAPIGameSchema extends SteamAPIGame
         } else {
             Log::error('Schema was NOT updated for '.$SteamGame->name.' : '.$SteamGame->id);
         }
+
         return true;
     }
 
     /**
      * @param $GameId
+     *
      * @return bool|mixed
      */
     public function getSchemaForGameFromApi($GameId)
     {
-
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($this->localfile)) {
             return $cachedAPICall;
         }
@@ -90,6 +90,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     /**
      * @param $GameId
      * @param $SteamGameSchemaFromAPI
+     *
      * @return bool
      */
     private function parseAndSaveAchievementSchema($GameId, $SteamGameSchemaFromAPI)
@@ -126,12 +127,14 @@ class SteamAPIGameSchema extends SteamAPIGame
             }
             $SteamAchievement->save();
         }
+
         return true;
     }
 
     /**
      * @param $GameId
      * @param $SteamGameSchemaFromAPI
+     *
      * @return bool
      */
     private function parseAndSaveStatSchema($GameId, $SteamGameSchemaFromAPI)
@@ -154,17 +157,20 @@ class SteamAPIGameSchema extends SteamAPIGame
             }
             $SteamGameStat->save();
         }
+
         return true;
     }
 
     /**
      * @param $GameId
+     *
      * @return mixed
      */
     private function setGameTimestampForSchema($GameId)
     {
         $SteamGame = SteamGame::find($GameId);
         $SteamGame->schema_updated_at = date('Y-m-d H:i:s');
+
         return $SteamGame->save();
     }
 }

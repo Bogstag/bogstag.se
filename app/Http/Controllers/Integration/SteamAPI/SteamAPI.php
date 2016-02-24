@@ -5,16 +5,11 @@ namespace App\Http\Controllers\Integration\SteamAPI;
 use App\Http\Controllers\Integration\Integrator;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use Steam\Command\PlayerService\GetOwnedGames;
-use Steam\Command\PlayerService\GetRecentlyPlayedGames;
-use Steam\Command\UserStats\GetSchemaForGame;
-use Steam\Command\UserStats\GetUserStatsForGame;
 use Steam\Configuration;
 use Steam\Runner\DecodeJsonStringRunner;
 use Steam\Runner\GuzzleRunner;
 use Steam\Steam;
 use Steam\Utility\GuzzleUrlBuilder;
-use Storage;
 
 /**
  * Class SteamAPI.

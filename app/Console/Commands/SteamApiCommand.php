@@ -6,12 +6,10 @@ use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
 use Illuminate\Console\Command;
 
 /**
- * Class SteamApiCommand
- * @package App\Console\Commands
+ * Class SteamApiCommand.
  */
 class SteamApiCommand extends Command
 {
-
     /**
      * @var SteamAPIGame
      */
@@ -36,9 +34,9 @@ class SteamApiCommand extends Command
     gameid only works with load.
     rpg only works with update.';
 
-
     /**
      * SteamApiCommand constructor.
+     *
      * @param SteamAPIGame $steamAPI
      */
     public function __construct(SteamAPIGame $steamAPI)
