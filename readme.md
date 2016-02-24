@@ -10,7 +10,7 @@ This read me is more so i can remember stuff. This project if for me to learn, b
 
 ## Integrations
 ### Steam API
-Integrates to steam api to pull games i own and to update games im playing and new games. The external api counter is is only counting, so there is nothing to stop you from doing too many calls to api.
+Integrates to steam api to pull games i own and to update games im playing and new games. The external api counter is is only counting, so there is nothing to stop you from doing too many calls to api. When using this in local environment it only calls the ap one time and cache it under storage/app/SteamApi.
 
 #### First time setup
 If you dont own a lot of games, you can load everything from a artisan command:
