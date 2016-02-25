@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\ExternalApiLimit;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests;
 use Carbon\Carbon;
 
 class ExternalApiLimitAdminController extends AdminController

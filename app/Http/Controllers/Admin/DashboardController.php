@@ -6,8 +6,7 @@ use App\Emaildrop;
 use App\Http\Controllers\AdminController;
 
 /**
- * Class DashboardController
- * @package App\Http\Controllers\Admin
+ * Class DashboardController.
  */
 class DashboardController extends AdminController
 {
