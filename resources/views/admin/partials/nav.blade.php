@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL::secure('admin/ExternalApiLimit') }}">
+                    <a href="{{ URL::secure('admin/externalapilimit') }}">
                         <i class="fa fa-bars fa-fw"></i> External Api Limits
                     </a>
                 </li>
