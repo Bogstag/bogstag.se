@@ -6,7 +6,7 @@ use App\Emaildrop;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Mailgun\Mailgun;
-use yajra\Datatables\Datatables;
+use Yajra\Datatables\Datatables;
 
 class EmailDropController extends AdminController
 {
