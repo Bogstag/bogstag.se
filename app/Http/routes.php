@@ -52,4 +52,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::resource('profile', 'Admin\ProfileController');
     Route::get('settings', 'Admin\SettingsController@index');
     Route::get('settings/resetapitoken', 'Admin\SettingsController@resetapitoken');
+    Route::resource('ExternalApiLimit', 'Admin\ExternalApiLimitAdminController');
 });

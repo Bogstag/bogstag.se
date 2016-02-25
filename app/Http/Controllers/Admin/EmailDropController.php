@@ -23,7 +23,7 @@ class EmailDropController extends AdminController
     {
         $title = 'EmailDrops';
 
-        return view('admin.dashboard.EmailDrops', ['title' => $title]);
+        return view('admin.dashboard.EmailDrop.EmailDrops', ['title' => $title]);
     }
 
     public function getEmailDropsData()
@@ -77,7 +77,7 @@ class EmailDropController extends AdminController
         $title = 'EmailDrop '.$id;
         $emailDrop = Emaildrop::find($id);
 
-        return view('admin.dashboard.EmailDrop', ['title' => $title, 'emaildrop' => $emailDrop]);
+        return view('admin.dashboard.EmailDrop.EmailDrop', ['title' => $title, 'emaildrop' => $emailDrop]);
     }
 
     public function setAdressToOkMailGun($recipient)

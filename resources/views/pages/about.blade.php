@@ -19,14 +19,5 @@
                                                              alt="StyleCI"/></a></p>
         <p>This read me is more so i can remember stuff. This project if for me to learn, but there is nothing that is
             unique for me so if you would like to fork, use it as you own or help me i be glad.</p>
-        <h2 id="integrations">Integrations</h2>
-        <h3 id="steam-api">Steam API</h3>
-        <p>Integrates to steam api to pull games i own and to update games im playing and new games. The external api
-            counter is is only counting, so there is nothing to stop you from doing too many calls to api. When using
-            this in local environment it only calls the ap one time and cache it under storage/app/SteamApi.</p>
-        <h4 id="first-time-setup">First time setup</h4>
-        <p>If you dont own a lot of games, you can load everything from a artisan command:</p>
-        <pre><code>php artisan steamapi:game load</code></pre>
-        <p>After that the scheduled task take care of the rest.</p>
     </div>
 @endsection

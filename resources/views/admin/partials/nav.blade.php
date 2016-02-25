@@ -12,7 +12,7 @@
         <li class="dropdown">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="{{ URL::secure('admin/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -32,8 +32,13 @@
                     <a href="{{ URL::secure('') }}"><i class="fa fa-backward"></i> Go to frontend</a>
                 </li>
                 <li>
-                    <a href="{{URL::secure('admin/dashboard')}}">
+                    <a href="{{ URL::secure('admin/dashboard') }}">
                         <i class="fa fa-dashboard fa-fw"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL::secure('admin/ExternalApiLimit') }}">
+                        <i class="fa fa-bars fa-fw"></i> External Api Limits
                     </a>
                 </li>
             </ul>
