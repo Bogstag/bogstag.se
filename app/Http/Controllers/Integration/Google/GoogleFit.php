@@ -117,7 +117,6 @@ class GoogleFit extends Google
                     'steps'    => $step_count,
                     'duration' => $duration,
                 ];
-                $dateArray[] = $startTimeNanos;
             } else {
                 $dataArray[$step_id]['steps'] += $step_count;
                 $dataArray[$step_id]['duration'] += $duration;

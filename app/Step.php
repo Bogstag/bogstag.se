@@ -64,49 +64,4 @@ class Step extends Model
         $date->minute(0)->second(0)->timestamp;
         $this->datetime = $date;
     }
-
-    /**
-     * @param $steps
-     *
-     * @return array
-     */
-    public function transformStepCollection(Collection $steps)
-    {
-        foreach ($steps as $step) {
-            unset($step->{'duration'});
-            unset($step->{'pace'});
-        }
-
-        return $steps;
-    }
-
-    /**
-     * @param Collection $steps2
-     *
-     * @return Collection
-     */
-    public function transformDurationCollection(Collection $steps2)
-    {
-        foreach ($steps2 as $step2) {
-            unset($step2->{'steps'});
-            unset($step2->{'pace'});
-        }
-
-        return $steps2;
-    }
-
-    /**
-     * @param Collection $steps3
-     *
-     * @return Collection
-     */
-    public function transformPaceCollection(Collection $steps3)
-    {
-        foreach ($steps3 as $step3) {
-            unset($step3->{'steps'});
-            unset($step3->{'duration'});
-        }
-
-        return $steps3;
-    }
 }

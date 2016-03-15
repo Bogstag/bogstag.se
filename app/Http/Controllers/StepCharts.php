@@ -49,29 +49,8 @@ class StepCharts extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getDurationChart(Collection $dataTableRows)
-    {
-        $dataTableRowsDuration = (new Step())->transformDurationCollection($dataTableRows);
-        $dataTableColumns = [
-            ['date', 'Date'],
-            ['number', 'Duration'],
-        ];
-        $name = 'stepduration';
-        $title = 'Steps duration per day in minutes';
-        $barChart = (new Chart\ColumnChartController())
-            ->createColumnChart($name, $title, $dataTableColumns, $dataTableRowsDuration);
-
-        return $barChart;
-    }
-
-    /**
-     * @param Collection $dataTableRows
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function getStepChart(Collection $dataTableRows)
     {
-        $dataTableRowsStep = (new Step())->transformStepCollection($dataTableRows);
         $dataTableColumns = [
             ['date', 'Date'],
             ['number', 'Steps'],
@@ -79,7 +58,7 @@ class StepCharts extends Controller
         $name = 'stepcount';
         $title = 'Steps per day';
         $lineChart = (new Chart\LineChartController())->
-        createLineChart($name, $title, $dataTableColumns, $dataTableRowsStep);
+        createLineChart($name, $title, $dataTableColumns, $dataTableRows);
 
         return $lineChart;
     }
@@ -91,7 +70,6 @@ class StepCharts extends Controller
      */
     public function getPaceChart(Collection $dataTableRows)
     {
-        $dataTableRowsPace = (new Step())->transformPaceCollection($dataTableRows);
         $dataTableColumns = [
             ['date', 'Date'],
             ['number', 'Pace'],
@@ -100,8 +78,27 @@ class StepCharts extends Controller
         $name = 'pacecount';
         $title = 'Pace (Steps per second) per day';
         $lineChart = (new Chart\LineChartController())->
-        createLineChart($name, $title, $dataTableColumns, $dataTableRowsPace);
+        createLineChart($name, $title, $dataTableColumns, $dataTableRows);
 
         return $lineChart;
+    }
+
+    /**
+     * @param Collection $dataTableRows
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getDurationChart(Collection $dataTableRows)
+    {
+        $dataTableColumns = [
+            ['date', 'Date'],
+            ['number', 'Duration'],
+        ];
+        $name = 'stepduration';
+        $title = 'Steps duration per day in minutes';
+
+        $barChart = (new Chart\ColumnChartController())
+            ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows);
+        return $barChart;
     }
 }
