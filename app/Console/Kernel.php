@@ -35,9 +35,9 @@ class Kernel extends ConsoleKernel
     {
 
         /* Update steps i have walked */
-        $schedule->command('googlefit:steps update')->everyTenMinutes();
+        $schedule->command('googlefit:steps update')->everyFiveMinutes();
 
         /* Update steam game i have played */
-        $schedule->command('steamapi:game update --rpg')->twiceDaily(10, 22);
+        $schedule->command('steamapi:game update --rpg')->hourly();
     }
 }

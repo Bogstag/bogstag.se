@@ -79,7 +79,7 @@ class GoogleFit extends Google
         return $GetFitData;
     }
 
-    public function getStepData($days = 2)
+    public function getStepData($days = 1)
     {
         $this->dataSourceId = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
 
