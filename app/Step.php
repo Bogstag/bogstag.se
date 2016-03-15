@@ -71,6 +71,7 @@ class Step extends Model
         if ($this->steps > $this->targetStep) {
             return 0;
         }
+
         return $this->targetStep - $this->steps;
     }
 }
