@@ -65,7 +65,7 @@ class StepCharts extends Controller
             'title'  => 'Steps today',
             'legend' => [
                 'position' => 'none',
-            ]
+            ],
         ]);
 
         return $chart;
