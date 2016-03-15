@@ -66,7 +66,7 @@ class Step extends Model
         $this->datetime = $date;
     }
 
-    public function getStepsLeftToTargetAttribute($value)
+    public function getStepsLeftToTargetAttribute()
     {
         if ($this->steps > $this->targetStep) {
             return 0;
