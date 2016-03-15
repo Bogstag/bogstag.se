@@ -2,10 +2,16 @@
 
 namespace App\Console;
 
-use App\Http\Controllers\Integration\Google\GoogleFit;
+use App\Console\Commands\GoogleFitCommand;
+use App\Console\Commands\Inspire;
+use App\Console\Commands\SteamApiCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+/**
+ * Class Kernel
+ * @package App\Console
+ */
 class Kernel extends ConsoleKernel
 {
     /**
@@ -14,8 +20,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\SteamApiCommand::class,
+        Inspire::class,
+        SteamApiCommand::class,
+        GoogleFitCommand::class,
     ];
 
     /**
@@ -27,10 +34,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            $GoogleFit = new GoogleFit();
-            $GoogleFit->getStepData();
-        })->everyThirtyMinutes();
+
+        /* Update steps i have walked */
+        $schedule->command('googlefit:steps update')->everyTenMinutes();
 
         /* Update steam game i have played */
         $schedule->command('steamapi:game update --rpg')->twiceDaily(10, 22);

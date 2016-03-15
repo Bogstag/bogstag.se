@@ -19,24 +19,29 @@ class StepCharts extends Controller
     public function getStepCharts()
     {
         $dataTableRows = Step::select(DB::raw(
-            'datetime, sum(steps) as steps'
+            'date, steps'
         ))
-            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
+            ->groupby('date')->orderby('date', 'desc')->take(90)->get();
         $stepChart = $this->getStepChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
-            'datetime, sum(duration)/60 as duration'
+            'date, duration/60 as duration'
         ))
-            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
+            ->groupby('date')->orderby('date', 'desc')->take(90)->get();
         $durationChart = $this->getDurationChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
-            'datetime, sum(steps)/sum(duration) as pace'
+            'date, steps/duration as pace'
         ))
-            ->groupby('date_id')->orderby('datetime', 'desc')->take(90)->get();
+            ->groupby('date')->orderby('date', 'desc')->take(90)->get();
         $paceChart = $this->getPaceChart($dataTableRows);
 
-        return view('pages.ActivitySteps', ['durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart]);
+        return view(
+            'pages.ActivitySteps',
+            [
+                'durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart
+            ]
+        );
     }
 
     /**
@@ -48,7 +53,7 @@ class StepCharts extends Controller
     {
         $dataTableRowsDuration = (new Step())->transformDurationCollection($dataTableRows);
         $dataTableColumns = [
-            ['datetime', 'Date'],
+            ['date', 'Date'],
             ['number', 'Duration'],
         ];
         $name = 'stepduration';
@@ -68,7 +73,7 @@ class StepCharts extends Controller
     {
         $dataTableRowsStep = (new Step())->transformStepCollection($dataTableRows);
         $dataTableColumns = [
-            ['datetime', 'Date'],
+            ['date', 'Date'],
             ['number', 'Steps'],
         ];
         $name = 'stepcount';
@@ -88,7 +93,7 @@ class StepCharts extends Controller
     {
         $dataTableRowsPace = (new Step())->transformPaceCollection($dataTableRows);
         $dataTableColumns = [
-            ['datetime', 'Date'],
+            ['date', 'Date'],
             ['number', 'Pace'],
         ];
 

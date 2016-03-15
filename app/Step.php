@@ -21,46 +21,30 @@ class Step extends Model
     /**
      * @var array
      */
-    protected $dates = ['datetime'];
+    protected $dates = ['date', 'created_at', 'updated_at'];
 
     /**
      * @var string
      */
-    protected $primaryKey = 'step_id';
+    protected $primaryKey = 'id';
 
     /**
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
     /**
      * Indicates what can be submitted to update.
      *
      * @var array
      */
-    protected $fillable = ['step_id'];
+    protected $fillable = ['date'];
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    public $timestamps = false;
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function date()
-    {
-        return $this->belongsTo('App\Date');
-    }
-
-    /**
-     * @param $step_id
-     */
-    public function setStepId($step_id)
-    {
-        $this->step_id = $step_id;
-    }
+    public $timestamps = true;
 
     /**
      * @param $date
