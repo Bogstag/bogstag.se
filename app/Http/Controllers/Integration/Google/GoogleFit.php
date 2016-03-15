@@ -38,7 +38,7 @@ class GoogleFit extends Google
     /**
      * GoogleFit constructor.
      */
-    public function __construct()
+    public function connectGoogleServiceFitness()
     {
         $scopes = [
             'https://www.googleapis.com/auth/fitness.activity.read',
@@ -81,6 +81,7 @@ class GoogleFit extends Google
 
     public function getStepData($days = 1)
     {
+        $this->connectGoogleServiceFitness();
         $this->dataSourceId = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
 
         $listDataSets = $this->getDataSetsFromDataSource($days);
