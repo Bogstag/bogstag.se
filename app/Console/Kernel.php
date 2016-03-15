@@ -2,9 +2,6 @@
 
 namespace App\Console;
 
-use App\Console\Commands\GoogleFitCommand;
-use App\Console\Commands\Inspire;
-use App\Console\Commands\SteamApiCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,9 +16,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Inspire::class,
-        SteamApiCommand::class,
-        GoogleFitCommand::class,
+        \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\SteamApiCommand::class,
+        \App\Console\Commands\GoogleFitCommand::class,
     ];
 
     /**
