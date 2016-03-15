@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Model for a game that i own.
- * 
+ *
  * Class SteamGame
  *
  * @property int $id

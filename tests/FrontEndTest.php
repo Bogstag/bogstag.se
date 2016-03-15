@@ -6,9 +6,6 @@
  */
 class FrontEndTest extends TestCase
 {
-    /**
-     *
-     */
     public function testHomePage()
     {
         $this->visit('/')
@@ -25,9 +22,6 @@ class FrontEndTest extends TestCase
             ->seePageIs('/login');
     }
 
-    /**
-     *
-     */
     public function testAboutPage()
     {
         $this->visit('/about')

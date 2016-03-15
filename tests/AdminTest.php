@@ -9,9 +9,6 @@ class AdminTest extends TestCase
 {
     use WithoutMiddleware;
 
-    /**
-     *
-     */
     public function testAdminDashboard()
     {
         /*
@@ -23,9 +20,6 @@ class AdminTest extends TestCase
         */
     }
 
-    /**
-     *
-     */
     public function testAdminEmailDrops()
     {
         /*

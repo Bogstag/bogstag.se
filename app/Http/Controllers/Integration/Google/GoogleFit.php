@@ -113,8 +113,8 @@ class GoogleFit extends Google
             $step_id = $startTimeNanos->minute(0)->second(0)->format('Ymd');
             if (!isset($dataArray[$step_id])) {
                 $dataArray[$step_id] = [
-                    'date' => $startTimeNanos->toDateString(),
-                    'steps' => $step_count,
+                    'date'     => $startTimeNanos->toDateString(),
+                    'steps'    => $step_count,
                     'duration' => $duration,
                 ];
                 $dateArray[] = $startTimeNanos;
@@ -124,6 +124,7 @@ class GoogleFit extends Google
             }
             $dataSet = $listDataSets->next();
         }
+
         return array_map([$this, 'storeStep'], $dataArray);
     }
 
@@ -135,6 +136,7 @@ class GoogleFit extends Google
 
         $step->steps = $stepArray['steps'];
         $step->duration = $stepArray['duration'];
+
         return $step->save();
     }
 
@@ -154,9 +156,6 @@ class GoogleFit extends Google
         $this->dataSourceId = $dataSourceId;
     }
 
-    /**
-     *
-     */
     public function incrementGoogleFitApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(

@@ -39,7 +39,7 @@ class StepCharts extends Controller
         return view(
             'pages.ActivitySteps',
             [
-                'durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart
+                'durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart,
             ]
         );
     }

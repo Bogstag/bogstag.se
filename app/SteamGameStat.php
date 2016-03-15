@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * A model for steam game stats.
- * 
+ *
  * Class SteamGameStat
  *
  * @property int $id

@@ -137,9 +137,6 @@ class SteamAPIGame extends SteamAPI
         return false;
     }
 
-    /**
-     *
-     */
     private function parseAndSaveOnlyOwnedGames()
     {
         $SteamOwnedGamesFromAPI = $this->getOwnedGames();
