@@ -9,7 +9,6 @@ use Illuminate\Console\Command;
  */
 class GoogleFitCommand extends Command
 {
-
     /**
      * @var GoogleFit|\App\Http\Controllers\Integration\Google\GoogleFit
      */
