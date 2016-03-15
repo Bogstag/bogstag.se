@@ -23,7 +23,7 @@ class GoogleFit extends Google
     /**
      * @var int
      */
-    public $externalApiLimit = 100000;
+    public $externalApiLimit = 86400;
 
     /**
      * @var string
