@@ -99,6 +99,7 @@ class StepCharts extends Controller
 
         $barChart = (new Chart\ColumnChartController())
             ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows);
+
         return $barChart;
     }
 }
