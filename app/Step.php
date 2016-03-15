@@ -45,6 +45,8 @@ class Step extends Model
      */
     public $timestamps = true;
 
+    public $targetStep = 10000;
+
     /**
      * @param $date
      */
@@ -62,5 +64,13 @@ class Step extends Model
         $date = new Carbon($date);
         $date->minute(0)->second(0)->timestamp;
         $this->datetime = $date;
+    }
+
+    public function getStepsLeftToTargetAttribute($value)
+    {
+        if ($this->steps > $this->targetStep) {
+            return 0;
+        }
+        return $this->targetStep - $this->steps;
     }
 }

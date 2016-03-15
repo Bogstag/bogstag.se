@@ -87,7 +87,6 @@ class GoogleFit extends Google
         $listDataSets = $this->getDataSetsFromDataSource($days);
 
         $dataArray = [];
-        $dateArray = [];
         $i = 0;
         $dataSet = '';
 

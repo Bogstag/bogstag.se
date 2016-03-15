@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Step;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -18,10 +19,12 @@ class StepCharts extends Controller
      */
     public function getStepCharts()
     {
+        $stepToday = $this->getStepsTodayChart();
+
         $dataTableRows = Step::select(DB::raw(
             'date, steps'
         ))
-            ->groupby('date')->orderby('date', 'desc')->take(90)->get();
+            ->groupby('date')->orderby('date', 'desc')->skip(1)->take(90)->get();
         $stepChart = $this->getStepChart($dataTableRows);
 
         $dataTableRows = Step::select(DB::raw(
@@ -39,9 +42,36 @@ class StepCharts extends Controller
         return view(
             'pages.ActivitySteps',
             [
-                'durationchart' => $durationChart, 'stepchart' => $stepChart, 'pacecount' => $paceChart,
+                'durationchart' => $durationChart,
+                'stepchart' => $stepChart,
+                'pacecount' => $paceChart,
+                'stepToday' => $stepToday,
             ]
         );
+    }
+
+    public function getStepsTodayChart()
+    {
+        $TodaySteps = (new Step())->where('date', Carbon::now()->toDateString())->first();
+
+        $reasons = \Lava::DataTable();
+
+        $reasons->addStringColumn('Steps')
+            ->addNumberColumn('Count')
+            ->addRow(['Steps', $TodaySteps->steps])
+            ->addRow(['Target', $TodaySteps->stepsLeftToTarget]);
+
+        $chart = \Lava::DonutChart('stepToday', $reasons, [
+            'title' => 'Steps today',
+            'legend' => [
+                'position' => 'none'
+            ],
+            'slices' => [
+                0 => ['color' => 'blue'],
+                1 => ['color' => 'transparent']
+            ],
+        ]);
+        return $chart;
     }
 
     /**
@@ -57,8 +87,8 @@ class StepCharts extends Controller
         ];
         $name = 'stepcount';
         $title = 'Steps per day';
-        $lineChart = (new Chart\LineChartController())->
-        createLineChart($name, $title, $dataTableColumns, $dataTableRows);
+        $lineChart = (new Chart\LineChartController())
+            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows);
 
         return $lineChart;
     }
@@ -77,8 +107,8 @@ class StepCharts extends Controller
 
         $name = 'pacecount';
         $title = 'Pace (Steps per second) per day';
-        $lineChart = (new Chart\LineChartController())->
-        createLineChart($name, $title, $dataTableColumns, $dataTableRows);
+        $lineChart = (new Chart\LineChartController())
+            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows);
 
         return $lineChart;
     }
