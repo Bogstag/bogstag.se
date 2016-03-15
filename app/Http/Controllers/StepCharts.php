@@ -43,9 +43,9 @@ class StepCharts extends Controller
             'pages.ActivitySteps',
             [
                 'durationchart' => $durationChart,
-                'stepchart' => $stepChart,
-                'pacecount' => $paceChart,
-                'stepToday' => $stepToday,
+                'stepchart'     => $stepChart,
+                'pacecount'     => $paceChart,
+                'stepToday'     => $stepToday,
             ]
         );
     }
@@ -62,11 +62,19 @@ class StepCharts extends Controller
             ->addRow(['Target', $TodaySteps->stepsLeftToTarget]);
 
         $chart = \Lava::DonutChart('stepToday', $reasons, [
-            'title' => 'Steps today',
+            'title'  => 'Steps today',
             'legend' => [
-                'position' => 'none'
+                'position' => 'none',
             ],
+<<<<<<< HEAD
+=======
+            'slices' => [
+                0 => ['color' => 'blue'],
+                1 => ['color' => 'transparent'],
+            ],
+>>>>>>> origin/master
         ]);
+
         return $chart;
     }
 
