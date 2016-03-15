@@ -22,9 +22,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Step::class, function (Faker\Generator $faker) {
     return [
-        'steps'    => $faker->randomDigitNotNull,
-        'duration' => $faker->randomDigitNotNull,
-        'date' => $faker->date('Y-m-d'),
+        'steps'      => $faker->randomDigitNotNull,
+        'duration'   => $faker->randomDigitNotNull,
+        'date'       => $faker->date('Y-m-d'),
         'created_at' => $faker->date('Y-m-d 00:00:00'),
         'updated_at' => $faker->date('Y-m-d 00:00:00'),
     ];
