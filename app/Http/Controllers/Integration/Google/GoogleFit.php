@@ -45,7 +45,7 @@ class GoogleFit extends Google
             'https://www.googleapis.com/auth/fitness.body.read',
             'https://www.googleapis.com/auth/fitness.location.read',
         ];
-        parent::__construct($scopes);
+        $this->getGoogleClient($scopes);
 
         return $this->fitness_service = new \Google_Service_Fitness($this->google_client);
     }

@@ -10,9 +10,9 @@ use App\Http\Controllers\Integration\Integrator;
 class Google extends Integrator
 {
     /**
-     * @param array $scopes
+     * @param $scopes
      */
-    public function __construct($scopes = [])
+    public function getGoogleClient($scopes)
     {
         $this->google_client = new \Google_Client();
         $this->google_client->setApplicationName('Api Project');
