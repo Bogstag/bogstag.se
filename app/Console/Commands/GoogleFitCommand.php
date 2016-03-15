@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Integration\Google\GoogleFit;
 use Illuminate\Console\Command;
 
 /**
@@ -10,10 +9,12 @@ use Illuminate\Console\Command;
  */
 class GoogleFitCommand extends Command
 {
+
     /**
-     * @var SteamAPIGame
+     * @var GoogleFit|\App\Http\Controllers\Integration\Google\GoogleFit
      */
     private $googleFit;
+
     /**
      * The name and signature of the console command.
      *
@@ -36,7 +37,7 @@ class GoogleFitCommand extends Command
      *
      * @param GoogleFit $googleFit
      */
-    public function __construct(GoogleFit $googleFit)
+    public function __construct(\App\Http\Controllers\Integration\Google\GoogleFit $googleFit)
     {
         parent::__construct();
         $this->googleFit = $googleFit;
