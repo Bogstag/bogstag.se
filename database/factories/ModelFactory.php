@@ -22,11 +22,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Step::class, function (Faker\Generator $faker) {
     return [
-        'step_id'  => $faker->date('YmdH'),
-        'date_id'  => $faker->date('Ymd'),
         'steps'    => $faker->randomDigitNotNull,
         'duration' => $faker->randomDigitNotNull,
-        'datetime' => $faker->date('Y-m-d 00:00:00'),
+        'date' => $faker->date('Y-m-d'),
+        'created_at' => $faker->date('Y-m-d 00:00:00'),
+        'updated_at' => $faker->date('Y-m-d 00:00:00'),
     ];
 });
 
