@@ -18,9 +18,6 @@ class ColumnChartController extends ChartController
      */
     public $createColumnChart;
 
-    /**
-     *
-     */
     public function __construct()
     {
         parent::__construct();

@@ -43,9 +43,6 @@ class SteamAPI extends Integrator
         $this->steam->addRunner(new DecodeJsonStringRunner());
     }
 
-    /**
-     *
-     */
     public function incrementSteamApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(

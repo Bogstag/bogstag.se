@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Model for a steam game achievement.
- * 
+ *
  * Class SteamGameAchievement
  *
  * @property int $id

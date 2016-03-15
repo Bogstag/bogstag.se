@@ -18,9 +18,6 @@ class LineChartController extends ChartController
      */
     public $createLineChart;
 
-    /**
-     *
-     */
     public function __construct()
     {
         parent::__construct();
