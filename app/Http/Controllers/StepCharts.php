@@ -66,10 +66,6 @@ class StepCharts extends Controller
             'legend' => [
                 'position' => 'none'
             ],
-            'slices' => [
-                0 => ['color' => 'blue'],
-                1 => ['color' => 'transparent']
-            ],
         ]);
         return $chart;
     }
