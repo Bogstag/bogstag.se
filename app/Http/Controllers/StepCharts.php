@@ -53,7 +53,9 @@ class StepCharts extends Controller
     public function getStepsTodayChart()
     {
         $TodaySteps = (new Step())->where('date', Carbon::now()->toDateString())->first();
-
+        if ($TodaySteps === null) {
+            $TodaySteps = new Step();
+        }
         $reasons = \Lava::DataTable();
 
         $reasons->addStringColumn('Steps')
