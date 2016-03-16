@@ -48,6 +48,12 @@ class Step extends Model
     public $targetStep = 10000;
 
     /**
+     * This is done because my prod server returns this as string not int.
+     * @var array
+     */
+    protected $casts = [ 'id' => 'integer', 'steps' => 'integer', 'duration' => 'integer' ];
+
+    /**
      * @param $date
      */
     public function setDate($date)
