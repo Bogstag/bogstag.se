@@ -60,7 +60,7 @@ class StepCharts extends Controller
 
         $reasons->addStringColumn('Steps')
             ->addNumberColumn('Count')
-            ->addRow(['Steps', intval($TodaySteps->steps)])
+            ->addRow(['Steps', $TodaySteps->steps])
             ->addRow(['Target', $TodaySteps->stepsLeftToTarget]);
 
         $chart = \Lava::DonutChart('stepToday', $reasons, [
