@@ -79,6 +79,6 @@ class Step extends Model
             return 0;
         }
 
-        return (int)$this->targetStep - $this->steps;
+        return (int) $this->targetStep - $this->steps;
     }
 }
