@@ -56,19 +56,24 @@ class StepCharts extends Controller
         if ($TodaySteps === null) {
             $TodaySteps = new Step();
         }
-        $reasons = \Lava::DataTable();
+        $steps = \Lava::DataTable();
 
-        $reasons->addStringColumn('Steps')
+        $steps->addStringColumn('Steps')
             ->addNumberColumn('Count')
             ->addRow(['Steps', $TodaySteps->steps])
             ->addRow(['Target', $TodaySteps->stepsLeftToTarget]);
 
-        $chart = \Lava::DonutChart('stepToday', $reasons, [
+        $chart = \Lava::DonutChart('stepToday', $steps, [
             'title'  => 'Steps today',
             'legend' => [
                 'position' => 'none',
             ],
+
+            'pieSliceTextStyle' => [
+                'color' => 'none',
+            ],
         ]);
+        $chart->pieHole(0.7);
 
         return $chart;
     }
