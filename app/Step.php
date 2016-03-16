@@ -49,9 +49,10 @@ class Step extends Model
 
     /**
      * This is done because my prod server returns this as string not int.
+     *
      * @var array
      */
-    protected $casts = [ 'id' => 'integer', 'steps' => 'integer', 'duration' => 'integer' ];
+    protected $casts = ['id' => 'integer', 'steps' => 'integer', 'duration' => 'integer'];
 
     /**
      * @param $date
