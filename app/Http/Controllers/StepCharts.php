@@ -68,12 +68,11 @@ class StepCharts extends Controller
             'legend' => [
                 'position' => 'none',
             ],
-
             'pieSliceTextStyle' => [
                 'color' => 'none',
             ],
+            'pieHole' => 0.7
         ]);
-        $chart->pieHole(0.7);
 
         return $chart;
     }

@@ -31,6 +31,7 @@ class Step extends Model
      * @var bool
      */
     public $incrementing = true;
+
     /**
      * Indicates what can be submitted to update.
      *
