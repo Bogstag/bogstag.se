@@ -19,6 +19,8 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\SteamApiCommand::class,
         \App\Console\Commands\GoogleFitCommand::class,
+        \App\Console\Commands\Oauth2TokenCommand::class,
+        \App\Console\Commands\LoadTraktTvCommand::class,
     ];
 
     /**
@@ -36,5 +38,8 @@ class Kernel extends ConsoleKernel
 
         /* Update steam game i have played */
         $schedule->command('steamapi:game update --rpg')->hourly();
+
+        /* Update oauth2 tokens */
+        $schedule->command('oauth2token:refresh')->weekly();
     }
 }

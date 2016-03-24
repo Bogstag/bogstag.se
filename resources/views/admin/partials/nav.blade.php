@@ -41,6 +41,11 @@
                         <i class="fa fa-bars fa-fw"></i> External Api Limits
                     </a>
                 </li>
+                <li>
+                    <a href="{{ URL::secure('admin/oauth2credential') }}">
+                        <i class="fa fa-key fa-fw"></i> Oauth2 Credentials
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
