@@ -16,6 +16,7 @@ class Movie extends Model
      * @var bool
      */
     public $timestamps = true;
+
     /**
      * @var array
      */
@@ -30,7 +31,15 @@ class Movie extends Model
      * @var array
      */
     protected $fillable = ['id_trakt'];
-
     protected $casts = ['genres' => 'array'];
 
+    public function scopeWatchedMovies($query)
+    {
+        $query->select('title', 'slug', 'poster')->orderBy('last_watched_at', 'desc');
+    }
+
+    public function getTicketImageUrlAttribute()
+    {
+        return url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
+    }
 }

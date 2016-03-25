@@ -108,7 +108,6 @@ class Oauth2ClientTrakt extends Oauth2Client
     /**
      * @param $method
      * @param $url
-     * @param array $options
      * @return mixed
      */
     public function createAuthRequest(
@@ -116,11 +115,12 @@ class Oauth2ClientTrakt extends Oauth2Client
         $url
     ) {
         $credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
-        $options = ['Content-Type'      => 'application/json',
-                    'trakt-api-version' => 2,
-                    'trakt-api-key'     => $credential->clientid];
+        $options = ['headers' => ['Content-Type'      => 'application/json',
+                                  'trakt-api-version' => 2,
+                                  'trakt-api-key'     => $credential->clientid]];
         $provider = $this->getProvider();
         $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
+
         return $provider->getResponse($request);
     }
 }

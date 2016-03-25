@@ -14,12 +14,12 @@ class AddMovieToDb extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_trakt');
-            $table->integer('id_tmdb')->nullable();
-            $table->string('id_imdb')->nullable();
-            $table->string('slug');
+            $table->integer('id_trakt')->unique();
+            $table->integer('id_tmdb')->unique();
+            $table->string('id_imdb')->unique();
+            $table->string('slug')->unique();
             $table->string('title');
-            $table->integer('plays');
+            $table->integer('plays')->default(1);
             $table->dateTime('last_watched_at');
             $table->integer('year')->nullable();
             $table->dateTime('ticket_datetime')->nullable();

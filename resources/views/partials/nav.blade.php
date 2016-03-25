@@ -28,6 +28,13 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-gamepad"></i> Games<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::secure('game/steam') }}"><i class="fa fa-steam-square"></i> Steam</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-server"></i> Server<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::secure('server/email') }}"><i class="fa fa-envelope-o"></i> Email</a></li>
@@ -35,11 +42,12 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fa fa-gamepad"></i> Games<span class="caret"></span></a>
+                       aria-expanded="false"><i class="fa fa-film"></i> Movie<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::secure('game/steam') }}"><i class="fa fa-steam-square"></i> Steam</a></li>
+                        <li><a href="{{ URL::secure('movie/watched') }}"><i class="fa fa-eye"></i> Watched</a></li>
                     </ul>
                 </li>
+
 <!--
 
                 <li class="dropdown">

@@ -15,13 +15,12 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        \App\Console\Commands\Inspire::class,
+    protected $commands = [\App\Console\Commands\Inspire::class,
         \App\Console\Commands\SteamApiCommand::class,
         \App\Console\Commands\GoogleFitCommand::class,
         \App\Console\Commands\Oauth2TokenCommand::class,
         \App\Console\Commands\LoadTraktTvCommand::class,
-    ];
+        \App\Console\Commands\SyncTraktTvCommand::class,];
 
     /**
      * Define the application's command schedule.
@@ -41,5 +40,8 @@ class Kernel extends ConsoleKernel
 
         /* Update oauth2 tokens */
         $schedule->command('oauth2token:refresh')->weekly();
+
+        /* Update oauth2 tokens */
+        $schedule->command('trakttv:sync movie')->twiceDaily(19, 23);
     }
 }

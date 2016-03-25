@@ -1,4 +1,5 @@
 /vendor
+/public/img/tickets
 /node_modules
 Homestead.yaml
 Homestead.json
@@ -6,3 +7,4 @@ Homestead.json
 .phpstorm.meta.php
 _ide_helper.php
 artisan-bug
+app/Http/Controllers/test.php

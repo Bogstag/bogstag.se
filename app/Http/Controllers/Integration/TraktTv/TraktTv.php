@@ -35,9 +35,34 @@ class TraktTv extends Integrator
         $this->traktClient = new Oauth2ClientTrakt();
     }
 
-    public function getSyncHistoryShows()
+    public function setLimit($limit)
     {
-        $this->urlPart = 'sync/history/';
+        $this->limit = $limit;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type.'/';
+    }
+
+    public function setExtended($extended)
+    {
+        $this->extended = $extended;
+    }
+
+    public function loadWatched()
+    {
+        $watchedMovies = $this->getSyncWatched();
+
+        foreach ($watchedMovies as $watchedMovie) {
+            $this->storeMovie($watchedMovie);
+        }
+        return $watchedMovies;
+    }
+
+    public function getSyncWatched()
+    {
+        $this->urlPart = 'sync/watched/';
         return $this->makeRequest();
     }
 
@@ -94,43 +119,22 @@ class TraktTv extends Integrator
         );
     }
 
-    public function setLimit($limit)
-    {
-        $this->limit = $limit;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function setExtended($extended)
-    {
-        $this->extended = $extended;
-    }
-
-    public function loadWatchedMovies()
-    {
-        $watchedMovies = $this->getSyncWatched();
-
-        foreach ($watchedMovies as $watchedMovie) {
-            $this->storeMovie($watchedMovie);
-        }
-    }
-
-    public function getSyncWatched()
-    {
-        $this->urlPart = 'sync/watched/';
-        return $this->makeRequest();
-    }
-
     private function storeMovie($watchedMovie)
     {
         $movie = Movie::firstOrNew(
             ['id_trakt' => $watchedMovie->movie->ids->trakt]
         );
-        $movie->plays = $watchedMovie->plays;
-        $movie->last_watched_at = new Carbon($watchedMovie->last_watched_at);
+
+        if (!empty($watchedMovie->plays)) {
+            $movie->plays = $watchedMovie->plays;
+        }
+
+        if (!empty($watchedMovie->watched_at)) {
+            $movie->last_watched_at = new Carbon($watchedMovie->watched_at);
+        } elseif (!empty($watchedMovie->last_watched_at)) {
+            $movie->last_watched_at = new Carbon($watchedMovie->last_watched_at);
+        }
+
         $movie->title = $watchedMovie->movie->title;
         $movie->year = $watchedMovie->movie->year;
         $movie->slug = $watchedMovie->movie->ids->slug;
@@ -152,5 +156,21 @@ class TraktTv extends Integrator
         $movie->thumb = $watchedMovie->movie->images->thumb->full;
         $movie->genres = $watchedMovie->movie->genres;
         return $movie->save();
+    }
+
+    public function syncWatched($command)
+    {
+        $watchedMovies = $this->getSyncHistory();
+        foreach ($watchedMovies as $watchedMovie) {
+            $this->storeMovie($watchedMovie);
+            $command->info('Stored '.$watchedMovie->movie->title.' to db');
+        }
+        return $watchedMovies;
+    }
+
+    public function getSyncHistory()
+    {
+        $this->urlPart = 'sync/history/';
+        return $this->makeRequest();
     }
 }

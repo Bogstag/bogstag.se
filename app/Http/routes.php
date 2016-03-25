@@ -31,9 +31,13 @@ Route::group(['middleware' => 'web', 'throttle'], function () {
         return view('pages.about');
     });
 
+    Route::get('test', 'test@index');
+
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
     Route::resource('game/steam', 'SteamGameController');
+    Route::resource('movie/watched', 'MovieController');
+    Route::resource('movie', 'MovieController');
 
     Route::auth();
     Route::any('register', function () {
@@ -53,4 +57,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::get('settings', 'Admin\SettingsController@index');
     Route::get('settings/resetapitoken', 'Admin\SettingsController@resetapitoken');
     Route::resource('externalapilimit', 'Admin\ExternalApiLimitAdminController');
+    Route::resource('oauth2credential', 'Admin\Oauth2CredentialAdminController');
+    Route::resource('movietickets', 'Admin\MovieTicketsAdminController');
 });

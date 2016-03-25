@@ -9,21 +9,21 @@ use Illuminate\Console\Command;
 /**
  * Class SteamApiCommand.
  */
-class LoadTraktTvCommand extends Command
+class SyncTraktTvCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'trakttv:load {action : movie}';
+    protected $signature = 'trakttv:sync {action : movie}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command for loading from trakt to db';
+    protected $description = 'Command for syncing from trakt to db';
     /**
      * @var SteamAPIGame
      */
@@ -45,11 +45,11 @@ class LoadTraktTvCommand extends Command
         $action = $this->argument('action');
         switch ($action) {
             case 'movie':
-                $this->info('Load all movies to db');
+                $this->info('Sync 10 latest movies to db');
                 $this->traktTv->setType('movies');
                 $this->traktTv->setExtended('full,images');
-                $this->traktTv->loadWatched();
-                $this->info('Done loading all movies to db');
+                $this->traktTv->syncWatched($this);
+                $this->info('Done syncing 10 latest movies to db');
                 break;
             default:
                 echo 'Use movie';

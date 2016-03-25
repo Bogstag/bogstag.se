@@ -46,6 +46,11 @@
                         <i class="fa fa-key fa-fw"></i> Oauth2 Credentials
                     </a>
                 </li>
+                <li>
+                    <a href="{{ URL::secure('admin/movietickets') }}">
+                        <i class="fa fa-film fa-fw"></i> Movie Tickets
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
