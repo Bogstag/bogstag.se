@@ -8,8 +8,7 @@ use App\Movie;
 use Carbon\Carbon;
 
 /**
- * Class TraktTv
- * @package App\Http\Controllers\Integration\TraktTv
+ * Class TraktTv.
  */
 class TraktTv extends Integrator
 {
