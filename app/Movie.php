@@ -43,6 +43,5 @@ class Movie extends Model
         if (!empty($this->slug)) {
             return url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
         }
-        return null;
     }
 }
