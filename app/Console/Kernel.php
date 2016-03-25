@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\GoogleFitCommand::class,
         \App\Console\Commands\Oauth2TokenCommand::class,
         \App\Console\Commands\LoadTraktTvCommand::class,
-        \App\Console\Commands\SyncTraktTvCommand::class,];
+        \App\Console\Commands\SyncTraktTvCommand::class, ];
 
     /**
      * Define the application's command schedule.

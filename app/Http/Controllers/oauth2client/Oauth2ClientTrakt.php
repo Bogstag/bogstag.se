@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Http\Requests;
 use App\Oauth2Credential;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Log;
 
 /**
- * Class Oauth2ClientTrakt
- * @package App\Http\Controllers\oauth2client
+ * Class Oauth2ClientTrakt.
  */
 class Oauth2ClientTrakt extends Oauth2Client
 {
-
     /**
      * @var
      */
@@ -29,8 +26,9 @@ class Oauth2ClientTrakt extends Oauth2Client
     }
 
     /**
-     * @param Request $request
+     * @param Request     $request
      * @param array|mixed $credential
+     *
      * @return \League\OAuth2\Client\Token\AccessToken
      */
     public function authorizeCredentials(Request $request, Oauth2Credential $credential)
@@ -47,11 +45,13 @@ class Oauth2ClientTrakt extends Oauth2Client
             $provider->authorize();
         }
         $token = $provider->getAccessToken('authorization_code', ['code' => $_GET['code']]);
+
         return $token;
     }
 
     /**
      * @param $credential
+     *
      * @return Trakt
      */
     private function createProvider($credential)
@@ -60,14 +60,12 @@ class Oauth2ClientTrakt extends Oauth2Client
             ['clientId'     => $credential->clientid,
              'clientSecret' => $credential->clientsecret,
              'redirectUri'  => $credential->redirecturi,
-             'hostedDomain' => env('APP_URL', null),]
+             'hostedDomain' => env('APP_URL', null), ]
         );
+
         return $provider;
     }
 
-    /**
-     *
-     */
     public function refreshToken()
     {
         $now = Carbon::now();
@@ -90,6 +88,7 @@ class Oauth2ClientTrakt extends Oauth2Client
     private function getProvider()
     {
         $provider = $this->createProvider($this->credential);
+
         return $provider;
     }
 
@@ -108,6 +107,7 @@ class Oauth2ClientTrakt extends Oauth2Client
     /**
      * @param $method
      * @param $url
+     *
      * @return mixed
      */
     public function createAuthRequest(
@@ -117,7 +117,7 @@ class Oauth2ClientTrakt extends Oauth2Client
         $credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
         $options = ['headers' => ['Content-Type'      => 'application/json',
                                   'trakt-api-version' => 2,
-                                  'trakt-api-key'     => $credential->clientid]];
+                                  'trakt-api-key'     => $credential->clientid, ]];
         $provider = $this->getProvider();
         $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
 

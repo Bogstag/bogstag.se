@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Oauth2Credential;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 /**
- * Class Oauth2CredentialAdminController
- * @package App\Http\Controllers\Admin
+ * Class Oauth2CredentialAdminController.
  */
 class Oauth2CredentialAdminController extends Controller
 {
@@ -27,6 +25,7 @@ class Oauth2CredentialAdminController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -40,22 +39,21 @@ class Oauth2CredentialAdminController extends Controller
         $credential->save();
 
         return redirect()->action('Admin\Oauth2CredentialAdminController@show', $input['provider']);
-
     }
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Request $request)
     {
-
         $credential = Oauth2Credential::firstOrNew(
             ['provider' => $request->route('oauth2credential')]
         );
 
         if ($request->route('oauth2credential') == 'Trakt') {
-            $Oauth2Client = new Oauth2ClientTrakt;
+            $Oauth2Client = new Oauth2ClientTrakt();
         }
 
         $token = $Oauth2Client->authorizeCredentials($request, $credential);
@@ -64,6 +62,7 @@ class Oauth2CredentialAdminController extends Controller
         $credential->refreshtoken = $token->getRefreshToken();
         $credential->redirecturi = $request->url();
         $credential->save();
+
         return redirect()->action('Admin\Oauth2CredentialAdminController@index');
     }
 }

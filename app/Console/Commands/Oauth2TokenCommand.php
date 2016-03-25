@@ -6,8 +6,7 @@ use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use Illuminate\Console\Command;
 
 /**
- * Class Oauth2TokenCommand
- * @package App\Console\Commands
+ * Class Oauth2TokenCommand.
  */
 class Oauth2TokenCommand extends Command
 {
@@ -47,9 +46,6 @@ class Oauth2TokenCommand extends Command
         $this->info('Tokens refreshed');
     }
 
-    /**
-     *
-     */
     private function refreshTrakt()
     {
         $trakt = new Oauth2ClientTrakt();
