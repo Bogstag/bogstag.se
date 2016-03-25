@@ -18,6 +18,7 @@ class MovieController extends Controller
     {
         $WatchedMovies = Movie::WatchedMovies()->paginate(100);
         $title = 'All movies i have watched.';
+
         return view(
             'pages.WatchedMovies',
             ['WatchedMovies' => $WatchedMovies, 'title' => $title]
@@ -28,6 +29,7 @@ class MovieController extends Controller
     {
         $WatchedMovies = Movie::WatchedMovies()->whereNotNull('ticket_datetime')->paginate(100);
         $title = 'Latest movies i have watched in the cinemas (with ticket).';
+
         return view(
             'pages.WatchedMovies',
             ['WatchedMovies' => $WatchedMovies, 'title' => $title]
