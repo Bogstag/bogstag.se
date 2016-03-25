@@ -31,7 +31,7 @@ Route::group(['middleware' => 'web', 'throttle'], function () {
         return view('pages.about');
     });
 
-    Route::get('test', 'test@index');
+
 
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
