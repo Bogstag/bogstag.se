@@ -89,7 +89,7 @@ class TraktTv extends Integrator
             $this->saveCachedAPICall($localFile, json_encode($result));
         }
 
-        return json_decode($result);
+        return collect($result);
     }
 
     private function createUrl()
