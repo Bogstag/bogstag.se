@@ -52,15 +52,12 @@ class Oauth2ClientTrakt extends Oauth2Client
             ['clientId'     => $credential->clientid,
              'clientSecret' => $credential->clientsecret,
              'redirectUri'  => $credential->redirecturi,
-             'hostedDomain' => env('APP_URL', null),]
+             'hostedDomain' => env('APP_URL', null), ]
         );
 
         return $provider;
     }
 
-    /**
-     *
-     */
     public function refreshToken()
     {
         $now = Carbon::now();
@@ -78,9 +75,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         }
     }
 
-    /**
-     *
-     */
     private function getCredential()
     {
         $this->credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
@@ -122,7 +116,7 @@ class Oauth2ClientTrakt extends Oauth2Client
         $this->getCredential();
         $options = ['headers' => ['Content-Type'      => 'application/json',
                                   'trakt-api-version' => 2,
-                                  'trakt-api-key'     => $this->credential->clientid,]];
+                                  'trakt-api-key'     => $this->credential->clientid, ]];
         $provider = $this->getProvider();
         $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
 
