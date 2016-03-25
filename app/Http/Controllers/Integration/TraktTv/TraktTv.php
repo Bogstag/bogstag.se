@@ -88,7 +88,7 @@ class TraktTv extends Integrator
             $this->saveCachedAPICall($localFile, json_encode($result));
         }
 
-        return $result;
+        return collect($result);
     }
 
     private function createUrl()
@@ -122,9 +122,7 @@ class TraktTv extends Integrator
 
     private function storeMovie($watchedMovie)
     {
-        $movie = Movie::firstOrNew(
-            ['id_trakt' => $watchedMovie->movie->ids->trakt]
-        );
+        $movie = Movie::firstOrNew(['id_trakt' => $watchedMovie->movie->ids->trakt]);
 
         if (!empty($watchedMovie->plays)) {
             $movie->plays = $watchedMovie->plays;

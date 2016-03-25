@@ -31,6 +31,7 @@ class Movie extends Model
      * @var array
      */
     protected $fillable = ['id_trakt'];
+
     protected $casts = ['genres' => 'array'];
 
     public function scopeWatchedMovies($query)
@@ -43,6 +44,7 @@ class Movie extends Model
         if (!empty($this->slug)) {
             return url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
         }
+
         return null;
     }
 }
