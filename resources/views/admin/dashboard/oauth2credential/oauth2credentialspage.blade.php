@@ -19,7 +19,7 @@
                 </div>
                 <div class="panel-body">
                     <p>
-                    <form action="{{ Request::url() }}" method="POST">
+                    <form action="{{URL::secure('admin/oauth2credential')}}" method="POST">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <div class="input-group">
