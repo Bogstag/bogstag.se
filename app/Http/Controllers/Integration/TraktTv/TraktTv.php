@@ -7,6 +7,10 @@ use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
 
+/**
+ * Class TraktTv
+ * @package App\Http\Controllers\Integration\TraktTv
+ */
 class TraktTv extends Integrator
 {
     /**
@@ -77,18 +81,20 @@ class TraktTv extends Integrator
             return $cachedAPICall;
         };
 
-        $result = $this->traktClient->createAuthRequest(
-            $method,
-            $url
+        $result = json_encode(
+            $this->traktClient->createAuthRequest(
+                $method,
+                $url
+            )
         );
 
         $this->incrementTraktTvApiLimitCounter();
 
         if ((env('APP_ENV', false) == 'local')) {
-            $this->saveCachedAPICall($localFile, json_encode($result));
+            $this->saveCachedAPICall($localFile, $result);
         }
 
-        return collect($result);
+        return json_decode($result);
     }
 
     private function createUrl()
@@ -122,7 +128,6 @@ class TraktTv extends Integrator
 
     private function storeMovie($watchedMovie)
     {
-        dd($watchedMovie);
         $movie = Movie::firstOrNew(['id_trakt' => $watchedMovie->movie->ids->trakt]);
 
         if (!empty($watchedMovie->plays)) {
