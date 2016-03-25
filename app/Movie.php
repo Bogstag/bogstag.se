@@ -40,6 +40,9 @@ class Movie extends Model
 
     public function getTicketImageUrlAttribute()
     {
-        return url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
+        if (!empty($this->slug)) {
+            return url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
+        }
+        return null;
     }
 }
