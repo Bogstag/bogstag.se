@@ -13,11 +13,16 @@
                 <div class="col-sm-2">
                     <div class="thumbnail text-center">
                         <a href="../{{ $WatchedMovie->slug }}" class="">
-                            @if (empty($WatchedMovie->poster))
-                                <h3>{{ $WatchedMovie->title }}</h3>
+                            @if ($ticketsview)
+                                <img class="img-responsive" src="{{ $WatchedMovie->ticket_image_url }}"
+                                     alt="{{ $WatchedMovie->title }} ticket">
                             @else
-                                <img class="img-responsive" src="{{ $WatchedMovie->poster }}"
-                                     alt="{{ $WatchedMovie->title }} logo">
+                                @if (empty($WatchedMovie->poster))
+                                    <h3>{{ $WatchedMovie->title }}</h3>
+                                @else
+                                    <img class="img-responsive" src="{{ $WatchedMovie->poster }}"
+                                         alt="{{ $WatchedMovie->title }} logo">
+                                @endif
                             @endif
                         </a>
                     </div>
