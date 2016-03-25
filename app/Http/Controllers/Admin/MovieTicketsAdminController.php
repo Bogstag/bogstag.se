@@ -31,7 +31,7 @@ class MovieTicketsAdminController extends Controller
     {
         $input = $request->all();
         $movie = Movie::where('slug', $input['slug'])->first();
-        $movie->ticket_datetime = $input['ticket_datetime'];
+        $movie->ticket_datetime = $input['ticket_datetime'].':00';
         $movie->ticket_price = $input['ticket_price'];
         $movie->ticket_row = $input['ticket_row'];
         $movie->ticket_seat = $input['ticket_seat'];
