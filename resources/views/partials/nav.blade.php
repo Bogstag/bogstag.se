@@ -45,7 +45,7 @@
                        aria-expanded="false"><i class="fa fa-film"></i> Movie<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::secure('movie/watched/all') }}"><i class="fa fa-eye"></i> Watched</a></li>
-                        <li><a href="{{ URL::secure('movie/watched/cinema') }}"><i class="fa fa-ticket"></i> Watched in cinemas</a></li>
+                        <li><a href="{{ URL::secure('movie/watched/cinema') }}"><i class="fa fa-ticket"></i> Tickets</a></li>
                     </ul>
                 </li>
 
