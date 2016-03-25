@@ -34,7 +34,8 @@ Route::group(['middleware' => 'web', 'throttle'], function () {
     Route::resource('activity/steps', 'StepCharts@getStepCharts');
     Route::resource('server/email', 'EmailCharts@getEmailCharts');
     Route::resource('game/steam', 'SteamGameController');
-    Route::resource('movie/watched', 'MovieController');
+    Route::resource('movie/watched/all', 'MovieController@indexAll');
+    Route::resource('movie/watched/cinema', 'MovieController@indexCinema');
     Route::resource('movie', 'MovieController');
 
     Route::auth();

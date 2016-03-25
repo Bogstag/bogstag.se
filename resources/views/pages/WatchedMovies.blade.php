@@ -1,19 +1,18 @@
 @extends('layouts.master')
-@section('title') Watched Movies - @parent @stop
+@section('title') {{ $title }} - @parent @stop
 @section('content')
     <div class="row">
         <div class="page-header">
-            <h2>Watched Movies <br/>
-                <small>Latest 120 movies i have watched.</small>
-            </h2>
+            <h2>{{ $title }}</h2>
         </div>
     </div>
     @if($WatchedMovies)
+        {!! $WatchedMovies->links() !!}
         <div class="container-fluid">
             @foreach($WatchedMovies as $WatchedMovie)
                 <div class="col-sm-2">
                     <div class="thumbnail text-center">
-                        <a href="{{ $WatchedMovie->slug }}" class="">
+                        <a href="../{{ $WatchedMovie->slug }}" class="">
                             @if (empty($WatchedMovie->poster))
                                 <h3>{{ $WatchedMovie->title }}</h3>
                             @else
@@ -26,6 +25,7 @@
 
             @endforeach
         </div>
+        {!! $WatchedMovies->links() !!}
     @endif
 @endsection
 

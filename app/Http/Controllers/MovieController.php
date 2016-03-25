@@ -14,13 +14,23 @@ class MovieController extends Controller
      *
      * @return \BladeView|bool|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function indexAll()
     {
-        $WatchedMovies = Movie::WatchedMovies()->take(120)->get();
-
+        $WatchedMovies = Movie::WatchedMovies()->paginate(100);
+        $title = 'All movies i have watched.';
         return view(
             'pages.WatchedMovies',
-            ['WatchedMovies' => $WatchedMovies]
+            ['WatchedMovies' => $WatchedMovies, 'title' => $title]
+        );
+    }
+
+    public function indexCinema()
+    {
+        $WatchedMovies = Movie::WatchedMovies()->whereNotNull('ticket_datetime')->paginate(100);
+        $title = 'Latest movies i have watched in the cinemas (with ticket).';
+        return view(
+            'pages.WatchedMovies',
+            ['WatchedMovies' => $WatchedMovies, 'title' => $title]
         );
     }
 

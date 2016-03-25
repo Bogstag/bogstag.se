@@ -69,7 +69,7 @@
     @if ($movie->ticket_datetime)
         <div class="clearfix">&nbsp;</div>
         <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-info"></i> Ticket for {{ $movie->title }}</div>
+            <div class="panel-heading"><i class="fa fa-ticket"></i> Ticket for {{ $movie->title }}</div>
             <div class="panel-body">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="media-left"><img class="img-responsive" src="{{ $movie->ticket_image_url }}" alt="..."></div>
