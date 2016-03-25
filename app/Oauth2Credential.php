@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Oauth2Credential
- * @package App
+ * Class Oauth2Credential.
  */
 class Oauth2Credential extends Model
 {

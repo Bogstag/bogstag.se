@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Integration\TraktTv;
 
 use App\Http\Controllers\Integration\Integrator;
 use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
-use App\Http\Requests;
 use App\Movie;
 use Carbon\Carbon;
 
@@ -57,12 +56,14 @@ class TraktTv extends Integrator
         foreach ($watchedMovies as $watchedMovie) {
             $this->storeMovie($watchedMovie);
         }
+
         return $watchedMovies;
     }
 
     public function getSyncWatched()
     {
         $this->urlPart = 'sync/watched/';
+
         return $this->makeRequest();
     }
 
@@ -155,6 +156,7 @@ class TraktTv extends Integrator
         $movie->banner = $watchedMovie->movie->images->banner->full;
         $movie->thumb = $watchedMovie->movie->images->thumb->full;
         $movie->genres = $watchedMovie->movie->genres;
+
         return $movie->save();
     }
 
@@ -165,12 +167,14 @@ class TraktTv extends Integrator
             $this->storeMovie($watchedMovie);
             $command->info('Stored '.$watchedMovie->movie->title.' to db');
         }
+
         return $watchedMovies;
     }
 
     public function getSyncHistory()
     {
         $this->urlPart = 'sync/history/';
+
         return $this->makeRequest();
     }
 }

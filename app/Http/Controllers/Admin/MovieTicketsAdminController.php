@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Movie;
 use Illuminate\Http\Request;
 
 /**
- * Class Oauth2CredentialAdminController
- * @package App\Http\Controllers\Admin
+ * Class Oauth2CredentialAdminController.
  */
 class MovieTicketsAdminController extends Controller
 {
@@ -26,6 +24,7 @@ class MovieTicketsAdminController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -52,15 +51,14 @@ class MovieTicketsAdminController extends Controller
         }
 
         return redirect()->action('Admin\MovieTicketsAdminController@index');
-
     }
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Request $request)
     {
-
     }
 }
