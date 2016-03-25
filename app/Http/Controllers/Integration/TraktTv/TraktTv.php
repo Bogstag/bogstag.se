@@ -6,6 +6,7 @@ use App\Http\Controllers\Integration\Integrator;
 use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class TraktTv extends Integrator
 {
@@ -88,7 +89,7 @@ class TraktTv extends Integrator
             $this->saveCachedAPICall($localFile, json_encode($result));
         }
 
-        return collect($result);
+        return json_decode($result);
     }
 
     private function createUrl()
@@ -120,8 +121,9 @@ class TraktTv extends Integrator
         );
     }
 
-    private function storeMovie($watchedMovie)
+    private function storeMovie(Collection $watchedMovie)
     {
+        dd($watchedMovie);
         $movie = Movie::firstOrNew(['id_trakt' => $watchedMovie->movie->ids->trakt]);
 
         if (!empty($watchedMovie->plays)) {
