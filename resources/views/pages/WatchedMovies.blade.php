@@ -16,6 +16,9 @@
                             @if ($ticketsview)
                                 <img class="img-responsive" src="{{ $WatchedMovie->ticket_image_url }}"
                                      alt="{{ $WatchedMovie->title }} ticket">
+                                <div class="carousel-caption">
+                                    <h4>{{ $WatchedMovie->title }}</h4>
+                                </div>
                             @else
                                 @if (empty($WatchedMovie->poster))
                                     <h3>{{ $WatchedMovie->title }}</h3>
