@@ -28,7 +28,10 @@ class MovieController extends Controller
 
     public function indexCinema()
     {
-        $WatchedMovies = Movie::WatchedMovies()->whereNotNull('ticket_datetime')->paginate(100);
+        $WatchedMovies = Movie::WatchedMovies()
+            ->whereNotNull('ticket_datetime')
+            ->orderBy('ticket_datetime', 'desc')
+            ->paginate(100);
         $title = 'Latest movies i have watched in the cinemas (with ticket).';
         $ticketsview = true;
 
