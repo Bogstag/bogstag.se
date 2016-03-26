@@ -9,6 +9,7 @@
     @if($WatchedMovies)
         {!! $WatchedMovies->links() !!}
         <div class="container-fluid">
+            <?php $ncachiv = 1 ?>
             @foreach($WatchedMovies as $WatchedMovie)
                 <div class="col-sm-2">
                     <div class="thumbnail text-center">
@@ -30,7 +31,9 @@
                         </a>
                     </div>
                 </div>
-
+                @if($ncachiv % 6 == 0)
+                    <div class="clearfix">&nbsp;</div>
+                @endif
             @endforeach
         </div>
         {!! $WatchedMovies->links() !!}
