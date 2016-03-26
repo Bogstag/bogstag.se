@@ -16,7 +16,7 @@ class MovieController extends Controller
      */
     public function indexAll()
     {
-        $WatchedMovies = Movie::WatchedMovies()->paginate(100);
+        $WatchedMovies = Movie::WatchedMovies()->orderBy('last_watched_at', 'desc')->paginate(100);
         $title = 'All movies i have watched.';
         $ticketsview = false;
 

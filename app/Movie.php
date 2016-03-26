@@ -36,7 +36,7 @@ class Movie extends Model
 
     public function scopeWatchedMovies($query)
     {
-        $query->select('title', 'slug', 'poster', 'ticket_datetime', 'year')->orderBy('last_watched_at', 'desc');
+        $query->select('title', 'slug', 'poster', 'ticket_datetime', 'year');
     }
 
     public function getTicketImageUrlAttribute()
