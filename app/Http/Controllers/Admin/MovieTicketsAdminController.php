@@ -17,7 +17,10 @@ class MovieTicketsAdminController extends Controller
     public function index()
     {
         $title = 'Movie Tickets';
-        $tickets = Movie::select('title', 'slug', 'year')->where('ticket_price', null)->orderby('id', 'desc')->get();
+        $tickets = Movie::select('title', 'slug', 'year')->where('ticket_price', null)->orderby(
+            'last_watched_at',
+            'asc'
+        )->get();
 
         return view('admin.dashboard.movietickets.movieticketspage', compact('title', 'tickets'));
     }
