@@ -134,9 +134,13 @@ class TraktTv extends Integrator
         }
 
         if (!empty($watchedMovie->watched_at)) {
-            $movie->last_watched_at = new Carbon($watchedMovie->watched_at);
+            $last_watched_at = new Carbon($watchedMovie->watched_at);
+            $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
+            $movie->last_watched_at = $last_watched_at;
         } elseif (!empty($watchedMovie->last_watched_at)) {
-            $movie->last_watched_at = new Carbon($watchedMovie->last_watched_at);
+            $last_watched_at = new Carbon($watchedMovie->last_watched_at);
+            $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
+            $movie->last_watched_at = $last_watched_at;
         }
 
         $movie->title = $watchedMovie->movie->title;

@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'timezone'        => 'Europe/Berlin',
+    'timezone'        => 'Europe/Stockholm',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
