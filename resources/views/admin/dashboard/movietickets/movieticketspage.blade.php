@@ -16,9 +16,14 @@
         <table class="table table-bordered" id="emaildrops-table">
             <thead>
             <tr>
+                <col width="19%">
+                <col width="18%">
+                <col width="13%">
+                <col width="13%">
+                <col width="13%">
+                <col width="13%">
+                <col width="11%">
                 <th>Title</th>
-                <th>Year</th>
-                <th>Slug</th>
                 <th>Ticket DateTime</th>
                 <th>Ticket Price</th>
                 <th>Ticket Row</th>
@@ -34,11 +39,12 @@
                         {!! csrf_field() !!}
                         <td><input type="text" id="title" name="title" class="form-control" value="{{ $ticket->title }}"
                                    placeholder="title"></td>
-                        <td><input type="text" id="year" name="year" class="form-control" value="{{ $ticket->year }}"
-                                   placeholder="year"></td>
-                        <td><input type="text" id="slug" name="slug" class="form-control" value="{{ $ticket->slug }}"
-                                   placeholder="slug"></td>
-                        <td><input type="text" id="ticket_datetime" name="ticket_datetime" class="form-control" value=""
+                        <input type="hidden" id="year" name="year" class="form-control" value="{{ $ticket->year }}"
+                               placeholder="year">
+                        <input type="hidden" id="slug" name="slug" class="form-control" value="{{ $ticket->slug }}"
+                               placeholder="slug">
+                        <td><input type="text" id="ticket_datetime" name="ticket_datetime" class="form-control"
+                                   value="{{ substr($ticket->last_watched_at, 0, -3) }}"
                                    placeholder="ticket_datetime"></td>
                         <td><input type="text" id="ticket_price" name="ticket_price" class="form-control" value=""
                                    placeholder="ticket_price"></td>

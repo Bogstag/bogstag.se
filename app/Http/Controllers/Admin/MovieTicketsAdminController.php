@@ -17,7 +17,7 @@ class MovieTicketsAdminController extends Controller
     public function index()
     {
         $title = 'Movie Tickets';
-        $tickets = Movie::select('title', 'slug', 'year')->where('ticket_price', null)->orderby(
+        $tickets = Movie::select('title', 'slug', 'year', 'last_watched_at')->where('ticket_price', null)->orderby(
             'last_watched_at',
             'asc'
         )->get();
