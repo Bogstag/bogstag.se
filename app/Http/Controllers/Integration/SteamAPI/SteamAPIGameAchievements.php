@@ -68,7 +68,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     {
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($this->localfile)) {
             return $cachedAPICall;
-        };
+        }
         $GetAchievements = new GetUserStatsForGame(env('STEAM_64ID', false), $GameId);
         $GetAchievements = $this->steam->run($GetAchievements);
 
