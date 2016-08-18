@@ -168,7 +168,7 @@ class SteamAPIGame extends SteamAPI
 
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($localfile)) {
             return $cachedAPICall;
-        };
+        }
 
         $GetOwnedGames = new GetOwnedGames(env('STEAM_64ID', false));
         $GetOwnedGames = $this->steam->run($GetOwnedGames->setIncludeAppInfo(1));
@@ -191,7 +191,7 @@ class SteamAPIGame extends SteamAPI
         $localfile = 'SteamApi/GetRecentlyPlayedGames.json';
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($localfile)) {
             return $cachedAPICall;
-        };
+        }
         $GetRecentlyPlayedGames = new GetRecentlyPlayedGames(env('STEAM_64ID', false));
         $GetRecentlyPlayedGames = $this->steam->run($GetRecentlyPlayedGames);
 

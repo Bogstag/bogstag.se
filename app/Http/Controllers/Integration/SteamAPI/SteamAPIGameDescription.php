@@ -124,13 +124,13 @@ class SteamAPIGameDescription extends SteamAPIGame
             $SteamGame->website = $GameDescriptionJson->website;
         }
 
-        if (!empty($GameDescriptionJson->screenshots{0}->path_thumbnail)) {
-            $SteamGame->screenshot_path_thumbnail = $GameDescriptionJson->screenshots{0}
+        if (!empty($GameDescriptionJson->screenshots[0]->path_thumbnail)) {
+            $SteamGame->screenshot_path_thumbnail = $GameDescriptionJson->screenshots[0]
             ->path_thumbnail;
         }
 
-        if (!empty($GameDescriptionJson->screenshots{0}->path_full)) {
-            $SteamGame->screenshot_path_full = $GameDescriptionJson->screenshots{0}
+        if (!empty($GameDescriptionJson->screenshots[0]->path_full)) {
+            $SteamGame->screenshot_path_full = $GameDescriptionJson->screenshots[0]
             ->path_full;
         }
         if (!empty($GameDescriptionJson->movies)) {

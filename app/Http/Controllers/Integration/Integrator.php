@@ -64,7 +64,7 @@ class Integrator extends Controller
     {
         if (Storage::disk('local')->exists($localfile)) {
             return json_decode(Storage::get($localfile));
-        };
+        }
 
         return false;
     }

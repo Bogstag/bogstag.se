@@ -43,7 +43,6 @@ class AddMovieToDb extends Migration
             $table->string('banner')->nullable();
             $table->string('thumb')->nullable();
             $table->text('genres')->nullable();
-
         });
     }
 

@@ -78,7 +78,7 @@ class TraktTv extends Integrator
 
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($localFile)) {
             return $cachedAPICall;
-        };
+        }
 
         $result = json_encode(
             $this->traktClient->createAuthRequest(

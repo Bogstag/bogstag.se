@@ -27,7 +27,6 @@ class CreateDateTable extends Migration
             $table->integer('week');
             $table->integer('nrdaysinmonth');
             $table->boolean('leapyear'); // 1=true, 0=false
-
         });
     }
 
