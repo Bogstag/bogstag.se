@@ -22,7 +22,7 @@ class SteamApiCommand extends Command
     protected $signature = 'steamapi:game
     {action : You whant to load or update}
     {--gameid= : specify a game id to update only this game.}
-    {--rpg : load pnly games play within 2 weeks}
+    {--rpg : load only games play within 2 weeks}
     ';
 
     /**
@@ -31,8 +31,8 @@ class SteamApiCommand extends Command
      * @var string
      */
     protected $description = 'Command for update games from steam api.
-    gameid only works with load.
-    rpg only works with update.';
+    --gameid only works with load.
+    --rpg only works with update.';
 
     /**
      * SteamApiCommand constructor.
