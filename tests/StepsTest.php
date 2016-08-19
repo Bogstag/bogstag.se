@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
- * Class StepsTest
+ * Class StepsTest.
  */
 class StepsTest extends TestCase
 {
@@ -14,7 +14,8 @@ class StepsTest extends TestCase
     /**
      * @covers App/Step
      */
-    public function testStoreSteps() {
+    public function testStoreSteps()
+    {
         $step = factory(App\Step::class)->create([
             'date' => '2016-01-01 00:00:02',
         ]);
