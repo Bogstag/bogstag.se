@@ -11,9 +11,6 @@ class StepsTest extends TestCase
     use DatabaseMigrations;
     use DatabaseTransactions;
 
-    /**
-     * @covers App/Step
-     */
     public function testStoreSteps()
     {
         $step = factory(App\Step::class)->create([
