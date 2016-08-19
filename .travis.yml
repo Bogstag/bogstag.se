@@ -17,6 +17,9 @@ sudo: false
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction
+  - mysql -e 'create database forge;'
+  - php artisan migrate --env="testing"
+  - php artisan db:seed --env="testing"
 
 before_install:
   - pip install --user codecov
