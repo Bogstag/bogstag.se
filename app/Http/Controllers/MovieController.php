@@ -66,6 +66,9 @@ class MovieController extends Controller
     public function show($slug)
     {
         $movie = Movie::where('slug', $slug)->first();
+        if (!$movie) {
+            abort(404, 'Movie do not exists, either i messed up or you write poorly');
+        }
         $genrerow = '';
         foreach ($movie->genres as $genre) {
             $genrerow .= ucfirst($genre).', ';
