@@ -29,5 +29,4 @@ class FrontEndTest extends TestCase
             ->click('About')
             ->seePageIs('/about');
     }
-
 }
