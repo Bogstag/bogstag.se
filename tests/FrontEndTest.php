@@ -30,36 +30,4 @@ class FrontEndTest extends TestCase
             ->seePageIs('/about');
     }
 
-    /**
-     * @covers \App\Http\Controllers\StepCharts::getStepCharts
-     */
-    public function testStepsPage()
-    {
-        $this->visit('/')
-            ->click('Steps')
-            ->see('Activity / Steps')
-            ->seePageIs('/activity/steps');
-    }
-
-    /**
-     * @covers \App\Http\Controllers\EmailCharts::getEmailCharts
-     */
-    public function testEmailPage()
-    {
-        $this->visit('/')
-            ->click('Email')
-            ->see('Server / Email')
-            ->seePageIs('/server/email');
-    }
-
-    /**
-     * @covers \App\Http\Controllers\SteamGameController::index
-     */
-    public function testSteamPage()
-    {
-        $this->visit('/')
-            ->click('Steam')
-            ->see('Steam Games')
-            ->seePageIs('/game/steam');
-    }
 }
