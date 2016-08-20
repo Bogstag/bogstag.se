@@ -2,9 +2,6 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGameAchievements;
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGameDescription;
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGameSchema;
 
 /**
  * Class FrontEndTest.
@@ -27,7 +24,7 @@ class SteamTest extends TestCase
 
     public function test_parsing_and_storing_a_game_and_stats()
     {
-        $gamejson = "{\"appid\":280220,\"name\":\"Creeper World 3: Arc Eternal\",\"playtime_2weeks\":4944,\"playtime_forever\":9719,\"img_icon_url\":\"32c20617180519227d3a52f239db5f73158da45c\",\"img_logo_url\":\"b6b5df5d1ac73f39c46de9d325b6b331906fe22c\",\"has_community_visible_stats\":true}";
+        $gamejson = '{"appid":280220,"name":"Creeper World 3: Arc Eternal","playtime_2weeks":4944,"playtime_forever":9719,"img_icon_url":"32c20617180519227d3a52f239db5f73158da45c","img_logo_url":"b6b5df5d1ac73f39c46de9d325b6b331906fe22c","has_community_visible_stats":true}';
         $game = json_decode($gamejson);
         $SteamGame = App\SteamGame::firstOrNew(['id' => $game->appid]);
         $SteamAPIGame = new App\Http\Controllers\Integration\SteamAPI\SteamAPIGame();
