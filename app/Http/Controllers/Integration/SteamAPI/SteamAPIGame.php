@@ -97,7 +97,7 @@ class SteamAPIGame extends SteamAPI
      *
      * @return bool
      */
-    private function parseAndSaveSteamGame(SteamGame $SteamGame, $game)
+    public function parseAndSaveSteamGame(SteamGame $SteamGame, $game)
     {
         if (!empty($game->name)) {
             $SteamGame->name = $game->name;
@@ -152,7 +152,7 @@ class SteamAPIGame extends SteamAPI
     /**
      * @param $SteamGame
      */
-    private function runDescriptionSchemaAchievements($SteamGame)
+    public function runDescriptionSchemaAchievements($SteamGame)
     {
         new SteamAPIGameDescription($SteamGame);
         new SteamAPIGameSchema($SteamGame);
