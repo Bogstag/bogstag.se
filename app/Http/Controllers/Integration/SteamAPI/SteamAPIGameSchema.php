@@ -93,7 +93,7 @@ class SteamAPIGameSchema extends SteamAPIGame
      *
      * @return bool
      */
-    private function parseAndSaveAchievementSchema($GameId, $SteamGameSchemaFromAPI)
+    public function parseAndSaveAchievementSchema($GameId, $SteamGameSchemaFromAPI)
     {
         if (!$GameId) {
             return false;
@@ -102,6 +102,7 @@ class SteamAPIGameSchema extends SteamAPIGame
             if (empty($achievement)) {
                 continue;
             }
+
             $SteamAchievement = SteamGameAchievement::firstOrNew(
                 ['steam_game_id' => $GameId, 'name' => $achievement->name]
             );
@@ -137,7 +138,7 @@ class SteamAPIGameSchema extends SteamAPIGame
      *
      * @return bool
      */
-    private function parseAndSaveStatSchema($GameId, $SteamGameSchemaFromAPI)
+    public function parseAndSaveStatSchema($GameId, $SteamGameSchemaFromAPI)
     {
         if (!$GameId) {
             return false;
