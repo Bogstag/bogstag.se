@@ -21,7 +21,7 @@
 
                 @foreach($SteamGames as $SteamGame)
                     @if(! in_array($SteamGame->id, $SteamGame->getGamesWithNoStats()))
-                        <a href="steam/{{ $SteamGame->id }}" class="list-group-item">
+                        <a href="steam/{{ $SteamGame->id }}" name= "{{ $SteamGame->name }}" class="list-group-item">
                             @else
                                 <a href="steam/{{ $SteamGame->id }}" class="list-group-item disabled">
                                     @endif

@@ -8,7 +8,7 @@ class FrontEndTest extends TestCase
 {
     public function testHomePage()
     {
-        $this->visit('/')
+        $this->visit('/home')
             ->see('Home Page')
             ->click('Home')
             ->seePageIs('/');
@@ -28,5 +28,11 @@ class FrontEndTest extends TestCase
             ->see('About')
             ->click('About')
             ->seePageIs('/about');
+    }
+
+    public function testRegisterPage()
+    {
+        $this->visit('/register')
+            ->seePageIs('/');
     }
 }
