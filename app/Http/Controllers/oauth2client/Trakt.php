@@ -52,7 +52,6 @@ class Trakt extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-
     }
 
     /**
@@ -67,7 +66,6 @@ class Trakt extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-
     }
 
     /**
@@ -84,7 +82,6 @@ class Trakt extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-
     }
 
     /**
@@ -100,6 +97,5 @@ class Trakt extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-
     }
 }
