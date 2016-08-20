@@ -47,5 +47,3 @@ class SteamTest extends TestCase
         $this->seeInDatabase('steam_game_stats', ['steam_game_id' => '280220', 'display_name' => 'Inhibitors destroyed in Tormented Space']);
     }
 }
-
-
