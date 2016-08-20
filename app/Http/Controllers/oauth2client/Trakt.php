@@ -47,10 +47,12 @@ class Trakt extends AbstractProvider
      * @param AccessToken $token
      *
      * @return string
+     *
+     * @todo Implement getResourceOwnerDetailsUrl() method.
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        // TODO: Implement getResourceOwnerDetailsUrl() method.
+
     }
 
     /**
@@ -60,10 +62,12 @@ class Trakt extends AbstractProvider
      * of the resource owner, rather than all the available scopes.
      *
      * @return array
+     *
+     * @todo Implement getDefaultScopes() method.
      */
     protected function getDefaultScopes()
     {
-        // TODO: Implement getDefaultScopes() method.
+
     }
 
     /**
@@ -75,10 +79,12 @@ class Trakt extends AbstractProvider
      * @throws IdentityProviderException
      *
      * @return void
+     *
+     * @todo Implement checkResponse() method.
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        // TODO: Implement checkResponse() method.
+
     }
 
     /**
@@ -89,9 +95,11 @@ class Trakt extends AbstractProvider
      * @param AccessToken $token
      *
      * @return ResourceOwnerInterface
+     *
+     * @todo Implement createResourceOwner() method.
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        // TODO: Implement createResourceOwner() method.
+
     }
 }
