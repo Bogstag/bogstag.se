@@ -61,6 +61,5 @@ class SteamTest extends TestCase
 
         $SteamGame = \App\SteamGame::find($game->appid)->achievements->first();
         $this->assertEquals('ACH_0', $SteamGame['attributes']['name']);
-
     }
 }

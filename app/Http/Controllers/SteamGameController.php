@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\SteamGame;
-use Illuminate\Http\Request;
 
 class SteamGameController extends Controller
 {
@@ -50,11 +49,10 @@ class SteamGameController extends Controller
         return view(
             'pages.SteamGame',
             [
-                'SteamGame' => $SteamGame,
-                'CompletedAchievements' => $CompletedAchievements,
+                'SteamGame'                => $SteamGame,
+                'CompletedAchievements'    => $CompletedAchievements,
                 'NotCompletedAchievements' => $NotCompletedAchievements,
             ]
         );
     }
-
 }
