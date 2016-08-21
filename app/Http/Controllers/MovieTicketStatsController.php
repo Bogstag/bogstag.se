@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Movie;
-use App\Http\Requests;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -45,16 +43,17 @@ class MovieTicketStatsController extends Controller
         return view(
             'pages.Movie.ticketstats',
             [
-                'TicketsTotal' => $TicketsTotal[0],
+                'TicketsTotal'                           => $TicketsTotal[0],
                 'LineChartAverageTicketPricePerYear'     => $LineChartAverageTicketPricePerYear,
-                'LineChartNumberOfTicketsPerYear'     => $LineChartNumberOfTicketsPerYear,
-                'LineTotalCostPerYear'     => $LineTotalCostPerYear,
+                'LineChartNumberOfTicketsPerYear'        => $LineChartNumberOfTicketsPerYear,
+                'LineTotalCostPerYear'                   => $LineTotalCostPerYear,
             ]
         );
     }
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getLineTotalCostPerYear(Collection $dataTableRows)
@@ -73,6 +72,7 @@ class MovieTicketStatsController extends Controller
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getLineChartNumberOfTicketsPerYear(Collection $dataTableRows)
@@ -93,6 +93,7 @@ class MovieTicketStatsController extends Controller
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getLineChartAverageTicketPricePerYear(Collection $dataTableRows)
