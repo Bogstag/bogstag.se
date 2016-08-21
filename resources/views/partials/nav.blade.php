@@ -46,6 +46,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::secure('movie/watched/all') }}"><i class="fa fa-eye"></i> Watched</a></li>
                         <li><a href="{{ URL::secure('movie/watched/cinema') }}"><i class="fa fa-ticket"></i> Tickets</a></li>
+                        <li><a href="{{ URL::secure('movie/stats') }}"><i class="fa fa-bar-chart"></i> Ticket stats</a></li>
                     </ul>
                 </li>
 

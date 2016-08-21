@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') {{ $movie->title }} - Steam Game - @parent @stop
+@section('title') {{ $movie->title }} - Movie - @parent @stop
 @section('content')
     <div class="container-fluid">
         <div class="row">
