@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
-use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
@@ -15,7 +14,7 @@ class MovieController extends Controller
         }
         $genrerow = '';
         foreach ($movie->genres as $genre) {
-            $genrerow .= ucfirst($genre) . ', ';
+            $genrerow .= ucfirst($genre).', ';
         }
         $genrerow = rtrim($genrerow, ', ');
 

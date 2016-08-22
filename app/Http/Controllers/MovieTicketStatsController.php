@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Movie;
-use App\Http\Requests;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -35,8 +33,12 @@ class MovieTicketStatsController extends Controller
         }));
 
         $BarChartNumberOfTicketsPerYear = $this->getBarChartNumberOfTicketsPerYear($TicketsPerYear->map(function ($item) {
-            if ($item->NumberOfNotFreeTickets == 0) { $item->NumberOfNotFreeTickets = null; }
-            if ($item->NumberOfFreeTickets == 0) { $item->NumberOfFreeTickets = null; }
+            if ($item->NumberOfNotFreeTickets == 0) {
+                $item->NumberOfNotFreeTickets = null;
+            }
+            if ($item->NumberOfFreeTickets == 0) {
+                $item->NumberOfFreeTickets = null;
+            }
             return collect(['Year' => $item->Year, 'NumberOfNotFreeTickets' => $item->NumberOfNotFreeTickets, 'NumberOfFreeTickets' => $item->NumberOfFreeTickets]);
         }));
 
@@ -48,15 +50,16 @@ class MovieTicketStatsController extends Controller
             'pages.Movie.ticketstats',
             [
                 'TicketsTotal' => $TicketsTotal[0],
-                'LineChartAverageTicketPricePerYear'     => $LineChartAverageTicketPricePerYear,
-                'BarChartNumberOfTicketsPerYear'     => $BarChartNumberOfTicketsPerYear,
-                'LineTotalCostPerYear'     => $LineTotalCostPerYear,
+                'LineChartAverageTicketPricePerYear' => $LineChartAverageTicketPricePerYear,
+                'BarChartNumberOfTicketsPerYear' => $BarChartNumberOfTicketsPerYear,
+                'LineTotalCostPerYear' => $LineTotalCostPerYear,
             ]
         );
     }
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getLineTotalCostPerYear(Collection $dataTableRows)
@@ -75,6 +78,7 @@ class MovieTicketStatsController extends Controller
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getBarChartNumberOfTicketsPerYear(Collection $dataTableRows)
@@ -95,6 +99,7 @@ class MovieTicketStatsController extends Controller
 
     /**
      * @param Collection $dataTableRows
+     *
      * @return mixed
      */
     public function getLineChartAverageTicketPricePerYear(Collection $dataTableRows)
