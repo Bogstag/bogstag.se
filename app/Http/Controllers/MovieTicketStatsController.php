@@ -39,6 +39,7 @@ class MovieTicketStatsController extends Controller
             if ($item->NumberOfFreeTickets == 0) {
                 $item->NumberOfFreeTickets = null;
             }
+
             return collect(['Year' => $item->Year, 'NumberOfNotFreeTickets' => $item->NumberOfNotFreeTickets, 'NumberOfFreeTickets' => $item->NumberOfFreeTickets]);
         }));
 
@@ -49,10 +50,10 @@ class MovieTicketStatsController extends Controller
         return view(
             'pages.Movie.ticketstats',
             [
-                'TicketsTotal' => $TicketsTotal[0],
+                'TicketsTotal'                       => $TicketsTotal[0],
                 'LineChartAverageTicketPricePerYear' => $LineChartAverageTicketPricePerYear,
-                'BarChartNumberOfTicketsPerYear' => $BarChartNumberOfTicketsPerYear,
-                'LineTotalCostPerYear' => $LineTotalCostPerYear,
+                'BarChartNumberOfTicketsPerYear'     => $BarChartNumberOfTicketsPerYear,
+                'LineTotalCostPerYear'               => $LineTotalCostPerYear,
             ]
         );
     }
@@ -94,6 +95,7 @@ class MovieTicketStatsController extends Controller
             ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows);
 
         $barChart->isStacked(true);
+
         return $barChart;
     }
 
