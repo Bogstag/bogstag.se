@@ -44,7 +44,7 @@ class MovieTicketsAdminController extends Controller
         } else {
             $destinationPath = public_path('img/tickets/'.$input['year'].'/');
         }
-        if (!is_dir($destinationPath)) {
+        if (! is_dir($destinationPath)) {
             mkdir($destinationPath, 0777, true);
         }
         file_put_contents($destinationPath.$destinationFile, file_get_contents($input['ticket_image']));

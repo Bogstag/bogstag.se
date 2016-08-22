@@ -31,7 +31,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     public function __construct(SteamGame $SteamGame)
     {
         parent::__construct();
-        if (!$SteamGame->id || in_array($SteamGame->id, SteamGame::getGamesWithNoStats())) {
+        if (! $SteamGame->id || in_array($SteamGame->id, SteamGame::getGamesWithNoStats())) {
             return false;
         }
         $this->localfile = 'SteamApi/GetSchemaForGame/'.$SteamGame->id.'.json';
@@ -41,13 +41,13 @@ class SteamAPIGameSchema extends SteamAPIGame
         if (empty($SteamGameSchemaFromAPI)) {
             return false;
         }
-        if (!empty($SteamGameSchemaFromAPI->achievements)) {
+        if (! empty($SteamGameSchemaFromAPI->achievements)) {
             $this->parseAndSaveAchievementSchema($SteamGame->id, $SteamGameSchemaFromAPI->achievements);
         }
-        if (!empty($SteamGameSchemaFromAPI->stats)) {
+        if (! empty($SteamGameSchemaFromAPI->stats)) {
             $this->parseAndSaveStatSchema($SteamGame->id, $SteamGameSchemaFromAPI->stats);
         }
-        if (!empty($SteamGameSchemaFromAPI->achievements) || !empty($SteamGameSchemaFromAPI->stats)) {
+        if (! empty($SteamGameSchemaFromAPI->achievements) || ! empty($SteamGameSchemaFromAPI->stats)) {
             $this->success = $this->setGameTimestampForSchema($SteamGame->id);
         }
         if ($this->success === true) {
@@ -95,7 +95,7 @@ class SteamAPIGameSchema extends SteamAPIGame
      */
     public function parseAndSaveAchievementSchema($GameId, $SteamGameSchemaFromAPI)
     {
-        if (!$GameId) {
+        if (! $GameId) {
             return false;
         }
         foreach ($SteamGameSchemaFromAPI as $achievement) {
@@ -107,23 +107,23 @@ class SteamAPIGameSchema extends SteamAPIGame
                 ['steam_game_id' => $GameId, 'name' => $achievement->name]
             );
 
-            if (!empty($achievement->displayName)) {
+            if (! empty($achievement->displayName)) {
                 $SteamAchievement->display_name = $achievement->displayName;
             }
 
-            if (!empty($achievement->hidden)) {
+            if (! empty($achievement->hidden)) {
                 $SteamAchievement->hidden = $achievement->hidden;
             }
 
-            if (!empty($achievement->description)) {
+            if (! empty($achievement->description)) {
                 $SteamAchievement->description = $achievement->description;
             }
 
-            if (!empty($achievement->icon)) {
+            if (! empty($achievement->icon)) {
                 $SteamAchievement->icon_url = $achievement->icon;
             }
 
-            if (!empty($achievement->icongray)) {
+            if (! empty($achievement->icongray)) {
                 $SteamAchievement->icon_gray_url = $achievement->icongray;
             }
             $SteamAchievement->save();
@@ -140,7 +140,7 @@ class SteamAPIGameSchema extends SteamAPIGame
      */
     public function parseAndSaveStatSchema($GameId, $SteamGameSchemaFromAPI)
     {
-        if (!$GameId) {
+        if (! $GameId) {
             return false;
         }
         foreach ($SteamGameSchemaFromAPI as $stat) {
@@ -151,7 +151,7 @@ class SteamAPIGameSchema extends SteamAPIGame
                 ['steam_game_id' => $GameId, 'name' => $stat->name]
             );
 
-            if (!empty($stat->displayName)) {
+            if (! empty($stat->displayName)) {
                 $SteamGameStat->display_name = $stat->displayName;
             } else {
                 $SteamGameStat->display_name = null;
