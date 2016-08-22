@@ -8,7 +8,7 @@
         <p>I have tried to save all my movie tickets since 1989, i have managed to keep most of them but some have
             disappeared over the years. The total number of tickets i have saved is {{ $TicketsTotal->TotalTickets }}
             pcs. {{ $TicketsTotal->NumberOfFreeTickets }} is free tickets (free mostly from loyalty programs, the main
-            one started in 1998)
+            one started in the fall of 1999)
             and {{ $TicketsTotal->NumberOfNotFreeTickets }} i have payed for.</p>
         <p>Total money spent on the tickets
             is {{ $TicketsTotal->TotalCost }} SEK. That means that the average cost of a ticket (incl free)
@@ -23,8 +23,8 @@
         <div id="LineChartAverageTicketPricePerYear_div"></div>
         @linechart('LineChartAverageTicketPricePerYear', 'LineChartAverageTicketPricePerYear_div')
 
-        <div id="LineChartNumberOfTicketsPerYear_div"></div>
-        @linechart('LineChartNumberOfTicketsPerYear', 'LineChartNumberOfTicketsPerYear_div')
+        <div id="BarChartNumberOfTicketsPerYear_div"></div>
+        @columnchart('BarChartNumberOfTicketsPerYear', 'BarChartNumberOfTicketsPerYear_div')
     </div>
 @endsection
 

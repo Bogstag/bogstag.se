@@ -34,8 +34,10 @@ class MovieTicketStatsController extends Controller
             return collect(['Year' => $item->Year, 'AverageCostPerTicketInclFree' => $item->AverageCostPerTicketInclFree, 'AverageCostPerTicketExclFree' => $item->AverageCostPerTicketExclFree]);
         }));
 
-        $LineChartNumberOfTicketsPerYear = $this->getLineChartNumberOfTicketsPerYear($TicketsPerYear->map(function ($item) {
-            return collect(['Year' => $item->Year, 'TotalTickets' => $item->TotalTickets, 'NumberOfNotFreeTickets' => $item->NumberOfNotFreeTickets, 'NumberOfFreeTickets' => $item->NumberOfFreeTickets]);
+        $BarChartNumberOfTicketsPerYear = $this->getBarChartNumberOfTicketsPerYear($TicketsPerYear->map(function ($item) {
+            if ($item->NumberOfNotFreeTickets == 0) { $item->NumberOfNotFreeTickets = null; }
+            if ($item->NumberOfFreeTickets == 0) { $item->NumberOfFreeTickets = null; }
+            return collect(['Year' => $item->Year, 'NumberOfNotFreeTickets' => $item->NumberOfNotFreeTickets, 'NumberOfFreeTickets' => $item->NumberOfFreeTickets]);
         }));
 
         $LineTotalCostPerYear = $this->getLineTotalCostPerYear($TicketsPerYear->map(function ($item) {
@@ -47,7 +49,7 @@ class MovieTicketStatsController extends Controller
             [
                 'TicketsTotal' => $TicketsTotal[0],
                 'LineChartAverageTicketPricePerYear'     => $LineChartAverageTicketPricePerYear,
-                'LineChartNumberOfTicketsPerYear'     => $LineChartNumberOfTicketsPerYear,
+                'BarChartNumberOfTicketsPerYear'     => $BarChartNumberOfTicketsPerYear,
                 'LineTotalCostPerYear'     => $LineTotalCostPerYear,
             ]
         );
@@ -75,20 +77,20 @@ class MovieTicketStatsController extends Controller
      * @param Collection $dataTableRows
      * @return mixed
      */
-    public function getLineChartNumberOfTicketsPerYear(Collection $dataTableRows)
+    public function getBarChartNumberOfTicketsPerYear(Collection $dataTableRows)
     {
         $dataTableColumns = [
             ['date', 'Year'],
-            ['number', 'Total number of tickets'],
             ['number', 'Normal tickets'],
             ['number', 'Free tickets'],
         ];
-        $name = 'LineChartNumberOfTicketsPerYear';
+        $name = 'BarChartNumberOfTicketsPerYear';
         $title = 'Number of tickets per year';
-        $lineChart = (new Chart\LineChartController())
-            ->createLineChart($name, $title, $dataTableColumns, $dataTableRows);
+        $barChart = (new Chart\ColumnChartController())
+            ->createColumnChart($name, $title, $dataTableColumns, $dataTableRows);
 
-        return $lineChart;
+        $barChart->isStacked(true);
+        return $barChart;
     }
 
     /**
