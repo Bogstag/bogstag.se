@@ -31,7 +31,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     public function __construct(SteamGame $SteamGame)
     {
         parent::__construct();
-        if (!$SteamGame->id || in_array($SteamGame->id, SteamGame::getGamesWithNoStats())) {
+        if (! $SteamGame->id || in_array($SteamGame->id, SteamGame::getGamesWithNoStats())) {
             return false;
         }
         $this->localfile = 'SteamApi/GetUserStatsForGame/'.$SteamGame->id.'.json';
@@ -41,13 +41,13 @@ class SteamAPIGameAchievements extends SteamAPIGame
         if (empty($SteamGameAchievementsFromAPI)) {
             return false;
         }
-        if (!empty($SteamGameAchievementsFromAPI->achievements)) {
+        if (! empty($SteamGameAchievementsFromAPI->achievements)) {
             $this->parseAndSaveAchievements($SteamGame->id, $SteamGameAchievementsFromAPI->achievements);
         }
-        if (!empty($SteamGameAchievementsFromAPI->stats)) {
+        if (! empty($SteamGameAchievementsFromAPI->stats)) {
             $this->parseAndSaveStats($SteamGame->id, $SteamGameAchievementsFromAPI->stats);
         }
-        if (!empty($SteamGameAchievementsFromAPI->achievements) || !empty($SteamGameAchievementsFromAPI->stats)) {
+        if (! empty($SteamGameAchievementsFromAPI->achievements) || ! empty($SteamGameAchievementsFromAPI->stats)) {
             $this->success = $this->setGameTimestampForAchievement($SteamGame->id);
         }
         if ($this->success === true) {
@@ -103,7 +103,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
                 ['steam_game_id' => $GameId, 'name' => $achievement->name]
             );
 
-            if (!empty($achievement->achieved)) {
+            if (! empty($achievement->achieved)) {
                 $SteamAchievement->value = $achievement->achieved;
             }
 
@@ -129,7 +129,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
                 ['steam_game_id' => $GameId, 'name' => $stat->name]
             );
 
-            if (!empty($stat->value)) {
+            if (! empty($stat->value)) {
                 $SteamStat->value = $stat->value;
             }
             $SteamStat->save();

@@ -100,15 +100,15 @@ class TraktTv extends Integrator
     {
         $url = $this->baseUrl.$this->urlPart.$this->type;
         $parameters = null;
-        if (!empty($this->limit)) {
+        if (! empty($this->limit)) {
             $parameters .= 'limit='.$this->limit.'&';
         }
 
-        if (!empty($this->extended)) {
+        if (! empty($this->extended)) {
             $parameters .= 'extended='.$this->extended.'&';
         }
 
-        if (!empty($parameters)) {
+        if (! empty($parameters)) {
             return $url.'?'.$parameters;
         }
 
@@ -129,15 +129,15 @@ class TraktTv extends Integrator
     {
         $movie = Movie::firstOrNew(['id_trakt' => $watchedMovie->movie->ids->trakt]);
 
-        if (!empty($watchedMovie->plays)) {
+        if (! empty($watchedMovie->plays)) {
             $movie->plays = $watchedMovie->plays;
         }
 
-        if (!empty($watchedMovie->watched_at)) {
+        if (! empty($watchedMovie->watched_at)) {
             $last_watched_at = new Carbon($watchedMovie->watched_at);
             $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
             $movie->last_watched_at = $last_watched_at;
-        } elseif (!empty($watchedMovie->last_watched_at)) {
+        } elseif (! empty($watchedMovie->last_watched_at)) {
             $last_watched_at = new Carbon($watchedMovie->last_watched_at);
             $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
             $movie->last_watched_at = $last_watched_at;

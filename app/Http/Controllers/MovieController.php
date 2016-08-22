@@ -9,7 +9,7 @@ class MovieController extends Controller
     public function show($slug)
     {
         $movie = Movie::where('slug', $slug)->first();
-        if (!$movie) {
+        if (! $movie) {
             abort(404, 'Movie do not exists, either i messed up or you write poorly');
         }
         $genrerow = '';

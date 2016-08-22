@@ -99,29 +99,29 @@ class SteamAPIGame extends SteamAPI
      */
     public function parseAndSaveSteamGame(SteamGame $SteamGame, $game)
     {
-        if (!empty($game->name)) {
+        if (! empty($game->name)) {
             $SteamGame->name = $game->name;
         }
 
-        if (!empty($game->playtime_forever)) {
+        if (! empty($game->playtime_forever)) {
             $SteamGame->playtime_forever = $game->playtime_forever;
         }
 
-        if (!empty($game->playtime_2weeks)) {
+        if (! empty($game->playtime_2weeks)) {
             $SteamGame->playtime_2weeks = $game->playtime_2weeks;
         } else {
             $SteamGame->playtime_2weeks = 0;
         }
 
-        if (!empty($game->img_icon_url)) {
+        if (! empty($game->img_icon_url)) {
             $SteamGame->image_icon_url = $this->img_base_url.$SteamGame->id.'/'.$game->img_icon_url.'.jpg';
         }
 
-        if (!empty($game->img_logo_url)) {
+        if (! empty($game->img_logo_url)) {
             $SteamGame->image_logo_url = $this->img_base_url.$SteamGame->id.'/'.$game->img_logo_url.'.jpg';
         }
 
-        if (!empty($game->has_community_visible_stats)) {
+        if (! empty($game->has_community_visible_stats)) {
             $SteamGame->has_community_visible_stats = $game->has_community_visible_stats;
         }
 

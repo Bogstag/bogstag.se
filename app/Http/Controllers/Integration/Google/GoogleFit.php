@@ -111,7 +111,7 @@ class GoogleFit extends Google
                 }
             }
             $step_id = $startTimeNanos->minute(0)->second(0)->format('Ymd');
-            if (!isset($dataArray[$step_id])) {
+            if (! isset($dataArray[$step_id])) {
                 $dataArray[$step_id] = [
                     'date'     => $startTimeNanos->toDateString(),
                     'steps'    => $step_count,
