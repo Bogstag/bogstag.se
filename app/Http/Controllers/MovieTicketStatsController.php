@@ -7,8 +7,7 @@ use DB;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class MovieTicketStatsController
- * @package App\Http\Controllers
+ * Class MovieTicketStatsController.
  */
 class MovieTicketStatsController extends Controller
 {
