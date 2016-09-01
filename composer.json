@@ -8,8 +8,8 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": ">=5.5.9",
-    "laravel/framework": "5.2.*",
+    "php": ">=5.6.4",
+    "laravel/framework": "5.3.*",
     "google/apiclient": "^1.1",
     "khill/lavacharts": "~3.0",
     "mailgun/mailgun-php": "~2.1.2",
@@ -44,7 +44,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "php artisan clear-compiled",
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
       "php artisan optimize"
     ],
     "pre-update-cmd": [
@@ -52,6 +52,7 @@
     ],
     "post-update-cmd": [
       "php artisan ide-helper:generate",
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan optimize"
     ],
     "post-root-package-install": [

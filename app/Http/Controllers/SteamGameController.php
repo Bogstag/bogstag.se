@@ -16,6 +16,7 @@ class SteamGameController extends Controller
     public function index()
     {
         $SteamGames = SteamGame::ListGames()->get();
+
         $averagePlaytimePerDay =
             round(
                 (SteamGame::where('playtime_2weeks', '>', 0)

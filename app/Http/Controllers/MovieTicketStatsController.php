@@ -6,6 +6,10 @@ use App\Movie;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class MovieTicketStatsController
+ * @package App\Http\Controllers
+ */
 class MovieTicketStatsController extends Controller
 {
     /**
@@ -13,16 +17,6 @@ class MovieTicketStatsController extends Controller
      */
     public function index()
     {
-        $TicketsPerYear = Movie::select(
-            DB::raw(
-                'DATE_FORMAT(ticket_datetime, \'%Y-01-01 00:00:00\') AS Year, SUM(ticket_price) as TotalCost, AVG(ticket_price) as AverageCostPerTicketInclFree, AVG(CASE WHEN ticket_price > 0 THEN ticket_price ELSE NULL END) AS AverageCostPerTicketExclFree, COUNT(ticket_datetime) as TotalTickets, COUNT(CASE WHEN ticket_price = 0 THEN 1 ELSE NULL END) AS NumberOfFreeTickets, COUNT(CASE WHEN ticket_price = 0 THEN NULL ELSE 1 END) AS NumberOfNotFreeTickets'
-            )
-        )
-            ->whereNotNull('ticket_datetime')
-            ->groupby(DB::raw('YEAR(ticket_datetime)'))
-            ->orderby(DB::raw('YEAR(ticket_datetime)'))
-            ->get();
-
         $TicketsTotal = Movie::select(
             DB::raw(
                 'SUM(ticket_price) as TotalCost, AVG(ticket_price) as AverageCostPerTicketInclFree, AVG(CASE WHEN ticket_price > 0 THEN ticket_price ELSE NULL END) AS AverageCostPerTicketExclFree, COUNT(ticket_datetime) as TotalTickets, COUNT(CASE WHEN ticket_price = 0 THEN 1 ELSE NULL END) AS NumberOfFreeTickets, COUNT(CASE WHEN ticket_price = 0 THEN NULL ELSE 1 END) AS NumberOfNotFreeTickets'
@@ -31,22 +25,30 @@ class MovieTicketStatsController extends Controller
             ->whereNotNull('ticket_datetime')
             ->get();
 
-        $LineChartAverageTicketPricePerYear = $this->getLineChartAverageTicketPricePerYear(
-            $TicketsPerYear->map(
-                function (Movie $item) {
-                    return collect(
-                        [
-                            'Year' => $item->Year,
-                            'AverageCostPerTicketInclFree' => $item->AverageCostPerTicketInclFree,
-                            'AverageCostPerTicketExclFree' => $item->AverageCostPerTicketExclFree,
-                        ]
-                    );
-                }
+        $AverageTicketPricePerYear = Movie::select(
+            DB::raw(
+                'DATE_FORMAT(ticket_datetime, \'%Y-01-01 00:00:00\') AS Year, AVG(ticket_price) as AverageCostPerTicketInclFree, AVG(CASE WHEN ticket_price > 0 THEN ticket_price ELSE NULL END) AS AverageCostPerTicketExclFree'
             )
-        );
+        )
+            ->whereNotNull('ticket_datetime')
+            ->groupby(DB::raw('YEAR(ticket_datetime)'))
+            ->orderby(DB::raw('YEAR(ticket_datetime)'))
+            ->get();
+
+        $LineChartAverageTicketPricePerYear = $this->getLineChartAverageTicketPricePerYear($AverageTicketPricePerYear);
+
+        $NumberOfTicketsPerYear = Movie::select(
+            DB::raw(
+                'DATE_FORMAT(ticket_datetime, \'%Y-01-01 00:00:00\') AS Year, COUNT(CASE WHEN ticket_price = 0 THEN 1 ELSE NULL END) AS NumberOfFreeTickets, COUNT(CASE WHEN ticket_price = 0 THEN NULL ELSE 1 END) AS NumberOfNotFreeTickets'
+            )
+        )
+            ->whereNotNull('ticket_datetime')
+            ->groupby(DB::raw('YEAR(ticket_datetime)'))
+            ->orderby(DB::raw('YEAR(ticket_datetime)'))
+            ->get();
 
         $BarChartNumberOfTicketsPerYear = $this->getBarChartNumberOfTicketsPerYear(
-            $TicketsPerYear->map(
+            $NumberOfTicketsPerYear->transform(
                 function (Movie $item) {
                     if ($item->NumberOfNotFreeTickets == 0) {
                         $item->NumberOfNotFreeTickets = null;
@@ -55,24 +57,22 @@ class MovieTicketStatsController extends Controller
                         $item->NumberOfFreeTickets = null;
                     }
 
-                    return collect(
-                        [
-                            'Year' => $item->Year,
-                            'NumberOfNotFreeTickets' => $item->NumberOfNotFreeTickets,
-                            'NumberOfFreeTickets' => $item->NumberOfFreeTickets,
-                        ]
-                    );
+                    return $item;
                 }
             )
         );
 
-        $LineTotalCostPerYear = $this->getLineTotalCostPerYear(
-            $TicketsPerYear->map(
-                function ($item) {
-                    return collect(['Year' => $item->Year, 'TotalCost' => $item->TotalCost]);
-                }
+        $TotalCostPerYear = Movie::select(
+            DB::raw(
+                'DATE_FORMAT(ticket_datetime, \'%Y-01-01 00:00:00\') AS Year, SUM(ticket_price) as TotalCost'
             )
-        );
+        )
+            ->whereNotNull('ticket_datetime')
+            ->groupby(DB::raw('YEAR(ticket_datetime)'))
+            ->orderby(DB::raw('YEAR(ticket_datetime)'))
+            ->get();
+
+        $LineTotalCostPerYear = $this->getLineTotalCostPerYear($TotalCostPerYear);
 
         return view(
             'pages.Movie.ticketstats',

@@ -204,7 +204,7 @@ class SteamAPIGame extends SteamAPI
         $this->incrementSteamApiLimitCounter();
 
         if ((env('APP_ENV', false) == 'local')) {
-            $this->saveCachedAPICall($this->localfile, $GetRecentlyPlayedGamesJson);
+            $this->saveCachedAPICall($localfile, $GetRecentlyPlayedGamesJson);
         }
 
         return json_decode($GetRecentlyPlayedGamesJson);

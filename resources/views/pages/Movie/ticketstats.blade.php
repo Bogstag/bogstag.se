@@ -12,23 +12,17 @@
             and {{ $TicketsTotal->NumberOfNotFreeTickets }} i have payed for.</p>
         <p>Total money spent on the tickets
             is {{ $TicketsTotal->TotalCost }} SEK. That means that the average cost of a ticket (incl free)
-            is {{ ROUND($TicketsTotal->AverageCostPerTicketInclFree) }} SEK and with an average price
-            of {{ ROUND($TicketsTotal->AverageCostPerTicketExclFree) }} SEK if you don´t include the free tickets.</p>
-
+            is {{ round($TicketsTotal->AverageCostPerTicketInclFree) }} SEK and if you don´t include the free tickets
+            then the average price is {{ round($TicketsTotal->AverageCostPerTicketExclFree) }} SEK.</p>
     </div>
     <div class="row">
         <div id="LineTotalCostPerYear_div"></div>
-        @linechart('LineTotalCostPerYear', 'LineTotalCostPerYear_div')
+        {!! Lava::render('LineChart', 'LineTotalCostPerYear', 'LineTotalCostPerYear_div') !!}
 
         <div id="LineChartAverageTicketPricePerYear_div"></div>
-        @linechart('LineChartAverageTicketPricePerYear', 'LineChartAverageTicketPricePerYear_div')
+        {!! Lava::render('LineChart', 'LineChartAverageTicketPricePerYear', 'LineChartAverageTicketPricePerYear_div') !!}
 
         <div id="BarChartNumberOfTicketsPerYear_div"></div>
-        @columnchart('BarChartNumberOfTicketsPerYear', 'BarChartNumberOfTicketsPerYear_div')
+        {!! Lava::render('ColumnChart', 'BarChartNumberOfTicketsPerYear', 'BarChartNumberOfTicketsPerYear_div') !!}
     </div>
 @endsection
-
-@section('scripts')
-
-@endsection
-

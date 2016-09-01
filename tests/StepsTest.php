@@ -11,20 +11,17 @@ class StepsTest extends TestCase
     use DatabaseMigrations;
     use DatabaseTransactions;
 
+    /**
+     * @covers \App\Http\Controllers\StepCharts::getStepCharts
+     */
     public function testStoreSteps()
     {
-        $step = factory(App\Step::class)->create([
+        factory(App\Step::class)->create([
             'date' => '2016-01-01 00:00:02',
         ]);
 
         $this->seeInDatabase('steps', ['date' => '2016-01-01 00:00:02']);
-    }
 
-    /**
-     * @covers \App\Http\Controllers\StepCharts::getStepCharts
-     */
-    public function testStepsPage()
-    {
         $this->visit('/')
             ->click('Steps')
             ->see('Activity / Steps')

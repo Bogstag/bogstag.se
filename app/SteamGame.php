@@ -153,7 +153,7 @@ class SteamGame extends Model
     public static function getGamesWithNoStats()
     {
         $dynamicIds = self::select('id')->where('has_community_visible_stats', 0)
-            ->orwhere('playtime_forever', 0)->lists('id')->toArray();
+            ->orwhere('playtime_forever', 0)->pluck('id')->toArray();
         $staticIds = [32470, 219540, 243470, 322330, 223830, 298110, 33930, 301730, 251060];
 
         return (array) array_merge($dynamicIds, $staticIds);
