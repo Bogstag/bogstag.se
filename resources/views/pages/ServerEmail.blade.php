@@ -8,11 +8,11 @@
     </div>
     <div class="row">
         <div id="emaildel_div"></div>
-        @columnchart('emaildel', 'emaildel_div')
+        {!! Lava::render('ColumnChart', 'emaildel', 'emaildel_div') !!}
     </div>
     <div class="row">
         <div id="emaildrops_div"></div>
-        @linechart('emaildrops', 'emaildrops_div')
+        {!! Lava::render('LineChart', 'emaildrops', 'emaildrops_div') !!}
     </div>
     @if (count($EmailPublicDropList))
         <h3>Public drop list (last 10)</h3>
