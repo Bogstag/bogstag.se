@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\ExternalApiLimit;
 use App\Http\Controllers\AdminController;
-use Carbon\Carbon;
 
 class ExternalApiLimitAdminController extends AdminController
 {

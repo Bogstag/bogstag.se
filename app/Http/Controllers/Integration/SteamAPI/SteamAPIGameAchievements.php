@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\SteamGame;
-use App\SteamGameAchievement;
-use App\SteamGameStat;
 use Log;
+use App\SteamGame;
+use App\SteamGameStat;
+use App\SteamGameAchievement;
 use Steam\Command\UserStats\GetUserStatsForGame;
 
 /**

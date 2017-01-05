@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Movie;
 use DB;
+use App\Movie;
 use Illuminate\Database\Eloquent\Collection;
 
 /**

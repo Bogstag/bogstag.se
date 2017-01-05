@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
-use App\Http\Controllers\Integration\TraktTv\TraktTv;
 use Illuminate\Console\Command;
+use App\Http\Controllers\Integration\TraktTv\TraktTv;
+use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
 
 /**
  * Class SteamApiCommand.

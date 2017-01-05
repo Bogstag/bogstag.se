@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Http\Controllers\Controller;
 use App\Oauth2Credential;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * Class Oauth2Client.

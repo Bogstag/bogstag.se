@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
-use App\User;
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AdminController;
 
 /**
  * Class SettingsController.
