@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
 use Illuminate\Console\Command;
+use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
 
 /**
  * Class SteamApiCommand.

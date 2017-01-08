@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use Illuminate\Console\Command;
+use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
  * Class Oauth2TokenCommand.

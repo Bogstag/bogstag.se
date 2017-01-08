@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Integration\mailgun;
 
-use App\Http\Controllers\Integration\Integrator;
 use Mailgun\Mailgun;
+use App\Http\Controllers\Integration\Integrator;
 
 class MailgunIntegration extends Integrator
 {

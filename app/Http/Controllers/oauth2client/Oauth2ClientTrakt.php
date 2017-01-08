@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Oauth2Credential;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
+use App\Oauth2Credential;
+use Illuminate\Http\Request;
 
 /**
  * Class Oauth2ClientTrakt.
