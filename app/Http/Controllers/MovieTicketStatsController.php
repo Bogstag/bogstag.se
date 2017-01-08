@@ -112,8 +112,8 @@ class MovieTicketStatsController extends Controller
     {
         $dataTableColumns = [
             ['date', 'Year'],
-            ['number', 'Normal tickets'],
             ['number', 'Free tickets'],
+            ['number', 'Normal tickets'],
         ];
         $name = 'BarChartNumberOfTicketsPerYear';
         $title = 'Number of tickets per year';
