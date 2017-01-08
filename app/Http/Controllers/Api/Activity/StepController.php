@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\Activity;
 
-use App\Http\Controllers\Api\APIController;
 use App\Step;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\APIController;
 
 /**
  * Class StepController.

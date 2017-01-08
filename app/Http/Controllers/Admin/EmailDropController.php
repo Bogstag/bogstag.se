@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Emaildrop;
-use App\Http\Controllers\AdminController;
-use Illuminate\Http\Request;
 use Mailgun\Mailgun;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\AdminController;
 
 class EmailDropController extends AdminController
 {
