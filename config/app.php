@@ -160,7 +160,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        "Khill\Lavacharts\Laravel\LavachartsServiceProvider",
         Yajra\Datatables\DatatablesServiceProvider::class,
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
@@ -221,6 +221,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ],
 
 ];

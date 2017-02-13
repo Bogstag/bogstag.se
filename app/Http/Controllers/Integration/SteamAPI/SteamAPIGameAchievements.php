@@ -70,7 +70,9 @@ class SteamAPIGameAchievements extends SteamAPIGame
             return $cachedAPICall;
         }
         $GetAchievements = new GetUserStatsForGame(env('STEAM_64ID', false), $GameId);
-        $GetAchievements = $this->steam->run($GetAchievements);
+        if ( ! empty($GetAchievements)) {
+            $GetAchievements = $this->steam->run($GetAchievements);
+        }
 
         if (empty($GetAchievements['playerstats'])) {
             return false;
