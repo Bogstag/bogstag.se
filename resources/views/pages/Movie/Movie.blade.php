@@ -11,12 +11,10 @@
             </h1>
         </div>
         <div class="row">
-            @if ($movie->clearart)
-                <img class="img-responsive img-rounded center-block" src="{{ $movie->clearart }}"
+            @if ($movie->movieClearartPath()->first())
+                <img class="img-responsive img-rounded center-block"
+                     src="{{ asset($movie->movieClearartPath()->first()->imagepath) }}"
                      alt="{{ $movie->title }} clearart image">
-            @elseif ($movie->fanart)
-                <img class="img-responsive img-rounded center-block" src="{{ $movie->fanart }}"
-                     alt="{{ $movie->title }} fanart image">
             @endif
         </div>
     </div>

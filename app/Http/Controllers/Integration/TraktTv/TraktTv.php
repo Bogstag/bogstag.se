@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
 use App\Movie;
 use Carbon\Carbon;
 use App\Http\Controllers\Integration\Integrator;
@@ -57,7 +58,9 @@ class TraktTv extends Integrator
         $watchedMovies = $this->getSyncWatched();
 
         foreach ($watchedMovies as $watchedMovie) {
-            $this->storeMovie($watchedMovie);
+            $movie = $this->storeMovie($watchedMovie);
+            $image = new FanartTv();
+            $image->getMovieImages($movie);
         }
 
         return $watchedMovies;
@@ -156,23 +159,25 @@ class TraktTv extends Integrator
         $movie->homepage = $watchedMovie->movie->homepage;
         $movie->trakt_updated_at = new Carbon($watchedMovie->movie->updated_at);
         $movie->certification = $watchedMovie->movie->certification;
-        $movie->fanart = $watchedMovie->movie->images->fanart->full;
-        $movie->poster = $watchedMovie->movie->images->poster->full;
-        $movie->logo = $watchedMovie->movie->images->logo->full;
-        $movie->clearart = $watchedMovie->movie->images->clearart->full;
-        $movie->banner = $watchedMovie->movie->images->banner->full;
-        $movie->thumb = $watchedMovie->movie->images->thumb->full;
+        //$movie->fanart = $watchedMovie->movie->images->fanart->full;
+        //$movie->poster = $watchedMovie->movie->images->poster->full;
+        //$movie->logo = $watchedMovie->movie->images->logo->full;
+        //$movie->clearart = $watchedMovie->movie->images->clearart->full;
+        //$movie->banner = $watchedMovie->movie->images->banner->full;
+        //$movie->thumb = $watchedMovie->movie->images->thumb->full;
         $movie->genres = $watchedMovie->movie->genres;
-
-        return $movie->save();
+        $movie->save();
+        return $movie;
     }
 
     public function syncWatched($command)
     {
         $watchedMovies = $this->getSyncHistory();
         foreach ($watchedMovies as $watchedMovie) {
-            $this->storeMovie($watchedMovie);
+            $movie = $this->storeMovie($watchedMovie);
             $command->info('Stored '.$watchedMovie->movie->title.' to db');
+            $image = new FanartTv();
+            $image->getMovieImages($movie);
         }
 
         return $watchedMovies;

@@ -20,4 +20,13 @@ class MovieController extends Controller
 
         return view('pages.Movie.Movie', ['movie' => $movie, 'genrerow' => $genrerow]);
     }
+
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('pages.home');
+    }
 }

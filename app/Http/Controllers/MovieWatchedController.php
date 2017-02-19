@@ -6,6 +6,7 @@ use App\Movie;
 
 class MovieWatchedController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,27 +17,22 @@ class MovieWatchedController extends Controller
     public function indexAll()
     {
         $WatchedMovies = Movie::WatchedMovies()->orderBy('last_watched_at', 'desc')->paginate(100);
-        $title = 'All movies i have watched.';
+        $title = 'All movies I have watched.';
         $ticketsview = false;
 
-        return view(
-            'pages.Movie.Watched',
-            ['WatchedMovies' => $WatchedMovies, 'title' => $title, 'ticketsview' => $ticketsview]
-        );
+        return view('pages.Movie.Watched',
+            ['WatchedMovies' => $WatchedMovies, 'title' => $title, 'ticketsview' => $ticketsview]);
     }
+
 
     public function indexCinema()
     {
-        $WatchedMovies = Movie::WatchedMovies()
-            ->whereNotNull('ticket_datetime')
-            ->orderBy('ticket_datetime', 'desc')
-            ->paginate(100);
-        $title = 'Latest movies i have watched in the cinemas (with ticket).';
+        $WatchedMovies = Movie::WatchedMovies()->whereNotNull('ticket_datetime')->orderBy('ticket_datetime',
+            'desc')->paginate(100);
+        $title = 'Latest movies I have watched in the cinemas (with ticket).';
         $ticketsview = true;
 
-        return view(
-            'pages.Movie.Watched',
-            ['WatchedMovies' => $WatchedMovies, 'title' => $title, 'ticketsview' => $ticketsview]
-        );
+        return view('pages.Movie.Watched',
+            ['WatchedMovies' => $WatchedMovies, 'title' => $title, 'ticketsview' => $ticketsview]);
     }
 }

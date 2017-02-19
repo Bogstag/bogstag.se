@@ -22,10 +22,11 @@
                                         <h4>{{ $WatchedMovie->title }}</h4>
                                     </div>
                                 @else
-                                    @if (empty($WatchedMovie->poster))
+                                    @if (empty($WatchedMovie->moviePosterPath()->first()))
                                         <h3>{{ $WatchedMovie->title }}</h3>
                                     @else
-                                        <img class="img-responsive" src="{{ $WatchedMovie->poster }}"
+                                        <img class="img-responsive"
+                                             src="{{ asset($WatchedMovie->moviePosterPath()->first()->imagepath) }}"
                                              alt="{{ $WatchedMovie->title }} logo">
                                     @endif
                                 @endif
@@ -47,4 +48,3 @@
 @section('scripts')
 
 @endsection
-

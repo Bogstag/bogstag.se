@@ -27,7 +27,6 @@ Route::group(['middleware' => 'web', 'throttle'], function () {
     Route::get('about', function () {
         return view('pages.about');
     });
-
     Route::get('activity/steps', 'StepCharts@getStepCharts');
     Route::get('server/email', 'EmailCharts@getEmailCharts');
     Route::resource('game/steam', 'SteamGameController');
