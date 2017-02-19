@@ -19,7 +19,8 @@
     "laravel/framework": "5.4.*",
     "league/oauth2-client": "2.2.*",
     "mailgun/mailgun-php": "~2.1.2",
-    "yajra/laravel-datatables-oracle": "7.1.*"
+    "yajra/laravel-datatables-oracle": "7.1.*",
+    "laravel/tinker": "~1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -27,8 +28,7 @@
     "phpunit/phpunit": "~6.0",
     "phpspec/phpspec": "~3.0",
     "symfony/css-selector": "3.2.*",
-    "symfony/dom-crawler": "3.2.*",
-    "laravel/tinker": "~1.0"
+    "symfony/dom-crawler": "3.2.*"
   },
   "autoload": {
     "classmap": [
