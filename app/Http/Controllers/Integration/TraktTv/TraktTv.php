@@ -27,7 +27,7 @@ class TraktTv extends Integrator
     protected $externalApiName = 'TraktTvApi';
     protected $traktClient;
     protected $method = 'GET';
-    protected $baseUrl = 'https://api-v2launch.trakt.tv/';
+    protected $baseUrl = 'https://api.trakt.tv/';
     protected $limit = null;
     protected $urlPart = null;
     protected $type = null;
