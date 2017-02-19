@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
 use App\Movie;
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
 
 class ImageController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +20,6 @@ class ImageController extends Controller
         return var_dump($test->getMovieImages($movie));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,9 +27,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -40,9 +36,7 @@ class ImageController extends Controller
      */
     public function store()
     {
-
     }
-
 
     /**
      * Display the specified resource.
@@ -53,9 +47,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -66,9 +58,7 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -79,9 +69,7 @@ class ImageController extends Controller
      */
     public function update($id)
     {
-
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -92,9 +80,5 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-
     }
-
 }
-
-?>
