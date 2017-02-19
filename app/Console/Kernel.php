@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
         /* Update oauth2 tokens */
         $schedule->command('oauth2token:refresh')->weekly();
 
-        /* Update oauth2 tokens */
+        /* Update trakt.tv movies */
         $schedule->command('trakttv:sync movie')->twiceDaily(19, 23);
     }
 }

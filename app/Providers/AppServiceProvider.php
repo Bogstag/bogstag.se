@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use Psr\Log\LoggerInterface;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Dusk\DuskServiceProvider;
+use Psr\Log\LoggerInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+
     /**
      * Register any application services.
      *
@@ -27,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->alias('bugsnag.logger', Log::class);
         $this->app->alias('bugsnag.logger', LoggerInterface::class);
+
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
     }
 }
