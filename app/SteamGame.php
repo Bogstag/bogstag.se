@@ -47,7 +47,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class SteamGame extends Model
 {
-
     /**
      * @var array
      */
@@ -82,7 +81,6 @@ class SteamGame extends Model
      */
     protected $table = 'steam_games';
 
-
     /**
      * One game has many achievements.
      *
@@ -93,7 +91,6 @@ class SteamGame extends Model
         return $this->hasMany('App\SteamGameAchievement', 'steam_game_id');
     }
 
-
     /**
      * One game has many stats.
      *
@@ -103,7 +100,6 @@ class SteamGame extends Model
     {
         return $this->hasMany('App\SteamGameStat', 'steam_game_id');
     }
-
 
     /**
      * Games i have played.
@@ -116,7 +112,6 @@ class SteamGame extends Model
                 'desc');
     }
 
-
     /**
      * Games that are not updated today.
      * Games that are not updated at all.
@@ -128,11 +123,10 @@ class SteamGame extends Model
     public function scopeSchemaNeedUpdate($query)
     {
         $query->select('id')->where(function (Builder $query) {
-                $query->where('schema_updated_at', '<',
+            $query->where('schema_updated_at', '<',
                     Carbon::now()->subMonth()->toDateTimeString())->orWhere('schema_updated_at', null);
-            })->whereNotIn('id', $this->getGamesWithNoStats())->orderBy('schema_updated_at', 'asc');
+        })->whereNotIn('id', $this->getGamesWithNoStats())->orderBy('schema_updated_at', 'asc');
     }
-
 
     /**
      * Games that has no stats or achievements.
@@ -149,9 +143,8 @@ class SteamGame extends Model
         $staticIds = [32470, 219540, 243470, 322330, 223830, 298110, 33930, 301730, 251060, 294100];
         $returnedGamesIds = [254200];
 
-        return (array)array_merge($dynamicIds, $staticIds, $returnedGamesIds);
+        return (array) array_merge($dynamicIds, $staticIds, $returnedGamesIds);
     }
-
 
     /**
      * @param $query
@@ -159,11 +152,10 @@ class SteamGame extends Model
     public function scopeDescriptionNeedUpdate($query)
     {
         $query->select('id')->where(function (Builder $query) {
-                $query->where('description_updated_at', '<',
+            $query->where('description_updated_at', '<',
                     Carbon::now()->subMonth()->toDateTimeString())->orWhere('description_updated_at', null);
-            })->orderBy('description_updated_at', 'asc');
+        })->orderBy('description_updated_at', 'asc');
     }
-
 
     /**
      * List Ids of all games that need to be updated.
@@ -173,9 +165,9 @@ class SteamGame extends Model
     public function scopeAchievementsNeedUpdate(Builder $query)
     {
         $query->select('id')->whereNotIn('id', $this->getGamesWithNoStats())->where(function (Builder $query) {
-                $query->where('player_stats_updated_at', '<',
+            $query->where('player_stats_updated_at', '<',
                     Carbon::now()->subMonth()->toDateTimeString())->where('playtime_2weeks', '>',
                         0)->orWhere('player_stats_updated_at', null);
-            })->orderBy('player_stats_updated_at', 'asc');
+        })->orderBy('player_stats_updated_at', 'asc');
     }
 }

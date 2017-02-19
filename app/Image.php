@@ -5,15 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Image
- * @package App
+ * Class Image.
  * @property $orginalimage
  * @property $imagetype
  * @property $imagepath
  */
 class Image extends Model
 {
-
     /**
      * @var bool
      */
@@ -28,7 +26,6 @@ class Image extends Model
      * @var array
      */
     protected $fillable = ['orginalimage', 'imagetype', 'imagepath'];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo

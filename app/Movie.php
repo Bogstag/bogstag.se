@@ -5,12 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Movie
- * @package App
+ * Class Movie.
  */
 class Movie extends Model
 {
-
     /**
      * @var bool
      */
@@ -45,7 +43,6 @@ class Movie extends Model
      */
     protected $casts = ['genres' => 'array'];
 
-
     /**
      * @param $query
      */
@@ -54,7 +51,6 @@ class Movie extends Model
         $query->select('id', 'title', 'slug', 'ticket_datetime', 'year');
     }
 
-
     /**
      * @return string
      */
@@ -62,7 +58,6 @@ class Movie extends Model
     {
         return secure_url('img/tickets/'.$this->year.'/'.$this->slug.'.png');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany

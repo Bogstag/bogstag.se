@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
 use App\Movie;
 use Carbon\Carbon;
 use App\Http\Controllers\Integration\Integrator;
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
 use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
@@ -167,6 +167,7 @@ class TraktTv extends Integrator
         //$movie->thumb = $watchedMovie->movie->images->thumb->full;
         $movie->genres = $watchedMovie->movie->genres;
         $movie->save();
+
         return $movie;
     }
 

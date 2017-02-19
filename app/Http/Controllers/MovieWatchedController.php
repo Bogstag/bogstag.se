@@ -6,7 +6,6 @@ use App\Movie;
 
 class MovieWatchedController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +22,6 @@ class MovieWatchedController extends Controller
         return view('pages.Movie.Watched',
             ['WatchedMovies' => $WatchedMovies, 'title' => $title, 'ticketsview' => $ticketsview]);
     }
-
 
     public function indexCinema()
     {

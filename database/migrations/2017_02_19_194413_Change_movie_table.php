@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class ChangeMovieTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -26,7 +25,6 @@ class ChangeMovieTable extends Migration
             $table->boolean('fanarttvmissing');
         });
     }
-
 
     /**
      * Reverse the migrations.
