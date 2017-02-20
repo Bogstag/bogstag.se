@@ -51,6 +51,11 @@
                         <i class="fa fa-film fa-fw"></i> Movie Tickets
                     </a>
                 </li>
+                <li>
+                    <a href="{{ URL::secure('admin/addmovietickets') }}">
+                        <i class="fa fa-film fa-fw"></i> Add Movie Tickets
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

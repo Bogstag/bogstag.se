@@ -56,4 +56,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::resource('externalapilimit', 'Admin\ExternalApiLimitAdminController');
     Route::resource('oauth2credential', 'Admin\Oauth2CredentialAdminController');
     Route::resource('movietickets', 'Admin\MovieTicketsAdminController');
+    Route::resource('addmovietickets', 'Admin\MovieTicketsAddAdminController');
 });
