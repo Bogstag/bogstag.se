@@ -106,7 +106,7 @@ class FanartTv extends Integrator
             $movie->save();
         }
 
-        //$this->incrementTraktTvApiLimitCounter();
+        $this->incrementTraktTvApiLimitCounter();
 
         if ((env('APP_ENV', false) == 'local')) {
             $this->saveCachedAPICall($localFile, $result);
@@ -183,5 +183,15 @@ class FanartTv extends Integrator
     public function getFanartid()
     {
         return $this->fanartid;
+    }
+
+    private function incrementTraktTvApiLimitCounter()
+    {
+        $this->addExternalAPILimitCounter(
+            Carbon::now(),
+            $this->externalApiName,
+            $this->externalApiLimit,
+            $this->externalApiLimitInterval
+        );
     }
 }
