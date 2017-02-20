@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Integration\FanartTv;
 
-use App\Http\Controllers\Integration\Integrator;
 use App\Image;
 use App\Movie;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Exception\RequestException;
+use App\Http\Controllers\Integration\Integrator;
 
 /**
  * Class FanartTv.
  */
 class FanartTv extends Integrator
 {
-
     protected $externalApiLimit = 9999; //no hard limit
 
     protected $externalApiLimitInterval = 'Day';
@@ -36,7 +35,6 @@ class FanartTv extends Integrator
 
     protected $method = 'GET';
 
-
     public function getMovieImages(Movie $movie)
     {
         $this->setResource('movies');
@@ -50,7 +48,6 @@ class FanartTv extends Integrator
         return true;
     }
 
-
     /**
      * @param mixed $fanartid
      */
@@ -58,7 +55,6 @@ class FanartTv extends Integrator
     {
         $this->fanartid = $fanartid;
     }
-
 
     private function parseImagesJson($imagesJson, $movie)
     {
@@ -88,7 +84,6 @@ class FanartTv extends Integrator
 
         return collect(array_merge($collect1, $collect2));
     }
-
 
     private function makeRequest($movie)
     {
@@ -121,7 +116,6 @@ class FanartTv extends Integrator
         return json_decode($result);
     }
 
-
     private function getApiUrl()
     {
         $this->projectApiKey = env('FANART_TV_API_KEY', false);
@@ -130,13 +124,11 @@ class FanartTv extends Integrator
         return $url;
     }
 
-
     private function incrementTraktTvApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(Carbon::now(), $this->externalApiName, $this->externalApiLimit,
             $this->externalApiLimitInterval);
     }
-
 
     private function storeImageDatabase($movie, $image)
     {
@@ -154,19 +146,17 @@ class FanartTv extends Integrator
         }
     }
 
-
     private function getLocalFileName(int $year, string $slug, string $imageType, string $url)
     {
         return $this->storagepath.$year.'/'.$slug.'-'.$imageType.'.'.substr($url, -3);
     }
-
 
     private function storeImage($url, $fileNameAndPath)
     {
         try {
             $client = new Client();
             $dirname = dirname($fileNameAndPath);
-            if ( ! Storage::disk('public')->exists($dirname)) {
+            if (! Storage::disk('public')->exists($dirname)) {
                 Storage::disk('public')->makeDirectory($dirname);
             }
             Storage::disk('public')->put($fileNameAndPath, $client->request('GET', $url)->getBody());
@@ -178,7 +168,6 @@ class FanartTv extends Integrator
         }
     }
 
-
     /**
      * @return mixed
      */
@@ -187,7 +176,6 @@ class FanartTv extends Integrator
         return $this->resource;
     }
 
-
     /**
      * @param mixed $resource
      */
@@ -195,7 +183,6 @@ class FanartTv extends Integrator
     {
         $this->resource = $resource;
     }
-
 
     /**
      * @return mixed
