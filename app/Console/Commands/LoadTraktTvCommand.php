@@ -47,8 +47,8 @@ class LoadTraktTvCommand extends Command
             case 'movie':
                 $this->info('Load all movies to db');
                 $this->traktTv->setType('movies');
-                $this->traktTv->setExtended('full,images');
-                $this->traktTv->loadWatched();
+                $this->traktTv->setExtended('full');
+                $this->traktTv->loadWatched($this);
                 $this->info('Done loading all movies to db');
                 break;
             default:

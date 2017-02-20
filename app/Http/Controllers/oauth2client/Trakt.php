@@ -24,7 +24,7 @@ class Trakt extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return 'https://api-v2launch.trakt.tv/oauth/authorize';
+        return 'https://trakt.tv/oauth/authorize';
     }
 
     /**
@@ -38,7 +38,7 @@ class Trakt extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://api-v2launch.trakt.tv/oauth/token';
+        return 'https://api.trakt.tv/oauth/token';
     }
 
     /**

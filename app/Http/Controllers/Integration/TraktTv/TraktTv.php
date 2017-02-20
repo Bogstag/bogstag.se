@@ -45,7 +45,7 @@ class TraktTv extends Integrator
 
     public function setType($type)
     {
-        $this->type = $type.'/';
+        $this->type = $type;
     }
 
     public function setExtended($extended)

@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use Log;
-use Carbon\Carbon;
 use App\Oauth2Credential;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Log;
 
 /**
  * Class Oauth2ClientTrakt.
  */
 class Oauth2ClientTrakt extends Oauth2Client
 {
+
     /**
      * @var
      */
     protected $credential;
+
 
     /**
      * @param Request     $request
@@ -31,7 +33,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         $provider = $this->createProvider($credential);
 
-        if (! empty($_GET['error'])) {
+        if ( ! empty($_GET['error'])) {
             abort(500, $_GET['error']);
         } elseif (empty($_GET['code'])) {
             $provider->authorize();
@@ -41,6 +43,7 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $token;
     }
 
+
     /**
      * @param $credential
      *
@@ -48,15 +51,16 @@ class Oauth2ClientTrakt extends Oauth2Client
      */
     private function createProvider($credential)
     {
-        $provider = new Trakt(
-            ['clientId'     => $credential->clientid,
-             'clientSecret' => $credential->clientsecret,
-             'redirectUri'  => $credential->redirecturi,
-             'hostedDomain' => env('APP_URL', null), ]
-        );
+        $provider = new Trakt([
+                'clientId'     => $credential->clientid,
+                'clientSecret' => $credential->clientsecret,
+                'redirectUri'  => $credential->redirecturi,
+                'hostedDomain' => env('APP_URL', null),
+            ]);
 
         return $provider;
     }
+
 
     public function refreshToken()
     {
@@ -64,21 +68,19 @@ class Oauth2ClientTrakt extends Oauth2Client
         $this->getCredential();
         if ($now->diffInDays($this->credential->expires) < 14) {
             $provider = $this->getProvider();
-            $newAccessToken = $provider->getAccessToken(
-                'refresh_token',
-                ['refresh_token' => $this->credential->refreshtoken]
-            );
+            $newAccessToken = $provider->getAccessToken('refresh_token',
+                ['refresh_token' => $this->credential->refreshtoken]);
             $this->saveNewToken($newAccessToken, $this->credential);
-            Log::info(
-                'Token was updated for '.$this->credential->provider.' with new expiration of '.$this->credential->expires
-            );
+            Log::info('Token was updated for '.$this->credential->provider.' with new expiration of '.$this->credential->expires);
         }
     }
+
 
     private function getCredential()
     {
         $this->credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
     }
+
 
     /**
      * @return Trakt
@@ -90,6 +92,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         return $provider;
     }
+
 
     /**
      * @param $token
@@ -103,6 +106,7 @@ class Oauth2ClientTrakt extends Oauth2Client
         $credential->save();
     }
 
+
     /**
      * @param $method
      * @param $url
@@ -114,12 +118,16 @@ class Oauth2ClientTrakt extends Oauth2Client
         $url
     ) {
         $this->getCredential();
-        $options = ['headers' => ['Content-Type'      => 'application/json',
-                                  'trakt-api-version' => 2,
-                                  'trakt-api-key'     => $this->credential->clientid, ]];
+        $options = [
+            'headers' => [
+                'Content-Type'      => 'application/json',
+                'trakt-api-version' => 2,
+                'trakt-api-key'     => $this->credential->clientid,
+            ]
+        ];
         $provider = $this->getProvider();
         $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
 
-        return $provider->getResponse($request);
+        return $provider->getParsedResponse($request);
     }
 }

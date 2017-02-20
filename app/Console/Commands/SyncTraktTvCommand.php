@@ -47,7 +47,7 @@ class SyncTraktTvCommand extends Command
             case 'movie':
                 $this->info('Sync 10 latest movies to db');
                 $this->traktTv->setType('movies');
-                $this->traktTv->setExtended('full,images');
+                $this->traktTv->setExtended('full');
                 $this->traktTv->syncWatched($this);
                 $this->info('Done syncing 10 latest movies to db');
                 break;
