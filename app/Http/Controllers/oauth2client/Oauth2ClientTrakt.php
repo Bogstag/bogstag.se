@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Oauth2Credential;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
+use App\Oauth2Credential;
+use Illuminate\Http\Request;
 
 /**
  * Class Oauth2ClientTrakt.
  */
 class Oauth2ClientTrakt extends Oauth2Client
 {
-
     /**
      * @var
      */
     protected $credential;
-
 
     /**
      * @param Request     $request
@@ -33,7 +31,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         $provider = $this->createProvider($credential);
 
-        if ( ! empty($_GET['error'])) {
+        if (! empty($_GET['error'])) {
             abort(500, $_GET['error']);
         } elseif (empty($_GET['code'])) {
             $provider->authorize();
@@ -42,7 +40,6 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         return $token;
     }
-
 
     /**
      * @param $credential
@@ -61,7 +58,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $provider;
     }
 
-
     public function refreshToken()
     {
         $now = Carbon::now();
@@ -75,12 +71,10 @@ class Oauth2ClientTrakt extends Oauth2Client
         }
     }
 
-
     private function getCredential()
     {
         $this->credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
     }
-
 
     /**
      * @return Trakt
@@ -93,7 +87,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $provider;
     }
 
-
     /**
      * @param $token
      * @param $credential
@@ -105,7 +98,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         $credential->refreshtoken = $token->getRefreshToken();
         $credential->save();
     }
-
 
     /**
      * @param $method
@@ -123,7 +115,7 @@ class Oauth2ClientTrakt extends Oauth2Client
                 'Content-Type'      => 'application/json',
                 'trakt-api-version' => 2,
                 'trakt-api-key'     => $this->credential->clientid,
-            ]
+            ],
         ];
         $provider = $this->getProvider();
         $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
