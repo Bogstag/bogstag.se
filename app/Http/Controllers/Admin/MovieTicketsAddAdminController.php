@@ -43,9 +43,9 @@ class MovieTicketsAddAdminController extends Controller
         $trakt->addSyncHistory($movie->id_imdb, $movie->ticket_datetime->setTimezone('UTC')->toDateTimeString());
 
         if (env('APP_ENV', false) == 'local') {
-            $destinationPath = public_path('img\\tickets\\'.$input['year'].'\\');
+            $destinationPath = public_path('img\\tickets\\'.$movie->year.'\\');
         } else {
-            $destinationPath = public_path('img/tickets/'.$input['year'].'/');
+            $destinationPath = public_path('img/tickets/'.$movie->year.'/');
         }
         if (! is_dir($destinationPath)) {
             mkdir($destinationPath, 0777, true);
