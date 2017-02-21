@@ -56,7 +56,7 @@ class MovieTicketsAddAdminController extends Controller
             $movie->save();
         }
 
-        return redirect()->action('Admin\MovieTicketsAdminController@index');
+        return redirect()->action('Admin\MovieTicketsAddAdminController@index');
     }
 
     /**
