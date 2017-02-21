@@ -16,8 +16,8 @@
         <table class="table table-bordered" id="emaildrops-table">
             <thead>
             <tr>
-                <col width="19%">
-                <col width="18%">
+                <col width="17%">
+                <col width="20%">
                 <col width="13%">
                 <col width="13%">
                 <col width="13%">
@@ -36,7 +36,7 @@
                     <form action="{{ Request::url() }}" method="POST">
                         {!! csrf_field() !!}
                         <td><input type="text" id="title" name="imdbid" class="form-control" value=""
-                                   placeholder="title"></td>
+                                   placeholder="imdb_id"></td>
                         <td><input type="text" id="ticket_datetime" name="ticket_datetime" class="form-control"
                                    value=""
                                    placeholder="ticket_datetime"></td>
