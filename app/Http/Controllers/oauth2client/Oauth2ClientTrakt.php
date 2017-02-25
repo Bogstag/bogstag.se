@@ -18,7 +18,6 @@ class Oauth2ClientTrakt extends Oauth2Client
      */
     protected $credential;
 
-
     /**
      * @param Request     $request
      * @param array|mixed $credential
@@ -43,7 +42,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $token;
     }
 
-
     /**
      * @param $credential
      *
@@ -51,35 +49,39 @@ class Oauth2ClientTrakt extends Oauth2Client
      */
     private function createProvider($credential)
     {
-        $provider = new \Bogstag\OAuth2\Client\Provider\Trakt([
-            'clientId'     => $credential->clientid,
-            'clientSecret' => $credential->clientsecret,
-            'redirectUri'  => $credential->redirecturi
-        ]);
+        $provider = new \Bogstag\OAuth2\Client\Provider\Trakt(
+            [
+                'clientId'     => $credential->clientid,
+                'clientSecret' => $credential->clientsecret,
+                'redirectUri'  => $credential->redirecturi,
+            ]
+        );
 
         return $provider;
     }
-
 
     public function refreshToken()
     {
         $now = Carbon::now();
         $this->getCredential();
         if ($now->diffInDays($this->credential->expires) < 14) {
-            $provider = $this->getProvider();
-            $newAccessToken = $provider->getAccessToken('refresh_token',
-                ['refresh_token' => $this->credential->refreshtoken]);
+            $provider       = $this->getProvider();
+            $newAccessToken = $provider->getAccessToken(
+                'refresh_token',
+                ['refresh_token' => $this->credential->refreshtoken]
+            );
             $this->saveNewToken($newAccessToken, $this->credential);
-            Log::info('Token was updated for '.$this->credential->provider.' with new expiration of '.$this->credential->expires);
+            Log::info(
+                'Token was updated for ' . $this->credential->provider . ' with new expiration of ' .
+                $this->credential->expires
+            );
         }
     }
-
 
     private function getCredential()
     {
         $this->credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
     }
-
 
     /**
      * @return \Bogstag\OAuth2\Client\Provider\Trakt
@@ -92,19 +94,17 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $provider;
     }
 
-
     /**
      * @param $token
      * @param $credential
      */
     private function saveNewToken($token, $credential)
     {
-        $credential->accesstoken = $token->getToken();
-        $credential->expires = $token->getExpires();
+        $credential->accesstoken  = $token->getToken();
+        $credential->expires      = $token->getExpires();
         $credential->refreshtoken = $token->getRefreshToken();
         $credential->save();
     }
-
 
     /**
      * @param      $method
@@ -126,9 +126,8 @@ class Oauth2ClientTrakt extends Oauth2Client
             ];
         }
         $provider = $this->getProvider();
-        $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
+        $request  = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
 
         return $provider->getParsedResponse($request);
     }
-
 }
