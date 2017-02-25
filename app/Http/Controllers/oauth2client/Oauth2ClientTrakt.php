@@ -32,7 +32,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         $provider = $this->createProvider($credential);
 
-        if ( ! empty($_GET['error'])) {
+        if (! empty($_GET['error'])) {
             abort(500, $_GET['error']);
         } elseif (empty($_GET['code'])) {
             $provider->authorize();
@@ -119,8 +119,8 @@ class Oauth2ClientTrakt extends Oauth2Client
         $body = null
     ) {
         $this->getCredential();
-        $options = null;
-        if ( ! empty($body)) {
+        $options = [];
+        if (! empty($body)) {
             $options = [
                 'body' => $body,
             ];

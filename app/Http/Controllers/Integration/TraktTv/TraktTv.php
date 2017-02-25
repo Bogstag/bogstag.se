@@ -78,7 +78,7 @@ class TraktTv extends Integrator
     }
 
 
-    private function makeRequest($body = null)
+    private function makeRequest(array $body = [])
     {
         $url = $this->createUrl();
         $method = $this->method;
