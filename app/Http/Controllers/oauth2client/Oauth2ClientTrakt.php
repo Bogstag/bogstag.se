@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Oauth2Credential;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
+use App\Oauth2Credential;
+use Illuminate\Http\Request;
 
 /**
  * Class Oauth2ClientTrakt.
  */
 class Oauth2ClientTrakt extends Oauth2Client
 {
-
     /**
      * @var
      */
     protected $credential;
-
 
     /**
      * @param Request     $request
@@ -33,7 +31,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         $provider = $this->createProvider($credential);
 
-        if ( ! empty($_GET['error'])) {
+        if (! empty($_GET['error'])) {
             abort(500, $_GET['error']);
         } elseif (empty($_GET['code'])) {
             $provider->authorize();
@@ -42,7 +40,6 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         return $token;
     }
-
 
     /**
      * @param $credential
@@ -54,12 +51,11 @@ class Oauth2ClientTrakt extends Oauth2Client
         $provider = new \Bogstag\OAuth2\Client\Provider\Trakt([
             'clientId'     => $credential->clientid,
             'clientSecret' => $credential->clientsecret,
-            'redirectUri'  => $credential->redirecturi
+            'redirectUri'  => $credential->redirecturi,
         ]);
 
         return $provider;
     }
-
 
     public function refreshToken()
     {
@@ -74,12 +70,10 @@ class Oauth2ClientTrakt extends Oauth2Client
         }
     }
 
-
     private function getCredential()
     {
         $this->credential = Oauth2Credential::where('provider', 'Trakt')->firstOrFail();
     }
-
 
     /**
      * @return \Bogstag\OAuth2\Client\Provider\Trakt
@@ -92,7 +86,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         return $provider;
     }
 
-
     /**
      * @param $token
      * @param $credential
@@ -104,7 +97,6 @@ class Oauth2ClientTrakt extends Oauth2Client
         $credential->refreshtoken = $token->getRefreshToken();
         $credential->save();
     }
-
 
     /**
      * @param      $method
@@ -120,7 +112,7 @@ class Oauth2ClientTrakt extends Oauth2Client
     ) {
         $this->getCredential();
         $options;
-        if ( ! empty($body)) {
+        if (! empty($body)) {
             $options = [
                 'body' => $body,
             ];
@@ -130,5 +122,4 @@ class Oauth2ClientTrakt extends Oauth2Client
 
         return $provider->getParsedResponse($request);
     }
-
 }
