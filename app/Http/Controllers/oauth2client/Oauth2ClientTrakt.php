@@ -119,7 +119,7 @@ class Oauth2ClientTrakt extends Oauth2Client
         $body = null
     ) {
         $this->getCredential();
-        $options;
+        $options = null;
         if ( ! empty($body)) {
             $options = [
                 'body' => $body,
