@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use App\Oauth2Credential;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
+use App\Oauth2Credential;
+use Illuminate\Http\Request;
 
 /**
  * Class Oauth2ClientTrakt.
  */
 class Oauth2ClientTrakt extends Oauth2Client
 {
-
     /**
      * @var
      */
@@ -65,14 +64,14 @@ class Oauth2ClientTrakt extends Oauth2Client
         $now = Carbon::now();
         $this->getCredential();
         if ($now->diffInDays($this->credential->expires) < 14) {
-            $provider       = $this->getProvider();
+            $provider = $this->getProvider();
             $newAccessToken = $provider->getAccessToken(
                 'refresh_token',
                 ['refresh_token' => $this->credential->refreshtoken]
             );
             $this->saveNewToken($newAccessToken, $this->credential);
             Log::info(
-                'Token was updated for ' . $this->credential->provider . ' with new expiration of ' .
+                'Token was updated for '.$this->credential->provider.' with new expiration of '.
                 $this->credential->expires
             );
         }
@@ -100,8 +99,8 @@ class Oauth2ClientTrakt extends Oauth2Client
      */
     private function saveNewToken($token, $credential)
     {
-        $credential->accesstoken  = $token->getToken();
-        $credential->expires      = $token->getExpires();
+        $credential->accesstoken = $token->getToken();
+        $credential->expires = $token->getExpires();
         $credential->refreshtoken = $token->getRefreshToken();
         $credential->save();
     }
@@ -126,7 +125,7 @@ class Oauth2ClientTrakt extends Oauth2Client
             ];
         }
         $provider = $this->getProvider();
-        $request  = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
+        $request = $provider->getAuthenticatedRequest($method, $url, $this->credential->accesstoken, $options);
 
         return $provider->getParsedResponse($request);
     }
