@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
-use App\Http\Controllers\Integration\Integrator;
-use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
+use App\Http\Controllers\Integration\Integrator;
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
+use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
  * Class TraktTv.
  */
 class TraktTv extends Integrator
 {
-
     /**
      * @var int
      */
@@ -75,9 +74,9 @@ class TraktTv extends Integrator
 
     private function makeRequest(array $body = [])
     {
-        $url       = $this->createUrl();
-        $method    = $this->method;
-        $localFile = 'Trakt/' . urlencode($method . $url);
+        $url = $this->createUrl();
+        $method = $this->method;
+        $localFile = 'Trakt/'.urlencode($method.$url);
 
         if (env('APP_ENV', false) == 'local' && $cachedAPICall = $this->getCachedAPICall($localFile)) {
             return $cachedAPICall;
@@ -96,18 +95,18 @@ class TraktTv extends Integrator
 
     private function createUrl()
     {
-        $url        = $this->baseUrl . $this->urlPart . $this->type;
+        $url = $this->baseUrl.$this->urlPart.$this->type;
         $parameters = null;
         if (! empty($this->limit)) {
-            $parameters .= 'limit=' . $this->limit . '&';
+            $parameters .= 'limit='.$this->limit.'&';
         }
 
         if (! empty($this->extended)) {
-            $parameters .= 'extended=' . $this->extended . '&';
+            $parameters .= 'extended='.$this->extended.'&';
         }
 
         if (! empty($parameters)) {
-            return $url . '?' . $parameters;
+            return $url.'?'.$parameters;
         }
 
         return $url;
@@ -134,29 +133,29 @@ class TraktTv extends Integrator
         }
 
         if (! empty($watchedMovie->watched_at)) {
-            $last_watched_at           = new Carbon($watchedMovie->watched_at);
+            $last_watched_at = new Carbon($watchedMovie->watched_at);
             $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
-            $movie->last_watched_at    = $last_watched_at;
+            $movie->last_watched_at = $last_watched_at;
         } elseif (! empty($watchedMovie->last_watched_at)) {
-            $last_watched_at           = new Carbon($watchedMovie->last_watched_at);
+            $last_watched_at = new Carbon($watchedMovie->last_watched_at);
             $last_watched_at->timezone = new \DateTimeZone(config('app.timezone'));
-            $movie->last_watched_at    = $last_watched_at;
+            $movie->last_watched_at = $last_watched_at;
         }
 
-        $movie->title            = $watchedMovie->movie->title;
-        $movie->year             = $watchedMovie->movie->year;
-        $movie->slug             = $watchedMovie->movie->ids->slug;
-        $movie->id_imdb          = $watchedMovie->movie->ids->imdb;
-        $movie->id_tmdb          = $watchedMovie->movie->ids->tmdb;
-        $movie->tagline          = $watchedMovie->movie->tagline;
-        $movie->overview         = $watchedMovie->movie->overview;
-        $movie->released         = $watchedMovie->movie->released;
-        $movie->runtime          = $watchedMovie->movie->runtime;
-        $movie->trailer          = $watchedMovie->movie->trailer;
-        $movie->homepage         = $watchedMovie->movie->homepage;
+        $movie->title = $watchedMovie->movie->title;
+        $movie->year = $watchedMovie->movie->year;
+        $movie->slug = $watchedMovie->movie->ids->slug;
+        $movie->id_imdb = $watchedMovie->movie->ids->imdb;
+        $movie->id_tmdb = $watchedMovie->movie->ids->tmdb;
+        $movie->tagline = $watchedMovie->movie->tagline;
+        $movie->overview = $watchedMovie->movie->overview;
+        $movie->released = $watchedMovie->movie->released;
+        $movie->runtime = $watchedMovie->movie->runtime;
+        $movie->trailer = $watchedMovie->movie->trailer;
+        $movie->homepage = $watchedMovie->movie->homepage;
         $movie->trakt_updated_at = new Carbon($watchedMovie->movie->updated_at);
-        $movie->certification    = $watchedMovie->movie->certification;
-        $movie->genres           = $watchedMovie->movie->genres;
+        $movie->certification = $watchedMovie->movie->certification;
+        $movie->genres = $watchedMovie->movie->genres;
         $movie->save();
 
         return $movie;
@@ -165,12 +164,12 @@ class TraktTv extends Integrator
     public function getMovie($id)
     {
         $this->urlPart = '';
-        $this->setType('/movies/' . $id);
+        $this->setType('/movies/'.$id);
         $this->setExtended('full');
-        $moviecollection        = new \stdClass;
+        $moviecollection = new \stdClass;
         $moviecollection->movie = $this->makeRequest();
-        $movie                  = $this->storeMovie($moviecollection);
-        $image                  = new FanartTv();
+        $movie = $this->storeMovie($moviecollection);
+        $image = new FanartTv();
         $image->getMovieImages($movie);
 
         return $movie;
@@ -191,7 +190,7 @@ class TraktTv extends Integrator
         $watchedMovies = $this->getSyncHistory();
         foreach ($watchedMovies as $watchedMovie) {
             $movie = $this->storeMovie($watchedMovie);
-            $command->info('Stored ' . $watchedMovie->movie->title . ' to db');
+            $command->info('Stored '.$watchedMovie->movie->title.' to db');
             $image = new FanartTv();
             $image->getMovieImages($movie);
         }
