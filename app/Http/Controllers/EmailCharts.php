@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Emaildrop;
 use App\Emailstat;
-use DB;
 
 /**
  * Class EmailCharts.

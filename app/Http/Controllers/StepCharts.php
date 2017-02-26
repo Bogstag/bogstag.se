@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Step;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Database\Eloquent\Collection;
 
 /**

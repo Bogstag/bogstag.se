@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
+use Log;
 use App\SteamGame;
 use Carbon\Carbon;
-use Log;
 
 /**
  * Class SteamAPIGameDescription.
@@ -51,7 +51,7 @@ class SteamAPIGameDescription extends SteamAPIGame
     }
 
     /**
-     * @param integer $GameId
+     * @param int $GameId
      *
      * @return bool|mixed
      */

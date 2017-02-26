@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Integration\TraktTv\TraktTv;
-use Illuminate\Http\Request;
 
 /**
  * Class Oauth2CredentialAdminController.
