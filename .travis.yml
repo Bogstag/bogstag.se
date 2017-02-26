@@ -1,6 +1,15 @@
 language: php
 
-sudo: false
+sudo: required
+
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 php:
   - 7.0
@@ -13,11 +22,12 @@ env:
 sudo: false
 
 before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - composer self-update
   - composer install --prefer-source --no-interaction
 
 script:
-  - ./vendor/bin/phpcs --standard=psr2 src/
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
