@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration;
 
-use Storage;
-use Carbon\Carbon;
 use App\ExternalApiLimit;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Storage;
 
 /**
  * Class Integrator.
@@ -60,6 +60,9 @@ class Integrator extends Controller
         return $ExternalApiLimit->external_api_limit_left;
     }
 
+    /**
+     * @param string $localfile
+     */
     public function getCachedAPICall($localfile)
     {
         if (Storage::disk('local')->exists($localfile)) {
@@ -69,6 +72,9 @@ class Integrator extends Controller
         return false;
     }
 
+    /**
+     * @param string $localfile
+     */
     public function saveCachedAPICall($localfile, $Json)
     {
         Storage::put($localfile, $Json);

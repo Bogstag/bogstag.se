@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Psr\Log\LoggerInterface;
 use Illuminate\Contracts\Logging\Log;
-use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Dusk\DuskServiceProvider;
+use Psr\Log\LoggerInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

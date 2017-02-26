@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\Email;
 
 use App\Emailstat;
+use App\Http\Controllers\Api\APIController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\APIController;
 
 class StatController extends APIController
 {

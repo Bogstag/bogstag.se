@@ -34,7 +34,7 @@ class GoogleFitCommand extends Command
     /**
      * SteamApiCommand constructor.
      *
-     * @param GoogleFit $googleFit
+     * @param \App\Http\Controllers\Integration\Google\GoogleFit $googleFit
      */
     public function __construct(\App\Http\Controllers\Integration\Google\GoogleFit $googleFit)
     {

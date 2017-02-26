@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
+use App\Http\Controllers\Integration\Integrator;
+use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
-use App\Http\Controllers\Integration\Integrator;
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
-use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
  * Class TraktTv.
@@ -119,6 +119,9 @@ class TraktTv extends Integrator
         );
     }
 
+    /**
+     * @return Movie
+     */
     private function storeMovie($watchedMovie)
     {
         $movie = Movie::firstOrNew(['id_trakt' => $watchedMovie->movie->ids->trakt]);
@@ -172,11 +175,17 @@ class TraktTv extends Integrator
         return $movie;
     }
 
+    /**
+     * @param string|null $type
+     */
     public function setType($type)
     {
         $this->type = $type;
     }
 
+    /**
+     * @param string $extended
+     */
     public function setExtended($extended)
     {
         $this->extended = $extended;
@@ -212,6 +221,9 @@ class TraktTv extends Integrator
         return $this->makeRequest($body);
     }
 
+    /**
+     * @param string $method
+     */
     public function setMethod($method)
     {
         $this->method = $method;

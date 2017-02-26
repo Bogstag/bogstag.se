@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\DateTime;
 
 use App\Date;
+use App\Http\Controllers\Api\APIController;
 use Carbon\Carbon;
 use Illuminate\Http;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\APIController;
 
 /**
  * Class DateController

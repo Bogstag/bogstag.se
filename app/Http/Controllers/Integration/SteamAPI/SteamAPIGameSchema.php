@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use Log;
 use App\SteamGame;
-use App\SteamGameStat;
 use App\SteamGameAchievement;
+use App\SteamGameStat;
+use Log;
 use Steam\Command\UserStats\GetSchemaForGame;
 
 /**
@@ -60,7 +60,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param integer $GameId
      *
      * @return bool|mixed
      */
@@ -88,7 +88,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param integer $GameId
      * @param $SteamGameSchemaFromAPI
      *
      * @return bool
@@ -133,7 +133,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param integer $GameId
      * @param $SteamGameSchemaFromAPI
      *
      * @return bool
@@ -163,7 +163,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param integer $GameId
      *
      * @return mixed
      */
