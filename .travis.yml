@@ -1,7 +1,10 @@
 language: php
 
+sudo: false
+
 php:
   - 7.0
+  - 7.1
 
 env:
   global:
@@ -13,11 +16,10 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction
 
-before_install:
-  - pip install --user codecov
-
-after_success:
-  - codecov
-
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - ./vendor/bin/phpcs --standard=psr2 src/
+  - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+
+  after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
