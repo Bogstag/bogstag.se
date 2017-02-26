@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Movie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * Class Oauth2CredentialAdminController.

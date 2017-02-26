@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use App\SteamGame;
 use Log;
+use App\SteamGame;
 use Steam\Command\PlayerService\GetOwnedGames;
 use Steam\Command\PlayerService\GetRecentlyPlayedGames;
 

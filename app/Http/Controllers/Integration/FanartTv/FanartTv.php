@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Integration\FanartTv;
 
-use App\Http\Controllers\Integration\Integrator;
 use App\Image;
 use App\Movie;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Exception\RequestException;
+use App\Http\Controllers\Integration\Integrator;
 
 /**
  * Class FanartTv.

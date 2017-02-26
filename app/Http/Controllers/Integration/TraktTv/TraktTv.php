@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
-use App\Http\Controllers\Integration\Integrator;
-use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
+use App\Http\Controllers\Integration\Integrator;
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
+use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
  * Class TraktTv.
