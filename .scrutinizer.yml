@@ -42,8 +42,8 @@ build:
     apache2:
       sites:
         laravel_app:
-          web_root: 'public/'
-          host: 'localhost'
+          web_root: public/
+          host: localhost
     selenium:
       version: '3.0'
       chrome_driver_version: '2.27'
