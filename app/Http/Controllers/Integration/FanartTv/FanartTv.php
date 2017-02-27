@@ -181,7 +181,7 @@ class FanartTv extends Integrator
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getResource()
     {
