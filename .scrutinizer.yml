@@ -55,7 +55,8 @@ build:
       - composer self-update
       - composer install --prefer-source --no-interaction
     override:
-      command:  ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-      coverage:
-        file: coverage.clover
-        format: php-clover
+      -
+        command: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+        coverage:
+          file: coverage.clover
+          format: php-clover
