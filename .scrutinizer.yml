@@ -37,7 +37,16 @@ tools:
     excluded_dirs: [vendor, tests]
 build:
   environment:
-    selenium: true
+    hosts:
+      localhost: 127.0.0.1
+    apache2:
+      sites:
+        laravel_app:
+          web_root: 'public/'
+          host: 'localhost'
+    selenium:
+      version: '3.0'
+      chrome_driver_version: '2.27'
     php:
       version: 7.1
   tests:
@@ -45,3 +54,8 @@ build:
     before:
       - composer self-update
       - composer install --prefer-source --no-interaction
+    override:
+      command:  ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+      coverage:
+        file: coverage.clover
+        format: php-clover
