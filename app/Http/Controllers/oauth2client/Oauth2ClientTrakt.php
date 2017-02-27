@@ -19,7 +19,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
     /**
      * @param Request     $request
-     * @param array|mixed $credential
+     * @param Oauth2Credential $credential
      *
      * @return \League\OAuth2\Client\Token\AccessToken
      */
@@ -94,7 +94,7 @@ class Oauth2ClientTrakt extends Oauth2Client
     }
 
     /**
-     * @param $token
+     * @param \League\OAuth2\Client\Token\AccessToken $token
      * @param $credential
      */
     private function saveNewToken($token, $credential)
@@ -106,8 +106,8 @@ class Oauth2ClientTrakt extends Oauth2Client
     }
 
     /**
-     * @param      $method
-     * @param      $url
+     * @param      string $method
+     * @param      string $url
      * @param null $body
      *
      * @return mixed

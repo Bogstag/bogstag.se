@@ -10,7 +10,7 @@ use App\Http\Controllers\Integration\Integrator;
 class Google extends Integrator
 {
     /**
-     * @param $scopes
+     * @param string[] $scopes
      */
     public function getGoogleClient($scopes)
     {

@@ -60,7 +60,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      *
      * @return bool|mixed
      */
@@ -88,7 +88,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      * @param $SteamGameSchemaFromAPI
      *
      * @return bool
@@ -133,7 +133,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      * @param $SteamGameSchemaFromAPI
      *
      * @return bool
@@ -163,7 +163,7 @@ class SteamAPIGameSchema extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      *
      * @return mixed
      */

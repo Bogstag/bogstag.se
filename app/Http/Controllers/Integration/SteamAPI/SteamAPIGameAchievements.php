@@ -60,7 +60,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      *
      * @return bool|mixed
      */
@@ -90,7 +90,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      * @param $SteamGameAchievementsFromAPI
      *
      * @return bool
@@ -116,7 +116,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      * @param $SteamGameAchievementsFromAPI
      *
      * @return bool
@@ -141,7 +141,7 @@ class SteamAPIGameAchievements extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      *
      * @return mixed
      */

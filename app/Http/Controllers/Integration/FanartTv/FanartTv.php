@@ -56,6 +56,9 @@ class FanartTv extends Integrator
         $this->fanartid = $fanartid;
     }
 
+    /**
+     * @param Movie $movie
+     */
     private function parseImagesJson($imagesJson, $movie)
     {
         $imagesJson = collect($imagesJson);
@@ -85,6 +88,9 @@ class FanartTv extends Integrator
         return collect(array_merge($collect1, $collect2));
     }
 
+    /**
+     * @param Movie $movie
+     */
     private function makeRequest($movie)
     {
         $url = $this->getApiUrl();
@@ -130,6 +136,9 @@ class FanartTv extends Integrator
             $this->externalApiLimitInterval);
     }
 
+    /**
+     * @param Movie $movie
+     */
     private function storeImageDatabase($movie, $image)
     {
         $movieImages = Image::firstOrNew(['orginalimage' => $image['url'], 'imagetype' => $image['type']]);
@@ -151,6 +160,9 @@ class FanartTv extends Integrator
         return $this->storagepath.$year.'/'.$slug.'-'.$imageType.'.'.substr($url, -3);
     }
 
+    /**
+     * @param string $fileNameAndPath
+     */
     private function storeImage($url, $fileNameAndPath)
     {
         try {
@@ -177,7 +189,7 @@ class FanartTv extends Integrator
     }
 
     /**
-     * @param mixed $resource
+     * @param string $resource
      */
     public function setResource($resource)
     {

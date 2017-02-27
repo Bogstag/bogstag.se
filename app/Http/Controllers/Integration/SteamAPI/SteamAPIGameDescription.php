@@ -51,7 +51,7 @@ class SteamAPIGameDescription extends SteamAPIGame
     }
 
     /**
-     * @param $GameId
+     * @param int $GameId
      *
      * @return bool|mixed
      */
