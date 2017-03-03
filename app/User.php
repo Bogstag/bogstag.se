@@ -2,23 +2,24 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User.
  *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $remember_token
+ * @property int            $id
+ * @property string         $name
+ * @property string         $email
+ * @property string         $password
+ * @property string         $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property string $api_token
+ * @property string         $api_token
  */
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     /**
