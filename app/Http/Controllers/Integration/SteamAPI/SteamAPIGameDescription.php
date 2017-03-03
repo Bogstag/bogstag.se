@@ -90,7 +90,7 @@ class SteamAPIGameDescription extends SteamAPIGame
      * @param SteamGame $SteamGame
      * @param null      $GameDescriptionJson
      *
-     * @return bool
+     * @return null|boolean
      */
     public function updateSteamGameWithNewDescription(SteamGame $SteamGame, $GameDescriptionJson = null)
     {
