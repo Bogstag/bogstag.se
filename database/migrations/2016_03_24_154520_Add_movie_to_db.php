@@ -36,12 +36,6 @@ class AddMovieToDb extends Migration
             $table->string('homepage')->nullable();
             $table->dateTime('trakt_updated_at')->nullable();
             $table->string('certification')->nullable();
-            $table->string('fanart')->nullable();
-            $table->string('poster')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('clearart')->nullable();
-            $table->string('banner')->nullable();
-            $table->string('thumb')->nullable();
             $table->text('genres')->nullable();
         });
     }

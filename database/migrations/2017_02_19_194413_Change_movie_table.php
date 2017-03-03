@@ -14,15 +14,9 @@ class ChangeMovieTable extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->dropColumn('fanart');
-            $table->dropColumn('poster');
-            $table->dropColumn('logo');
-            $table->dropColumn('clearart');
-            $table->dropColumn('banner');
-            $table->dropColumn('thumb');
-            $table->boolean('fanarttvpostermissing');
-            $table->boolean('fanarttvclearartmissing');
-            $table->boolean('fanarttvmissing');
+            $table->boolean('fanarttvpostermissing')->default('0');
+            $table->boolean('fanarttvclearartmissing')->default('0');
+            $table->boolean('fanarttvmissing')->default('0');
         });
     }
 
@@ -34,12 +28,6 @@ class ChangeMovieTable extends Migration
     public function down()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->string('fanart')->nullable();
-            $table->string('poster')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('clearart')->nullable();
-            $table->string('banner')->nullable();
-            $table->string('thumb')->nullable();
             $table->dropColumn('fanarttvpostermissing');
             $table->dropColumn('fanarttvclearartmissing');
             $table->dropColumn('fanarttvmissing');
