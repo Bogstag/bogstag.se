@@ -37,6 +37,9 @@ class AddMovieToDb extends Migration
             $table->dateTime('trakt_updated_at')->nullable();
             $table->string('certification')->nullable();
             $table->text('genres')->nullable();
+            $table->boolean('fanarttvpostermissing')->default('0');
+            $table->boolean('fanarttvclearartmissing')->default('0');
+            $table->boolean('fanarttvmissing')->default('0');
         });
     }
 
