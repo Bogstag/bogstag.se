@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration;
 
-use Storage;
-use Carbon\Carbon;
 use App\ExternalApiLimit;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Storage;
 
 /**
  * Class Integrator.
@@ -36,11 +36,14 @@ class Integrator extends Controller
         $externalApiLimit = 100000,
         $externalApiLimitInterval = 'Day'
     ) {
-        $ExternalApiLimit = ExternalApiLimit::where('external_api_name', $externalApiName)
-            ->where('external_api_limit_interval', $externalApiLimitInterval)
-            ->where('limit_interval_start', '<=', $now->toDateTimeString())
-            ->where('limit_interval_end', '>=', $now->toDateTimeString())
-            ->first();
+        $ExternalApiLimit = ExternalApiLimit::where('external_api_name', $externalApiName)->where(
+            'external_api_limit_interval',
+            $externalApiLimitInterval
+        )->where('limit_interval_start', '<=', $now->toDateTimeString())->where(
+            'limit_interval_end',
+            '>=',
+            $now->toDateTimeString()
+        )->first();
 
         if (empty($ExternalApiLimit)) {
             $ExternalApiLimit = new ExternalApiLimit();
@@ -90,9 +93,7 @@ class Integrator extends Controller
      */
     public function getValueByKey($data, $key, $default = null)
     {
-        if (is_object($data)) {
-            $data = json_decode(json_encode($data), true);
-        }
+        $data = $this->ifObjectConvertToArray($data);
         if (! is_string($key) || empty($key) || ! count($data)) {
             return $default;
         }
@@ -109,5 +110,27 @@ class Integrator extends Controller
         }
 
         return array_key_exists($key, $data) ? $data[$key] : $default;
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    private function ifObjectConvertToArray($data)
+    {
+        if (is_object($data)) {
+            return $this->convertObjectToArray($data);
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $object
+     * @return mixed
+     */
+    private function convertObjectToArray($object)
+    {
+        return json_decode(json_encode($object), true);
     }
 }

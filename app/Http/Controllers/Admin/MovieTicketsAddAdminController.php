@@ -32,7 +32,7 @@ class MovieTicketsAddAdminController extends Controller
         $trakt = new TraktTv();
         $movie = $trakt->getMovie($input['imdbid']);
         $movie->ticket_datetime = $input['ticket_datetime'].':00';
-        if ($movie->last_watched_at = '0000-00-00 00:00:00' || $movie->ticket_datetime > $movie->last_watched_at) {
+        if (($movie->last_watched_at = '0000-00-00 00:00:00') || ($movie->ticket_datetime > $movie->last_watched_at)) {
             $movie->last_watched_at = $movie->ticket_datetime;
         }
         $movie->ticket_price = $input['ticket_price'];
@@ -50,7 +50,7 @@ class MovieTicketsAddAdminController extends Controller
         if (! is_dir($destinationPath)) {
             mkdir($destinationPath, 0777, true);
         }
-        file_put_contents($destinationPath.$destinationFile, file_get_contents($input['ticket_image']));
+        file_put_contents($destinationPath.$destinationFile, file_get_contents(strip_tags($input['ticket_image'])));
         $test = getimagesize($destinationPath.$destinationFile);
         if ($test[0] > 10) {
             $movie->save();

@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Movie.
+ * Class Movie
+ *
+ * @package App
  */
 class Movie extends Model
 {
@@ -67,11 +69,17 @@ class Movie extends Model
         return $this->morphMany('App\Image', 'imageable');
     }
 
+    /**
+     * @return mixed
+     */
     public function moviePosterPath()
     {
         return $this->morphMany('App\Image', 'imageable')->select('imagepath')->where('imagetype', 'poster');
     }
 
+    /**
+     * @return mixed
+     */
     public function movieClearartPath()
     {
         return $this->morphMany('App\Image', 'imageable')->select('imagepath')->where('imagetype', 'clearart');

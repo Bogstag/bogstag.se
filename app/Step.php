@@ -8,15 +8,33 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Step.
  *
- * @property int $step_id
- * @property int $date_id
- * @property int $steps
- * @property int $duration
+ * @property int            $step_id
+ * @property int            $date_id
+ * @property int            $steps
+ * @property int            $duration
  * @property \Carbon\Carbon $datetime
  * @property-read \App\Date $date
+ * @method limit(integer $limit)
  */
 class Step extends Model
 {
+    /**
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * @var int
+     */
+    public $targetStep = 10000;
+
     /**
      * @var array
      */
@@ -28,25 +46,11 @@ class Step extends Model
     protected $primaryKey = 'id';
 
     /**
-     * @var bool
-     */
-    public $incrementing = true;
-
-    /**
      * Indicates what can be submitted to update.
      *
      * @var array
      */
     protected $fillable = ['date'];
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = true;
-
-    public $targetStep = 10000;
 
     /**
      * This is done because my prod server returns this as string not int.
@@ -74,12 +78,15 @@ class Step extends Model
         $this->datetime = $date;
     }
 
+    /**
+     * @return int
+     */
     public function getStepsLeftToTargetAttribute()
     {
         if ($this->steps > $this->targetStep) {
             return 0;
         }
 
-        return (int) $this->targetStep - $this->steps;
+        return (int)$this->targetStep - $this->steps;
     }
 }

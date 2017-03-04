@@ -32,7 +32,7 @@ class Oauth2CredentialAdminController extends Controller
     {
         $input = $request->all();
         $credential = Oauth2Credential::firstOrNew(
-            ['provider' => $input['provider']]
+            ['provider' => strip_tags($input['provider'])]
         );
         $credential->clientid = $input['clientid'];
         $credential->clientsecret = $input['clientsecret'];

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\Activity;
 
+use App\Http\Controllers\Api\APIController;
 use App\Step;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\APIController;
 
 /**
  * Class StepController.
@@ -24,7 +24,7 @@ class StepController extends APIController
     public function index(Request $request)
     {
         $this->step = new Step();
-        $limit = $request->input('limit', 10);
+        $limit = strip_tags($request->input('limit', 10));
         $steps = $this->step->limit($limit)->get()->toArray();
 
         return response()->json($steps);
@@ -44,8 +44,7 @@ class StepController extends APIController
     public function internalStore(array $step)
     {
         $this->step = new Step();
-        if ($this->step->where('step_id', $step['date']->minute(0)->second(0)->format('YmdH'))->exists()) {
-        } else {
+        if (! $this->step->where('step_id', $step['date']->minute(0)->second(0)->format('YmdH'))->exists()) {
             $this->setStep($step);
             $this->step->save();
         }
