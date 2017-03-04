@@ -47,7 +47,7 @@ class DateController extends APIController
     public function internalStore(Carbon $date)
     {
         $this->date = new Date();
-        if (!$this->date->where('date', $date->format('Y-m-d'))->exists()) {
+        if (! $this->date->where('date', $date->format('Y-m-d'))->exists()) {
             $this->generateDate($date);
             $this->date->save();
         }
