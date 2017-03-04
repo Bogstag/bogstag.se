@@ -10,11 +10,6 @@ use Illuminate\Console\Command;
 class GoogleFitCommand extends Command
 {
     /**
-     * @var GoogleFit|\App\Http\Controllers\Integration\Google\GoogleFit
-     */
-    private $googleFit;
-
-    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -30,6 +25,11 @@ class GoogleFitCommand extends Command
      * @var string
      */
     protected $description = 'Command for update steps and duration from Google Fit API';
+
+    /**
+     * @var GoogleFit|\App\Http\Controllers\Integration\Google\GoogleFit
+     */
+    private $googleFit;
 
     /**
      * SteamApiCommand constructor.
