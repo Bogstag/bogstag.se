@@ -79,12 +79,16 @@ class GoogleFit extends Google
         return $GetFitData;
     }
 
+    /**
+     * @param int|string|array $days
+     * @return array
+     */
     public function getStepData($days = 1)
     {
         $this->connectGoogleServiceFitness();
         $this->dataSourceId = 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps';
 
-        $listDataSets = $this->getDataSetsFromDataSource($days);
+        $listDataSets = $this->getDataSetsFromDataSource(intval($days));
 
         $dataArray = [];
         $i = 0;
@@ -127,6 +131,10 @@ class GoogleFit extends Google
         return array_map([$this, 'storeStep'], $dataArray);
     }
 
+    /**
+     * @param $stepArray
+     * @return mixed
+     */
     private function storeStep($stepArray)
     {
         $step = Step::firstOrNew(
@@ -155,6 +163,9 @@ class GoogleFit extends Google
         $this->dataSourceId = $dataSourceId;
     }
 
+    /**
+     *
+     */
     public function incrementGoogleFitApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(

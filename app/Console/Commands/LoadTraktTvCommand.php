@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Http\Controllers\Integration\TraktTv\TraktTv;
-use App\Http\Controllers\Integration\SteamAPI\SteamAPIGame;
+use Illuminate\Console\Command;
 
 /**
  * Class SteamApiCommand.
@@ -24,11 +23,17 @@ class LoadTraktTvCommand extends Command
      * @var string
      */
     protected $description = 'Command for loading from trakt to db';
+
     /**
-     * @var SteamAPIGame
+     * @var TraktTv
      */
     private $traktTv;
 
+    /**
+     * LoadTraktTvCommand constructor.
+     *
+     * @param TraktTv $traktTv
+     */
     public function __construct(TraktTv $traktTv)
     {
         parent::__construct();
