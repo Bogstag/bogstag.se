@@ -163,9 +163,6 @@ class GoogleFit extends Google
         $this->dataSourceId = $dataSourceId;
     }
 
-    /**
-     *
-     */
     public function incrementGoogleFitApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(
