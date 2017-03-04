@@ -52,10 +52,7 @@ class MovieTicketsAddAdminController extends Controller
             $destinationPath.$destinationFile,
             file_get_contents(strip_tags($input['ticket_image']))
         );
-        $test = getimagesize($destinationPath.$destinationFile);
-        if ($test[0] > 10) {
-            $movie->save();
-        }
+        $movie->save();
 
         return redirect()->action('Admin\MovieTicketsAddAdminController@index');
     }
