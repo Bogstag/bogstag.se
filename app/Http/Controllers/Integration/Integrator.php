@@ -93,19 +93,21 @@ class Integrator extends Controller
         if (is_object($data)) {
             $data = json_decode(json_encode($data), true);
         }
-        if (!is_string($key) || empty($key) || !count($data)) {
+        if (! is_string($key) || empty($key) || ! count($data)) {
             return $default;
         }
         if (strpos($key, '.') !== false) {
             $keys = explode('.', $key);
             foreach ($keys as $innerKey) {
-                if (!is_array($data) || !array_key_exists($innerKey, $data)) {
+                if (! is_array($data) || ! array_key_exists($innerKey, $data)) {
                     return $default;
                 }
                 $data = $data[$innerKey];
             }
+
             return $data;
         }
+
         return array_key_exists($key, $data) ? $data[$key] : $default;
     }
 }

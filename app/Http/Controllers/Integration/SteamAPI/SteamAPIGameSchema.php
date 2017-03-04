@@ -105,7 +105,7 @@ class SteamAPIGameSchema extends SteamAPIGame
 
             $SteamAchievement = SteamGameAchievement::firstOrNew([
                 'steam_game_id' => $GameId,
-                'name'          => $achievement->name
+                'name'          => $achievement->name,
             ]);
 
             $jsonModelMapping = [
