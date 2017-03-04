@@ -152,9 +152,6 @@ class TraktTv extends Integrator
         return $url;
     }
 
-    /**
-     *
-     */
     private function incrementTraktTvApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(
