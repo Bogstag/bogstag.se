@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 /**
  * Class FanartTv.

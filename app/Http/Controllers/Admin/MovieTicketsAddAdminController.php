@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Integration\TraktTv\TraktTv;
 use Illuminate\Http\Request;
+use Storage;
 
 /**
  * Class Oauth2CredentialAdminController.
@@ -39,18 +40,18 @@ class MovieTicketsAddAdminController extends Controller
         $movie->ticket_row = $input['ticket_row'];
         $movie->ticket_seat = $input['ticket_seat'];
         $movie->plays = $movie->plays + 1;
-        $destinationFile = $movie->slug.'.png';
+        $destinationFile = strip_tags($movie->slug.'.png');
         $trakt->addSyncHistory($movie->id_imdb, $movie->ticket_datetime->setTimezone('UTC')->toDateTimeString());
 
-        if (env('APP_ENV', false) == 'local') {
-            $destinationPath = public_path('img\\tickets\\'.$movie->year.'\\');
-        } else {
-            $destinationPath = public_path('img/tickets/'.$movie->year.'/');
+        $destinationPath = '/img/tickets/'.strip_tags($movie->year).'/';
+
+        if (! Storage::disk('public')->exists($destinationPath)) {
+            Storage::disk('public')->makeDirectory($destinationPath);
         }
-        if (! is_dir($destinationPath)) {
-            mkdir($destinationPath, 0777, true);
-        }
-        file_put_contents($destinationPath.$destinationFile, file_get_contents(strip_tags($input['ticket_image'])));
+        Storage::disk('public')->put(
+            $destinationPath.$destinationFile,
+            file_get_contents(strip_tags($input['ticket_image']))
+        );
         $test = getimagesize($destinationPath.$destinationFile);
         if ($test[0] > 10) {
             $movie->save();
