@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Integration\TraktTv\TraktTv;
+use Illuminate\Http\Request;
 
 /**
  * Class Oauth2CredentialAdminController.
@@ -32,7 +32,7 @@ class MovieTicketsAddAdminController extends Controller
         $trakt = new TraktTv();
         $movie = $trakt->getMovie($input['imdbid']);
         $movie->ticket_datetime = $input['ticket_datetime'].':00';
-        if ($movie->last_watched_at = '0000-00-00 00:00:00' or $movie->ticket_datetime > $movie->last_watched_at) {
+        if ($movie->last_watched_at = '0000-00-00 00:00:00' || $movie->ticket_datetime > $movie->last_watched_at) {
             $movie->last_watched_at = $movie->ticket_datetime;
         }
         $movie->ticket_price = $input['ticket_price'];

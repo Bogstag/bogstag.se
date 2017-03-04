@@ -2,48 +2,87 @@
 
 namespace App\Http\Controllers\Integration\FanartTv;
 
+use App\Http\Controllers\Integration\Integrator;
 use App\Image;
 use App\Movie;
 use Carbon\Carbon;
+use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Exception\RequestException;
-use App\Http\Controllers\Integration\Integrator;
+use Illuminate\Support\Facades\Storage;
 
 /**
- * Class FanartTv.
+ * Class FanartTv
+ *
+ * @package App\Http\Controllers\Integration\FanartTv
  */
 class FanartTv extends Integrator
 {
+    /**
+     * @var int
+     */
     protected $externalApiLimit = 9999; //no hard limit
 
+    /**
+     * @var string
+     */
     protected $externalApiLimitInterval = 'Day';
 
+    /**
+     * @var string
+     */
     protected $externalApiName = 'FanartTvApi';
 
+    /**
+     * @var
+     */
     protected $projectApiKey;
 
+    /**
+     * @var
+     */
     protected $resource;
 
+    /**
+     * @var
+     */
     protected $poster;
 
+    /**
+     * @var
+     */
     protected $clearart;
 
+    /**
+     * @var string
+     */
     protected $storagepath = '/images/fanartimages/';
 
+    /**
+     * @var string
+     */
     protected $baseUrl = 'http://webservice.fanart.tv/v3/';
 
+    /**
+     * @var string
+     */
     protected $method = 'GET';
 
+    /**
+     * @param Movie $movie
+     * @return bool
+     */
     public function getMovieImages(Movie $movie)
     {
         $this->setResource('movies');
         $this->setFanartid($movie->id_tmdb);
         $images = $this->parseImagesJson($this->makeRequest($movie), $movie);
 
-        $images->each(function ($image) use ($movie) {
-            $this->storeImageDatabase($movie, $image);
-        });
+        $images->each(
+            function ($image) use ($movie) {
+                $this->storeImageDatabase($movie, $image);
+            }
+        );
 
         return true;
     }
@@ -57,16 +96,20 @@ class FanartTv extends Integrator
     }
 
     /**
+     * @param $imagesJson
      * @param Movie $movie
+     * @return \Illuminate\Support\Collection
      */
     private function parseImagesJson($imagesJson, $movie)
     {
         $imagesJson = collect($imagesJson);
         if ($this->resource == 'movies') {
             try {
-                $poster = collect($imagesJson->get('movieposter'))->filter(function ($item) {
-                    return $item->lang = 'en';
-                })->first()->url;
+                $poster = collect($imagesJson->get('movieposter'))->filter(
+                    function ($item) {
+                        return $item->lang = 'en';
+                    }
+                )->first()->url;
                 $collect1 = ['poster' => ['url' => $poster, 'type' => 'poster']];
             } catch (\ErrorException $e) {
                 $collect1 = [];
@@ -74,9 +117,11 @@ class FanartTv extends Integrator
                 $movie->save();
             }
             try {
-                $clearart = collect($imagesJson->get('hdmovieclearart'))->filter(function ($item) {
-                    return $item->lang = 'en';
-                })->first()->url;
+                $clearart = collect($imagesJson->get('hdmovieclearart'))->filter(
+                    function ($item) {
+                        return $item->lang = 'en';
+                    }
+                )->first()->url;
                 $collect2 = ['clearart' => ['url' => $clearart, 'type' => 'clearart']];
             } catch (\ErrorException $e) {
                 $collect2 = [];
@@ -90,6 +135,7 @@ class FanartTv extends Integrator
 
     /**
      * @param Movie $movie
+     * @return bool|mixed
      */
     private function makeRequest($movie)
     {
@@ -122,6 +168,9 @@ class FanartTv extends Integrator
         return json_decode($result);
     }
 
+    /**
+     * @return string
+     */
     private function getApiUrl()
     {
         $this->projectApiKey = env('FANART_TV_API_KEY', false);
@@ -130,20 +179,29 @@ class FanartTv extends Integrator
         return $url;
     }
 
+    /**
+     *
+     */
     private function incrementTraktTvApiLimitCounter()
     {
-        $this->addExternalAPILimitCounter(Carbon::now(), $this->externalApiName, $this->externalApiLimit,
-            $this->externalApiLimitInterval);
+        $this->addExternalAPILimitCounter(
+            Carbon::now(),
+            $this->externalApiName,
+            $this->externalApiLimit,
+            $this->externalApiLimitInterval
+        );
     }
 
     /**
      * @param Movie $movie
+     * @param $image
+     * @return bool|mixed
      */
     private function storeImageDatabase($movie, $image)
     {
         $movieImages = Image::firstOrNew(['orginalimage' => $image['url'], 'imagetype' => $image['type']]);
         $movieImages->imagepath = $this->getLocalFileName($movie->year, $movie->slug, $image['type'], $image['url']);
-        if ($movieImages->exists() and Storage::disk('local')->exists($movieImages->imagepath)) {
+        if ($movieImages->exists() && Storage::disk('local')->exists($movieImages->imagepath)) {
             return false;
         }
         $movieImages->orginalimage = $image['url'];
@@ -155,13 +213,22 @@ class FanartTv extends Integrator
         }
     }
 
+    /**
+     * @param int    $year
+     * @param string $slug
+     * @param string $imageType
+     * @param string $url
+     * @return string
+     */
     private function getLocalFileName(int $year, string $slug, string $imageType, string $url)
     {
         return $this->storagepath.$year.'/'.$slug.'-'.$imageType.'.'.substr($url, -3);
     }
 
     /**
+     * @param string $url
      * @param string $fileNameAndPath
+     * @return bool
      */
     private function storeImage($url, $fileNameAndPath)
     {
