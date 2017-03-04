@@ -106,7 +106,7 @@ class TraktTv extends Integrator
     }
 
     /**
-     * @param null $body
+     * @param string $body
      * @return bool|mixed
      */
     private function makeRequest($body = null)
