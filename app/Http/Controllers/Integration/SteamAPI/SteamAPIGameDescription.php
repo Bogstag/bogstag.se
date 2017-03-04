@@ -95,7 +95,7 @@ class SteamAPIGameDescription extends SteamAPIGame
     public function updateSteamGameWithNewDescription(SteamGame $SteamGame, $GameDescriptionJson = null)
     {
         if (empty($GameDescriptionJson)) {
-            return null;
+            return;
         }
 
         $jsonModelMapping = [
@@ -106,12 +106,12 @@ class SteamAPIGameDescription extends SteamAPIGame
             'header_image'                 => 'image_header',
             'metacritic.score'             => 'meta_critic_score',
             'metacritic.url'               => 'meta_critic_url',
-            "screenshots.0.path_thumbnail" => 'screenshot_path_thumbnail',
-            "screenshots.0.path_full"      => 'screenshot_path_full',
-            "movies.0.thumbnail"           => 'movie_thumbnail',
-            "movies.0.webm.max"            => 'movie_full_url',
-            "movies.0.name"                => 'movie_name',
-            "background"                => 'Image_background',
+            'screenshots.0.path_thumbnail' => 'screenshot_path_thumbnail',
+            'screenshots.0.path_full'      => 'screenshot_path_full',
+            'movies.0.thumbnail'           => 'movie_thumbnail',
+            'movies.0.webm.max'            => 'movie_full_url',
+            'movies.0.name'                => 'movie_name',
+            'background'                => 'Image_background',
         ];
         foreach ($jsonModelMapping as $key => $val) {
             $value = $this->getValueByKey($GameDescriptionJson, $key);
