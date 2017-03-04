@@ -12,9 +12,7 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Class FanartTv
- *
- * @package App\Http\Controllers\Integration\FanartTv
+ * Class FanartTv.
  */
 class FanartTv extends Integrator
 {
@@ -179,9 +177,6 @@ class FanartTv extends Integrator
         return $url;
     }
 
-    /**
-     *
-     */
     private function incrementTraktTvApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(
