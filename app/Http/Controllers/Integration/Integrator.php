@@ -79,4 +79,33 @@ class Integrator extends Controller
     {
         Storage::put($localfile, $Json);
     }
+
+    /**
+     * Returns a value by key using dot notation.
+     *
+     * @param  mixed      $data
+     * @param  string     $key
+     * @param  mixed|null $default
+     * @return mixed
+     */
+    public function getValueByKey($data, $key, $default = null)
+    {
+        if (is_object($data)) {
+            $data = json_decode(json_encode($data), true);
+        }
+        if (!is_string($key) || empty($key) || !count($data)) {
+            return $default;
+        }
+        if (strpos($key, '.') !== false) {
+            $keys = explode('.', $key);
+            foreach ($keys as $innerKey) {
+                if (!is_array($data) || !array_key_exists($innerKey, $data)) {
+                    return $default;
+                }
+                $data = $data[$innerKey];
+            }
+            return $data;
+        }
+        return array_key_exists($key, $data) ? $data[$key] : $default;
+    }
 }

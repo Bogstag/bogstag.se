@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use Log;
 use App\SteamGame;
 use Carbon\Carbon;
+use Log;
 
 /**
  * Class SteamAPIGameDescription.
@@ -95,60 +95,29 @@ class SteamAPIGameDescription extends SteamAPIGame
     public function updateSteamGameWithNewDescription(SteamGame $SteamGame, $GameDescriptionJson = null)
     {
         if (empty($GameDescriptionJson)) {
-            return;
+            return null;
         }
 
-        if (! empty($GameDescriptionJson->is_free)) {
-            $SteamGame->is_free = $GameDescriptionJson->is_free;
-        }
-
-        if (! empty($GameDescriptionJson->about_the_game)) {
-            $SteamGame->about_the_game = $GameDescriptionJson->about_the_game;
-        }
-
-        if (! empty($GameDescriptionJson->header_image)) {
-            $SteamGame->image_header = $GameDescriptionJson->header_image;
-        }
-
-        if (! empty($GameDescriptionJson->legal_notice)) {
-            $SteamGame->legal_notice = $GameDescriptionJson->legal_notice;
-        }
-
-        if (! empty($GameDescriptionJson->metacritic->score)) {
-            $SteamGame->meta_critic_score = $GameDescriptionJson->metacritic->score;
-        }
-
-        if (! empty($GameDescriptionJson->metacritic->url)) {
-            $SteamGame->meta_critic_url = $GameDescriptionJson->metacritic->url;
-        }
-
-        if (! empty($GameDescriptionJson->website)) {
-            $SteamGame->website = $GameDescriptionJson->website;
-        }
-
-        if (! empty($GameDescriptionJson->screenshots[0]->path_thumbnail)) {
-            $SteamGame->screenshot_path_thumbnail = $GameDescriptionJson->screenshots[0]->path_thumbnail;
-        }
-
-        if (! empty($GameDescriptionJson->screenshots[0]->path_full)) {
-            $SteamGame->screenshot_path_full = $GameDescriptionJson->screenshots[0]->path_full;
-        }
-        if (! empty($GameDescriptionJson->movies)) {
-            $lastMovie = end($GameDescriptionJson->movies);
-            if (! empty($lastMovie->thumbnail)) {
-                $SteamGame->movie_thumbnail = $lastMovie->thumbnail;
+        $jsonModelMapping = [
+            'is_free'                      => 'is_free',
+            'about_the_game'               => 'about_the_game',
+            'legal_notice'                 => 'legal_notice',
+            'website'                      => 'website',
+            'header_image'                 => 'image_header',
+            'metacritic.score'             => 'meta_critic_score',
+            'metacritic.url'               => 'meta_critic_url',
+            "screenshots.0.path_thumbnail" => 'screenshot_path_thumbnail',
+            "screenshots.0.path_full"      => 'screenshot_path_full',
+            "movies.0.thumbnail"           => 'movie_thumbnail',
+            "movies.0.webm.max"            => 'movie_full_url',
+            "movies.0.name"                => 'movie_name',
+            "background"                => 'Image_background',
+        ];
+        foreach ($jsonModelMapping as $key => $val) {
+            $value = $this->getValueByKey($GameDescriptionJson, $key);
+            if (isset($value)) {
+                $SteamGame->{$val} = $value;
             }
-
-            if (! empty($lastMovie->webm->max)) {
-                $SteamGame->movie_full_url = $lastMovie->webm->max;
-            }
-
-            if (! empty($lastMovie->name)) {
-                $SteamGame->movie_name = $lastMovie->name;
-            }
-        }
-        if (! empty($GameDescriptionJson->background)) {
-            $SteamGame->image_background = $GameDescriptionJson->background;
         }
 
         $SteamGame->description_updated_at = date('Y-m-d H:i:s');

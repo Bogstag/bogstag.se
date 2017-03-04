@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Integration\SteamAPI;
 
-use Log;
 use App\SteamGame;
-use App\SteamGameStat;
 use App\SteamGameAchievement;
+use App\SteamGameStat;
+use Log;
 use Steam\Command\UserStats\GetSchemaForGame;
 
 /**
@@ -89,7 +89,7 @@ class SteamAPIGameSchema extends SteamAPIGame
 
     /**
      * @param int $GameId
-     * @param $SteamGameSchemaFromAPI
+     * @param     $SteamGameSchemaFromAPI
      *
      * @return bool
      */
@@ -103,29 +103,25 @@ class SteamAPIGameSchema extends SteamAPIGame
                 continue;
             }
 
-            $SteamAchievement = SteamGameAchievement::firstOrNew(
-                ['steam_game_id' => $GameId, 'name' => $achievement->name]
-            );
+            $SteamAchievement = SteamGameAchievement::firstOrNew([
+                'steam_game_id' => $GameId,
+                'name'          => $achievement->name
+            ]);
 
-            if (! empty($achievement->displayName)) {
-                $SteamAchievement->display_name = $achievement->displayName;
+            $jsonModelMapping = [
+                'displayName' => 'display_name',
+                'hidden'      => 'hidden',
+                'description' => 'description',
+                'icon'        => 'icon_url',
+                'icongray'    => 'icon_gray_url',
+            ];
+            foreach ($jsonModelMapping as $key => $val) {
+                $value = $this->getValueByKey($achievement, $key);
+                if (isset($value)) {
+                    $SteamAchievement->{$val} = $value;
+                }
             }
 
-            if (! empty($achievement->hidden)) {
-                $SteamAchievement->hidden = $achievement->hidden;
-            }
-
-            if (! empty($achievement->description)) {
-                $SteamAchievement->description = $achievement->description;
-            }
-
-            if (! empty($achievement->icon)) {
-                $SteamAchievement->icon_url = $achievement->icon;
-            }
-
-            if (! empty($achievement->icongray)) {
-                $SteamAchievement->icon_gray_url = $achievement->icongray;
-            }
             $SteamAchievement->save();
         }
 
@@ -134,7 +130,7 @@ class SteamAPIGameSchema extends SteamAPIGame
 
     /**
      * @param int $GameId
-     * @param $SteamGameSchemaFromAPI
+     * @param     $SteamGameSchemaFromAPI
      *
      * @return bool
      */
@@ -147,9 +143,7 @@ class SteamAPIGameSchema extends SteamAPIGame
             if (empty($stat)) {
                 continue;
             }
-            $SteamGameStat = SteamGameStat::firstOrNew(
-                ['steam_game_id' => $GameId, 'name' => $stat->name]
-            );
+            $SteamGameStat = SteamGameStat::firstOrNew(['steam_game_id' => $GameId, 'name' => $stat->name]);
 
             if (! empty($stat->displayName)) {
                 $SteamGameStat->display_name = $stat->displayName;
