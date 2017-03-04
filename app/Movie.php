@@ -5,9 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Movie
- *
- * @package App
+ * Class Movie.
  */
 class Movie extends Model
 {
