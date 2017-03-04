@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\oauth2client;
 
-use Log;
-use Carbon\Carbon;
 use App\Oauth2Credential;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Log;
 
 /**
  * Class Oauth2ClientTrakt.
@@ -18,7 +18,7 @@ class Oauth2ClientTrakt extends Oauth2Client
     protected $credential;
 
     /**
-     * @param Request     $request
+     * @param Request          $request
      * @param Oauth2Credential $credential
      *
      * @return \League\OAuth2\Client\Token\AccessToken
@@ -71,8 +71,7 @@ class Oauth2ClientTrakt extends Oauth2Client
             );
             $this->saveNewToken($newAccessToken, $this->credential);
             Log::info(
-                'Token was updated for '.$this->credential->provider.' with new expiration of '.
-                $this->credential->expires
+                'Token was updated for '.$this->credential->provider.' with new expiration of '.$this->credential->expires
             );
         }
     }
@@ -95,7 +94,7 @@ class Oauth2ClientTrakt extends Oauth2Client
 
     /**
      * @param \League\OAuth2\Client\Token\AccessToken $token
-     * @param $credential
+     * @param                                         $credential
      */
     private function saveNewToken($token, $credential)
     {
@@ -108,12 +107,14 @@ class Oauth2ClientTrakt extends Oauth2Client
     /**
      * @param      string $method
      * @param      string $url
-     * @param null $body
+     * @param null        $body
      *
      * @return mixed
      */
     public function createAuthRequest(
-        $method, $url, $body = null
+        $method,
+        $url,
+        $body = null
     ) {
         $this->getCredential();
         $options = [];

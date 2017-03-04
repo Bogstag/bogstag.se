@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Integration\TraktTv;
 
+use App\Http\Controllers\Integration\FanartTv\FanartTv;
+use App\Http\Controllers\Integration\Integrator;
+use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 use App\Movie;
 use Carbon\Carbon;
-use App\Http\Controllers\Integration\Integrator;
-use App\Http\Controllers\Integration\FanartTv\FanartTv;
-use App\Http\Controllers\oauth2client\Oauth2ClientTrakt;
 
 /**
  * Class TraktTv.
@@ -28,30 +28,60 @@ class TraktTv extends Integrator
      */
     protected $externalApiName = 'TraktTvApi';
 
+    /**
+     * @var Oauth2ClientTrakt
+     */
     protected $traktClient;
 
+    /**
+     * @var string
+     */
     protected $method = 'GET';
 
+    /**
+     * @var string
+     */
     protected $baseUrl = 'https://api.trakt.tv/';
 
+    /**
+     * @var null
+     */
     protected $limit = null;
 
+    /**
+     * @var null
+     */
     protected $urlPart = null;
 
+    /**
+     * @var null
+     */
     protected $type = null;
 
+    /**
+     * @var null
+     */
     protected $extended = null;
 
+    /**
+     * TraktTv constructor.
+     */
     public function __construct()
     {
         $this->traktClient = new Oauth2ClientTrakt();
     }
 
+    /**
+     * @param $limit
+     */
     public function setLimit($limit)
     {
         $this->limit = $limit;
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function loadWatched()
     {
         $watchedMovies = $this->getSyncWatched();
@@ -65,6 +95,9 @@ class TraktTv extends Integrator
         return $watchedMovies;
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function getSyncWatched()
     {
         $this->urlPart = 'sync/watched/';
@@ -72,7 +105,11 @@ class TraktTv extends Integrator
         return $this->makeRequest();
     }
 
-    private function makeRequest(array $body = [])
+    /**
+     * @param null $body
+     * @return bool|mixed
+     */
+    private function makeRequest($body = null)
     {
         $url = $this->createUrl();
         $method = $this->method;
@@ -93,6 +130,9 @@ class TraktTv extends Integrator
         return json_decode($result);
     }
 
+    /**
+     * @return string
+     */
     private function createUrl()
     {
         $url = $this->baseUrl.$this->urlPart.$this->type;
@@ -112,10 +152,16 @@ class TraktTv extends Integrator
         return $url;
     }
 
+    /**
+     *
+     */
     private function incrementTraktTvApiLimitCounter()
     {
         $this->addExternalAPILimitCounter(
-            Carbon::now(), $this->externalApiName, $this->externalApiLimit, $this->externalApiLimitInterval
+            Carbon::now(),
+            $this->externalApiName,
+            $this->externalApiLimit,
+            $this->externalApiLimitInterval
         );
     }
 
@@ -161,6 +207,10 @@ class TraktTv extends Integrator
         return $movie;
     }
 
+    /**
+     * @param $id
+     * @return Movie
+     */
     public function getMovie($id)
     {
         $this->urlPart = '';
@@ -191,6 +241,10 @@ class TraktTv extends Integrator
         $this->extended = $extended;
     }
 
+    /**
+     * @param $command
+     * @return bool|mixed
+     */
     public function syncWatched($command)
     {
         $watchedMovies = $this->getSyncHistory();
@@ -204,6 +258,9 @@ class TraktTv extends Integrator
         return $watchedMovies;
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function getSyncHistory()
     {
         $this->urlPart = 'sync/history/';
@@ -211,6 +268,11 @@ class TraktTv extends Integrator
         return $this->makeRequest();
     }
 
+    /**
+     * @param $id
+     * @param $watched_at
+     * @return bool|mixed
+     */
     public function addSyncHistory($id, $watched_at)
     {
         $this->urlPart = 'sync/history/';
