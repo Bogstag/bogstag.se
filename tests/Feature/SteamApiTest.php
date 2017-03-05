@@ -68,6 +68,7 @@ class SteamApiTest extends TestCase
             'steamapi:game',
             [
                 'action' => 'update',
+                '--rpg'  => '',
             ]
         );
 
