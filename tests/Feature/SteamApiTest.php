@@ -62,6 +62,18 @@ class SteamApiTest extends TestCase
 
     private $steamSchemaJson;
 
+    public function testArtisanCommand()
+    {
+        \Artisan::call(
+            'steamapi:game',
+            [
+                'action' => 'update',
+            ]
+        );
+
+        $this->assertTrue(true);
+    }
+
     /**
      * @covers \App\Http\Controllers\SteamGameController
      * @covers \App\SteamGame
@@ -76,20 +88,32 @@ class SteamApiTest extends TestCase
         $this->assertDatabaseHas('steam_games', ['name' => $this->name]);
 
         $steamGameDescriptionJson = json_decode($this->steamGameDescriptionJson);
-        $SteamAPIGameDescription = new \App\Http\Controllers\Integration\SteamAPI\SteamAPIGameDescription(new \App\SteamGame());
+        $SteamAPIGameDescription = new \App\Http\Controllers\Integration\SteamAPI\SteamAPIGameDescription(
+            new \App\SteamGame()
+        );
         $SteamAPIGameDescription->updateSteamGameWithNewDescription($SteamGame, $steamGameDescriptionJson);
-        $this->assertDatabaseHas('steam_games',
-            ['website' => $this->website, 'screenshot_path_thumbnail' => $this->screenshots_path_thumbnail, 'movie_full_url' => $this->movies_webm_max]);
+        $this->assertDatabaseHas(
+            'steam_games',
+            [
+                'website'                   => $this->website,
+                'screenshot_path_thumbnail' => $this->screenshots_path_thumbnail,
+                'movie_full_url'            => $this->movies_webm_max
+            ]
+        );
 
         $SteamGameSchemaFromAPI = json_decode($this->steamSchemaJson);
         $SteamAPIGameSchema = new \App\Http\Controllers\Integration\SteamAPI\SteamAPIGameSchema(new \App\SteamGame());
         $SteamAPIGameSchema->parseAndSaveAchievementSchema($SteamGame->id, $SteamGameSchemaFromAPI->achievements);
-        $this->assertDatabaseHas('steam_game_achievements',
-            ['steam_game_id' => $this->appid, 'display_name' => $this->achievements_displayName]);
+        $this->assertDatabaseHas(
+            'steam_game_achievements',
+            ['steam_game_id' => $this->appid, 'display_name' => $this->achievements_displayName]
+        );
 
         $SteamAPIGameSchema->parseAndSaveStatSchema($SteamGame->id, $SteamGameSchemaFromAPI->stats);
-        $this->assertDatabaseHas('steam_game_stats',
-            ['steam_game_id' => $this->appid, 'display_name' => $this->stats_displayName]);
+        $this->assertDatabaseHas(
+            'steam_game_stats',
+            ['steam_game_id' => $this->appid, 'display_name' => $this->stats_displayName]
+        );
 
         $SteamGames = \App\SteamGame::ListGames()->get();
         $this->assertEquals($this->name, $SteamGames[0]['attributes']['name']);
