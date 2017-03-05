@@ -198,7 +198,7 @@ class SteamAPIGame extends SteamAPI
         $GetRecentlyPlayedGames = $this->steam->run($GetRecentlyPlayedGames);
 
         if (empty($GetRecentlyPlayedGames['response']['games'])) {
-            return null;
+            return;
         }
 
         $GetRecentlyPlayedGamesJson = json_encode($GetRecentlyPlayedGames['response']['games']);
