@@ -97,7 +97,7 @@ class SteamApiTest extends TestCase
             [
                 'website'                   => $this->website,
                 'screenshot_path_thumbnail' => $this->screenshots_path_thumbnail,
-                'movie_full_url'            => $this->movies_webm_max
+                'movie_full_url'            => $this->movies_webm_max,
             ]
         );
 
