@@ -15,7 +15,7 @@
     "doctrine/dbal": "^2.5",
     "google/apiclient": "2.1.*",
     "khill/lavacharts": "3.0.*",
-    "laravel/dusk": "^1.0",
+    "laravel/dusk": "^1.1",
     "laravel/framework": "5.4.*",
     "league/oauth2-client": "2.2.*",
     "mailgun/mailgun-php": "~2.1.2",

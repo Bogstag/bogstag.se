@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c6bfb1fa5247fd0ee963f0baa78f1c9",
+    "content-hash": "b4d6c1b39fee9cfffe5bccda3586dd86",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1690,21 +1690,22 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v1.0.10",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "11537ac1a939a2194e9e3cdc2536e6e34eff9ea6"
+                "reference": "87d57bbcb878e569aa8750e1d487ce923561f3e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/11537ac1a939a2194e9e3cdc2536e6e34eff9ea6",
-                "reference": "11537ac1a939a2194e9e3cdc2536e6e34eff9ea6",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/87d57bbcb878e569aa8750e1d487ce923561f3e3",
+                "reference": "87d57bbcb878e569aa8750e1d487ce923561f3e3",
                 "shasum": ""
             },
             "require": {
                 "facebook/webdriver": "~1.0",
-                "illuminate/support": "~5.3",
+                "illuminate/console": "~5.4",
+                "illuminate/support": "~5.4",
                 "nesbot/carbon": "~1.20",
                 "php": ">=5.6.4",
                 "symfony/console": "~3.2",
@@ -1717,7 +1718,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
@@ -1736,12 +1737,13 @@
                 }
             ],
             "description": "Laravel Dusk provides simple end-to-end testing and browser automation.",
+            "homepage": "https://laravel.com",
             "keywords": [
                 "laravel",
                 "testing",
                 "webdriver"
             ],
-            "time": "2017-03-03T14:36:19+00:00"
+            "time": "2017-10-31T21:41:42+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4350,12 +4352,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },
