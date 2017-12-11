@@ -14,7 +14,7 @@
     "da-mitchell/steam-api": "^2.1",
     "doctrine/dbal": "^2.5",
     "google/apiclient": "2.1.*",
-    "khill/lavacharts": "3.0.*",
+    "khill/lavacharts": "3.1.*",
     "laravel/dusk": "^1.0",
     "laravel/framework": "5.4.*",
     "league/oauth2-client": "2.2.*",
