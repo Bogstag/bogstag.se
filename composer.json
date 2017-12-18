@@ -12,7 +12,7 @@
     "barryvdh/laravel-ide-helper": "^2.1",
     "bugsnag/bugsnag-laravel": "^2.0",
     "da-mitchell/steam-api": "^2.1",
-    "doctrine/dbal": "^2.5",
+    "doctrine/dbal": "^2.6.3",
     "google/apiclient": "2.1.*",
     "khill/lavacharts": "3.0.*",
     "laravel/dusk": "^1.0",
