@@ -19,7 +19,7 @@
     "laravel/framework": "5.4.*",
     "league/oauth2-client": "2.2.*",
     "mailgun/mailgun-php": "~2.1.2",
-    "yajra/laravel-datatables-oracle": "7.1.*",
+    "yajra/laravel-datatables-oracle": "8.3.*",
     "laravel/tinker": "~1.0",
     "bogstag/oauth2-trakt" : "dev-master"
   },
