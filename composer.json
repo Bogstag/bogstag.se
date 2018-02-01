@@ -17,7 +17,7 @@
     "khill/lavacharts": "3.0.*",
     "laravel/dusk": "^1.0",
     "laravel/framework": "5.4.*",
-    "league/oauth2-client": "2.2.*",
+    "league/oauth2-client": "2.3.*",
     "mailgun/mailgun-php": "~2.1.2",
     "yajra/laravel-datatables-oracle": "7.1.*",
     "laravel/tinker": "~1.0",
