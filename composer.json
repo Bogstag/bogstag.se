@@ -17,11 +17,10 @@
     "doctrine/dbal": "^2.8",
     "google/apiclient": "2.2.*",
     "khill/lavacharts": "3.1.*",
-    "laravel/dusk": "^4.0",
     "league/oauth2-client": "2.4.*",
     "mailgun/mailgun-php": "~2.6",
     "yajra/laravel-datatables-oracle": "8.13.*",
-    "bogstag/oauth2-trakt" : "dev-master"
+    "bogstag/oauth2-trakt": "dev-master"
   },
   "require-dev": {
     "beyondcode/laravel-dump-server": "^1.0",
@@ -32,7 +31,8 @@
     "phpunit/phpunit": "^7.0",
     "phpspec/phpspec": "~5.0",
     "symfony/css-selector": "3.2.*",
-    "symfony/dom-crawler": "3.2.*"
+    "symfony/dom-crawler": "3.2.*",
+    "laravel/dusk": "^4.0"
   },
   "autoload": {
     "psr-4": {
