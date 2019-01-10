@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ed6466cbcf625b927caebaaa720ff1e",
+    "content-hash": "3b03851b4f9e1babd1107f072a810355",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2592,16 +2592,16 @@
         },
         {
             "name": "league/oauth2-client",
-            "version": "2.3.1",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-client.git",
-                "reference": "4dfceb5b25fe89dba7034de75bb097dfb2ec4b46"
+                "reference": "cc114abc622a53af969e8664722e84ca36257530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/4dfceb5b25fe89dba7034de75bb097dfb2ec4b46",
-                "reference": "4dfceb5b25fe89dba7034de75bb097dfb2ec4b46",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/cc114abc622a53af969e8664722e84ca36257530",
+                "reference": "cc114abc622a53af969e8664722e84ca36257530",
                 "shasum": ""
             },
             "require": {
@@ -2655,7 +2655,7 @@
                 "oauth2",
                 "single sign on"
             ],
-            "time": "2018-11-19T23:15:14+00:00"
+            "time": "2018-11-22T18:33:57+00:00"
         },
         {
             "name": "mailgun/mailgun-php",
