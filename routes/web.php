@@ -44,10 +44,9 @@ Route::group(
 
 //Admin routs
 Route::group(
-    ['prefix' => 'admin', 'middleware' => 'web'],
+    ['prefix' => 'admin', 'middleware' => 'auth'],
     function () {
         // Admin Dashboard
-        Auth::routes();
         Route::get('dashboard', 'Admin\DashboardController@index');
         Route::get('emaildrop/getEmailDropsData', 'Admin\EmailDropController@getEmailDropsData');
         Route::get('emaildrop/setAdressToOkMailGun/{recipient}', 'Admin\EmailDropController@setAdressToOkMailGun');
