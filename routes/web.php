@@ -17,16 +17,12 @@ Route::group(['prefix' => '/api/v1', 'middleware' => 'web'], function () {
 });
 
 Route::group(['middleware' => 'web', 'throttle'], function () {
-    Route::any('home', function () {
-        return redirect('/');
-    });
+    Route::redirect('home', '/');
 
-    Route::get('/', function () {
-        return view('pages.home');
-    });
-    Route::get('about', function () {
-        return view('pages.about');
-    });
+    Route::view('/', 'pages.home');
+
+    Route::view('/about', 'pages.about');
+
     Route::get('activity/steps', 'StepCharts@getStepCharts');
     Route::get('server/email', 'EmailCharts@getEmailCharts');
     Route::resource('game/steam', 'SteamGameController');
@@ -36,9 +32,7 @@ Route::group(['middleware' => 'web', 'throttle'], function () {
     Route::resource('movie', 'MovieController');
 
     Auth::routes();
-    Route::any('register', function () {
-        return redirect('/');
-    });
+    Route::redirect('register', '/');
     Route::get('/logout', 'Auth\LoginController@logout');
 });
 
