@@ -225,6 +225,7 @@ return [
 
         'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];
