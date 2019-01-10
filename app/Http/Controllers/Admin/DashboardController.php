@@ -27,6 +27,6 @@ class DashboardController extends AdminController
 
         $emailDrop = Emaildrop::count();
 
-        return view('admin.dashboard.index', compact('title', 'emailDrop', 'externalApiLimits'));
+        return view('admin.dashboard.index', compact('title', 'emailDrop'));
     }
 }
