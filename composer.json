@@ -32,7 +32,7 @@
     "phpspec/phpspec": "~5.0",
     "symfony/css-selector": "3.2.*",
     "symfony/dom-crawler": "3.2.*",
-    "laravel/dusk": "^4.0"
+    "laravel/dusk": "^5.5"
   },
   "autoload": {
     "psr-4": {
