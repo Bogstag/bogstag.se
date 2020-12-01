@@ -18,7 +18,7 @@
     "google/apiclient": "2.2.*",
     "khill/lavacharts": "3.1.*",
     "league/oauth2-client": "2.4.*",
-    "mailgun/mailgun-php": "~2.6",
+    "mailgun/mailgun-php": "~3.2",
     "yajra/laravel-datatables-oracle": "8.13.*",
     "bogstag/oauth2-trakt": "dev-master"
   },
